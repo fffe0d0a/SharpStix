@@ -1,5 +1,5 @@
 using System.Text.Json;
-using SharpStix.Serialisation.Json.Converters;
+using System.Text.Json.Serialization.Metadata;
 using SharpStix.Services;
 using SharpStix.StixObjects;
 
@@ -15,11 +15,14 @@ public class UnitTest1
 
         string q = File.ReadAllText("enterprise-attack.json");
 
+        
 
-
-        JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-        options.Converters.Add(new StixIdentifierConverter());
-        options.Converters.Add(new StixObjectConverter());
+        JsonSerializerOptions options = new JsonSerializerOptions()
+        {
+            PropertyNameCaseInsensitive = true, 
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+            WriteIndented = true,
+        };
 
         JsonSerializer.Deserialize<Bundle>(q, options);
 

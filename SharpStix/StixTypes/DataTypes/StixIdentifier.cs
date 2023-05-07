@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Serialisation.Json.Converters.DataTypes;
 using SharpStix.StixObjects;
 
 namespace SharpStix.StixTypes;
@@ -13,6 +14,7 @@ namespace SharpStix.StixTypes;
 /// <summary>
 /// A UUID4 for STIX object types.
 /// </summary>
+[JsonConverter(typeof(StixIdentifierConverter))]
 public record StixIdentifier : IStixDataType
 {
     internal StixIdentifier(string value)

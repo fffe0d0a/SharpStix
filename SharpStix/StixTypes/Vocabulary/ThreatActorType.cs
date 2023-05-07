@@ -1,7 +1,10 @@
 ﻿using SharpStix.Extensions;
+using SharpStix.Serialisation.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
+[JsonConverter(typeof(StixOpenVocabConverter<ThreatActorType>))]
 public sealed record ThreatActorType(string Value) : StixOpenVocab(Value)
 {
     public enum EThreatActorType

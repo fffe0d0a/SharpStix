@@ -1,7 +1,10 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
+using SharpStix.Serialisation.Json.Converters;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
+[JsonConverter(typeof(StixOpenVocabConverter<AccountType>))]
 public sealed record AccountType(string Value) : StixOpenVocab(Value)
 {
     public enum EAccountType

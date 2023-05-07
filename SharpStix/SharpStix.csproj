@@ -13,7 +13,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Serialisation\Json\Conversion\New\" />
-	  <Folder Include="Serialisation\Json\Converters\Objects\" />
 	</ItemGroup>
 
 </Project>

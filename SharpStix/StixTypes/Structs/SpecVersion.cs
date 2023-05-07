@@ -1,5 +1,9 @@
-﻿namespace SharpStix.StixTypes;
+﻿using SharpStix.Serialisation.Json.Converters.Structs;
+using System.Text.Json.Serialization;
 
+namespace SharpStix.StixTypes;
+
+[JsonConverter(typeof(SpecVersionConverter))]
 public readonly record struct SpecVersion
 {
     public static readonly SpecVersion CurrentVersion = new SpecVersion(CURRENT_VERSION_NUMBER);

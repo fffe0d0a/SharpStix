@@ -1,4 +1,6 @@
-﻿using SharpStix.StixTypes;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixTypes;
 
@@ -9,3 +11,16 @@ public record MitreObjectVersionReference : IStixDataType
 
     public static string TypeName => "object-version-ref";
 }
+
+//public class MitreObjectVersionReferenceConverter : JsonConverter<MitreObjectVersionReference>
+//{
+//    public override MitreObjectVersionReference? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+//    {
+//        return new MitreObjectVersionReference()
+//    }
+
+//    public override void Write(Utf8JsonWriter writer, MitreObjectVersionReference value, JsonSerializerOptions options)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
