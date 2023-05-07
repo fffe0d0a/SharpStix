@@ -1,12 +1,7 @@
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 using SharpStix.StixObjects;
-using SharpStix.StixObjects.Domain;
-using SharpStix.StixTypes;
 
 namespace SharpStix.Tests;
 

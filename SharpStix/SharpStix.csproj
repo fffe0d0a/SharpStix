@@ -12,10 +12,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<AssemblyAttribute Include="SharpStix.Common.StixTypeProviderAttribute" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Serialisation\Json\Conversion\New\" />
 	  <Folder Include="Serialisation\Json\Converters\Objects\" />
 	</ItemGroup>

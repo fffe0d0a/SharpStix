@@ -9,21 +9,12 @@ public static class StixTypeDiscriminationService
 {
     private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
 
-    static StixTypeDiscriminationService()
-    {
-        foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()
-                     .Where(x => x.GetCustomAttribute<StixTypeProviderAttribute>() != null)) MapTypes(assembly);
+    static StixTypeDiscriminationService() => MapTypes(Assembly.GetExecutingAssembly());
 
-        AppDomain.CurrentDomain.AssemblyLoad += (_, args) =>
-        {
-            Assembly asm = args.LoadedAssembly;
-            if (asm.GetCustomAttribute<StixTypeProviderAttribute>() != null)
-                MapTypes(asm);
-        };
-    }
-
-    private static void MapTypes(Assembly assembly)
+    private static int MapTypes(Assembly assembly)
     {
+        int i = 0;
+
         foreach (Type type in assembly.GetTypes().Where(x =>
                      x.IsAssignableTo(typeof(IStixType)) && x is { IsInterface: false, IsAbstract: false }))
         {
@@ -39,7 +30,10 @@ public static class StixTypeDiscriminationService
                 continue;
 
             TypeMap.Add(typeName, type); //if this throws, someone's making a duplicate type somewhere
+            i++;
         }
+
+        return i;
     }
 
     private static string? GetTypeNameFromGenericType(Type type)
@@ -87,4 +81,31 @@ public static class StixTypeDiscriminationService
         TypeMap.TryGetValue(stixTypeName, out Type? type);
         return type;
     }
+
+    public static int MapTypesFromAssembly(Assembly assembly) => MapTypes(assembly);
+}
+
+/// <summary>
+///     Helps determine the <see cref="IHasTypeName.TypeName"/> of a generic class that implements <see cref="IHasTypeName"/>.
+/// </summary>
+[AttributeUsage(AttributeTargets.Class)]
+public sealed class GenericTypeNameHelperAttribute : StixTypeNameOverrideAttribute
+{
+    public GenericTypeNameHelperAttribute(string typeName) : base(typeName)
+    {
+    }
+}
+
+/// <summary>
+///     Override's a class's <see cref="TypeName"/> during type discrimination when it implements <see cref="IHasTypeName.TypeName"/>.
+/// </summary>
+[AttributeUsage(AttributeTargets.Class)]
+public class StixTypeNameOverrideAttribute : Attribute
+{
+    public StixTypeNameOverrideAttribute(string typeName)
+    {
+        TypeName = typeName;
+    }
+
+    public string TypeName { get; }
 }
