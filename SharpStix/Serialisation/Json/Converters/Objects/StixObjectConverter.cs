@@ -32,6 +32,8 @@ public class StixObjectConverter : JsonConverter<StixObject>
 
     public override void Write(Utf8JsonWriter writer, StixObject value, JsonSerializerOptions options)
     {
-        throw new NotImplementedException();
+        using JsonDocument document = JsonSerializer.SerializeToDocument(value, value.GetType(), options); //get the child type
+
+        document.WriteTo(writer);
     }
 }

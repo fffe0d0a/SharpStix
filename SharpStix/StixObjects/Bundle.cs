@@ -1,4 +1,5 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;

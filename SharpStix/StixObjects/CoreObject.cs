@@ -1,4 +1,5 @@
-﻿using SharpStix.StixTypes;
+﻿using System.Text.Json.Serialization;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;
 
@@ -6,6 +7,7 @@ public abstract record CoreObject : StixObject
 {
     public List<StixIdentifier>? ObjectMarkingRefs { get; init; }
     public List<GranularMarking>? GranularMarkings { get; init; }
-    public Dictionary<StixIdentifier, object>? Extensions { get; init; }
+    [JsonExtensionData]
+    public Dictionary<string, object>? Extensions { get; init; } //warn, object
     public new static string TypeName => "core-object";
 }

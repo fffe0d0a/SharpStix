@@ -13,6 +13,6 @@ public class StixTimestampConverter : JsonConverter<StixTimestamp>
 
     public override void Write(Utf8JsonWriter writer, StixTimestamp value, JsonSerializerOptions options)
     {
-        throw new NotImplementedException();
+        writer.WriteStringValue(value.ToString());
     }
 }

@@ -10,4 +10,6 @@ public abstract record StixObject : IStixType, IHasId
 {
     public required StixIdentifier Id { get; init; }
     public static string TypeName => "stix-object";
+
+    public string Type => TypeName; //I prevent the redundant type property from showing up in Extensions
 }

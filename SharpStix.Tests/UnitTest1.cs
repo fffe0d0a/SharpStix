@@ -1,7 +1,11 @@
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using System.Text.Unicode;
 using SharpStix.Services;
 using SharpStix.StixObjects;
+using SharpStix.StixObjects.Domain;
 
 namespace SharpStix.Tests;
 
@@ -22,9 +26,17 @@ public class UnitTest1
             PropertyNameCaseInsensitive = true, 
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             WriteIndented = true,
+            MaxDepth = 128,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
 
-        JsonSerializer.Deserialize<Bundle>(q, options);
+        Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
+
+        var doc = JsonSerializer.SerializeToUtf8Bytes(quack, options);
+        File.WriteAllBytes("test.json", doc);
+
+        return;
 
         StixContext context = new StixContext();
         context.AddObjectsFromJson(File.ReadAllText("enterprise-attack.json"));
