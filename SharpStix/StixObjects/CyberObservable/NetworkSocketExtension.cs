@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Enums;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record NetworkSocketExtension() : CyberObservableObject()
+public sealed record NetworkSocketExtension : CyberObservableObject
 {
     private const string TYPE = "socket-ext";
 

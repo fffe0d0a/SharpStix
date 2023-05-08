@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record AttackPattern() : DomainObject()
+public sealed record AttackPattern : DomainObject
 {
     private const string TYPE = "attack-pattern";
 

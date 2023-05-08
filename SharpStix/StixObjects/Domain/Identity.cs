@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Identity() : DomainObject()
+public sealed record Identity : DomainObject
 {
     private const string TYPE = "identity";
 

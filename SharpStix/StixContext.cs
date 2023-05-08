@@ -33,9 +33,19 @@ internal static class StixIdentityService<T> where T : IStixType, IHasId
 {
     private static Dictionary<StixIdentifier, T> IdentityMap { get; } = new Dictionary<StixIdentifier, T>();
 
-    public static bool Register(T stixObject) => IdentityMap.TryAdd(stixObject.Id, stixObject);
+    public static bool Register(T stixObject)
+    {
+        return IdentityMap.TryAdd(stixObject.Id, stixObject);
+    }
 
-    public static bool Unregister(T stixObject) => IdentityMap.Remove(stixObject.Id);
+    public static bool Unregister(T stixObject)
+    {
+        return IdentityMap.Remove(stixObject.Id);
+    }
 
-    public static T GetById(StixIdentifier id) => IdentityMap[id]; //todo may throw
+    public static T GetById(StixIdentifier id)
+    {
+        return IdentityMap[id];
+        //todo may throw
+    }
 }

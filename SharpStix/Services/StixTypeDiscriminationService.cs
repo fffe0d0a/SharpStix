@@ -5,7 +5,7 @@ using SharpStix.StixObjects;
 
 namespace SharpStix.Services;
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
 public class StixTypeDiscriminatorAttribute : Attribute
 {
     public StixTypeDiscriminatorAttribute(string typeName)
@@ -21,7 +21,10 @@ public static class StixTypeDiscriminationService
     private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
     private static readonly Dictionary<Type, string> DiscriminatorMap = new Dictionary<Type, string>();
 
-    static StixTypeDiscriminationService() => MapTypes(Assembly.GetExecutingAssembly());
+    static StixTypeDiscriminationService()
+    {
+        MapTypes(Assembly.GetExecutingAssembly());
+    }
 
     private static int MapTypes(Assembly assembly)
     {
@@ -48,11 +51,13 @@ public static class StixTypeDiscriminationService
         if (!type.IsAssignableTo(typeof(IHasTypeName)))
             return null;
 
-        StixTypeDiscriminatorAttribute? typeDiscriminator = (StixTypeDiscriminatorAttribute?)type.GetCustomAttribute(typeof(StixTypeDiscriminatorAttribute));
+        StixTypeDiscriminatorAttribute? typeDiscriminator =
+            (StixTypeDiscriminatorAttribute?)type.GetCustomAttribute(typeof(StixTypeDiscriminatorAttribute));
 
         if (typeDiscriminator == null)
         {
-            Debug.WriteLine($"Stix type {type} implementing {typeof(IHasTypeName)} is missing {typeof(StixTypeDiscriminatorAttribute)}.");
+            Debug.WriteLine(
+                $"Stix type {type} implementing {typeof(IHasTypeName)} is missing {typeof(StixTypeDiscriminatorAttribute)}.");
             return null;
         }
 
@@ -89,5 +94,8 @@ public static class StixTypeDiscriminationService
         return value;
     }
 
-    public static int MapTypesFromAssembly(Assembly assembly) => MapTypes(assembly);
+    public static int MapTypesFromAssembly(Assembly assembly)
+    {
+        return MapTypes(assembly);
+    }
 }

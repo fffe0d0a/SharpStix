@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "processor-architecture-ov";
-
     public enum EProcessorArchitecture
     {
         /// <summary>
@@ -54,9 +52,13 @@ public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
         x86_64
     }
 
+    private const string TYPE = "processor-architecture-ov";
+
     public ProcessorArchitecture(EProcessorArchitecture value) : this(FormatEProcessorArchitecture(value))
     {
     }
+
+    public override string Type => TYPE;
 
     private static string FormatEProcessorArchitecture(EProcessorArchitecture processorArchitecture)
     {
@@ -77,6 +79,4 @@ public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
                     "Unhandled switch argument.");
         }
     }
-
-    public override string Type => TYPE;
 }

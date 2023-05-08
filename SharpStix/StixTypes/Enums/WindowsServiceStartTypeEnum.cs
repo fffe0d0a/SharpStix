@@ -8,7 +8,7 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
 {
     private const string TYPE = "windows-service-start-type-enum";
 
-    public static readonly WindowsServiceStartTypeEnum AutoStart = 
+    public static readonly WindowsServiceStartTypeEnum AutoStart =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_AUTO_START);
 
     public static readonly WindowsServiceStartTypeEnum BootStart =
@@ -23,6 +23,12 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
     public static readonly WindowsServiceStartTypeEnum SystemAlert =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_SYSTEM_ALERT);
 
+    private WindowsServiceStartTypeEnum(EWindowsServiceStartType value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
+
     private enum EWindowsServiceStartType
     {
         // ReSharper disable InconsistentNaming
@@ -35,10 +41,4 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
 
         // ReSharper restore InconsistentNaming
     }
-
-    private WindowsServiceStartTypeEnum(EWindowsServiceStartType value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

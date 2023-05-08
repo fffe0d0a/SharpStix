@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Location() : DomainObject()
+public sealed record Location() : DomainObject
 {
     private const string TYPE = "location";
 

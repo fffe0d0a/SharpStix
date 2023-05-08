@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Grouping() : DomainObject()
+public sealed record Grouping : DomainObject
 {
     private const string TYPE = "grouping";
 

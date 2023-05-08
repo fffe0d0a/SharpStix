@@ -20,6 +20,12 @@ public sealed record WindowsServiceTypeEnum : Enumeration<WindowsServiceTypeEnum
     public static readonly WindowsServiceTypeEnum Win32ShareProcess =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_WIN32_SHARE_PROCESS);
 
+    private WindowsServiceTypeEnum(Enum @enum) : base(@enum)
+    {
+    }
+
+    public string Type => TYPE;
+
     private enum EWindowsServiceType
     {
         // ReSharper disable InconsistentNaming
@@ -31,10 +37,4 @@ public sealed record WindowsServiceTypeEnum : Enumeration<WindowsServiceTypeEnum
 
         // ReSharper restore InconsistentNaming
     }
-
-    private WindowsServiceTypeEnum(Enum @enum) : base(@enum)
-    {
-    }
-
-    public string Type => TYPE;
 }

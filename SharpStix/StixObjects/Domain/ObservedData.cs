@@ -5,7 +5,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record ObservedData() : DomainObject()
+public sealed record ObservedData() : DomainObject
 {
     private const string TYPE = "observed-data";
 

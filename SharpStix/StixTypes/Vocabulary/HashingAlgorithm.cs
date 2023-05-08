@@ -1,5 +1,5 @@
-﻿using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -8,8 +8,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record HashingAlgorithm(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "hashing-algorithm-ov";
-
     public enum EHashingAlgorithm
     {
         // ReSharper disable InconsistentNaming
@@ -54,6 +52,8 @@ public sealed record HashingAlgorithm(string Value) : StixOpenVocab(Value)
         TLSH
         // ReSharper restore InconsistentNaming
     }
+
+    private const string TYPE = "hashing-algorithm-ov";
 
     public HashingAlgorithm(EHashingAlgorithm value) : this(value.ToString().Replace('_', '-'))
     {

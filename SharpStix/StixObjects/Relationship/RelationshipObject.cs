@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Relationship;
 
-public abstract record RelationshipObject() : CoreObject(), IVersioned
+public abstract record RelationshipObject : CoreObject, IVersioned
 {
     private const string TYPE = "relationship-object";
 

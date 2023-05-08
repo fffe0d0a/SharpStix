@@ -9,29 +9,38 @@ public sealed record NetworkSocketTypeEnum : Enumeration<NetworkSocketTypeEnum>,
     private const string TYPE = "network-socket-type-enum";
 
     /// <summary>
-    /// Specifies a pipe-like socket which operates over a connection with a particular remote socket and transmits data reliably as a stream of bytes.
+    ///     Specifies a pipe-like socket which operates over a connection with a particular remote socket and transmits data
+    ///     reliably as a stream of bytes.
     /// </summary>
     public static readonly NetworkSocketTypeEnum Stream = new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_STREAM);
 
     /// <summary>
-    /// Specifies a socket in which individually-addressed packets are sent (datagram).
+    ///     Specifies a socket in which individually-addressed packets are sent (datagram).
     /// </summary>
     public static readonly NetworkSocketTypeEnum Datagram = new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_DGRAM);
 
     /// <summary>
-    /// Specifies raw sockets which allow new IP protocols to be implemented in user space. 
+    ///     Specifies raw sockets which allow new IP protocols to be implemented in user space.
     /// </summary>
     public static readonly NetworkSocketTypeEnum Raw = new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_RAW);
 
     /// <summary>
-    /// Specifies a socket indicating a reliably-delivered message.
+    ///     Specifies a socket indicating a reliably-delivered message.
     /// </summary>
-    public static readonly NetworkSocketTypeEnum ReliableDatagram = new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_RDM);
+    public static readonly NetworkSocketTypeEnum ReliableDatagram =
+        new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_RDM);
 
     /// <summary>
-    /// Specifies a datagram congestion control protocol socket.
+    ///     Specifies a datagram congestion control protocol socket.
     /// </summary>
-    public static readonly NetworkSocketTypeEnum SeqPacket = new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_SEQPACKET);
+    public static readonly NetworkSocketTypeEnum SeqPacket =
+        new NetworkSocketTypeEnum(ENetworkSocketType.SOCK_SEQPACKET);
+
+    private NetworkSocketTypeEnum(ENetworkSocketType value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
 
     private enum ENetworkSocketType
     {
@@ -45,10 +54,4 @@ public sealed record NetworkSocketTypeEnum : Enumeration<NetworkSocketTypeEnum>,
 
         // ReSharper restore InconsistentNaming
     }
-
-    private NetworkSocketTypeEnum(ENetworkSocketType value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

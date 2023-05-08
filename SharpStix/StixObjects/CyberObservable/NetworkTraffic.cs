@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record NetworkTraffic() : CyberObservableObject()
+public sealed record NetworkTraffic : CyberObservableObject
 {
     private const string TYPE = "network-traffic";
 

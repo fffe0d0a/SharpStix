@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Software() : CyberObservableObject()
+public sealed record Software : CyberObservableObject
 {
     private const string TYPE = "software";
 

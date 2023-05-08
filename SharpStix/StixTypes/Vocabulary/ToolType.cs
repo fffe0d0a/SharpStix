@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ToolType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "tool-type-ov";
-
     public enum EToolType
     {
         /// <summary>
@@ -54,6 +52,8 @@ public sealed record ToolType(string Value) : StixOpenVocab(Value)
         /// </summary>
         Unknown
     }
+
+    private const string TYPE = "tool-type-ov";
 
     public ToolType(EToolType value) : this(value.ToString().PascalToKebabCase())
     {

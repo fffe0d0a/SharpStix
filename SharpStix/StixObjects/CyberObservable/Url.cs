@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Url() : CyberObservableObject()
+public sealed record Url : CyberObservableObject
 {
     private const string TYPE = "url";
 

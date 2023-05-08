@@ -11,5 +11,8 @@ internal static class EnumHelper<T> where T : Enum
 
     private static FrozenDictionary<string, T> Map { get; }
 
-    public static T FromString(string value) => Map[value];
+    public static T FromString(string value)
+    {
+        return Map[value];
+    }
 }

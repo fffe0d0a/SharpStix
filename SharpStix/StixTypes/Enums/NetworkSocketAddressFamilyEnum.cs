@@ -32,6 +32,12 @@ public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketA
     public static readonly NetworkSocketAddressFamilyEnum BTH =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_BTH);
 
+    private NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
+
     private enum ENetworkSocketAddressFamily
     {
         // ReSharper disable InconsistentNaming
@@ -47,10 +53,4 @@ public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketA
 
         // ReSharper restore InconsistentNaming
     }
-
-    private NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

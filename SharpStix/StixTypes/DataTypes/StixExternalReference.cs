@@ -4,7 +4,7 @@ using SharpStix.Services;
 namespace SharpStix.StixTypes;
 
 [StixTypeDiscriminator(TYPE)]
-public record StixExternalReference: IStixDataType
+public record StixExternalReference : IStixDataType
 {
     private const string TYPE = "external-reference";
 
@@ -32,7 +32,8 @@ internal class StixExternalReferenceValidator : AbstractValidator<StixExternalRe
             .NotNull()
             .When(x => x.Url != null)
             .WithSeverity(Severity.Warning)
-            .WithMessage($"{nameof(StixExternalReference.Hashes)} should not be null when {nameof(StixExternalReference.Url)} is not null.");
+            .WithMessage(
+                $"{nameof(StixExternalReference.Hashes)} should not be null when {nameof(StixExternalReference.Url)} is not null.");
 
         RuleFor(x => x.Hashes).SetValidator(new StixHashesValidator()!).When(x => x.Hashes != null); //warn??
     }

@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record X509V3Extensions() : CyberObservableObject()
+public sealed record X509V3Extensions : CyberObservableObject
 {
     private const string TYPE = "x509-v3-extensions-type";
 

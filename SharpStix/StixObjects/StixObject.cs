@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
-using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;

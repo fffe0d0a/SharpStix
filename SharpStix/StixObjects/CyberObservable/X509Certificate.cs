@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record X509Certificate() : CyberObservableObject()
+public sealed record X509Certificate : CyberObservableObject
 {
     private const string TYPE = "x509-certificate";
 

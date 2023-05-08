@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using SharpStix.Common;
 
 namespace SharpStix.StixTypes;
 
@@ -14,9 +13,12 @@ public record struct Confidence
             throw new ArgumentOutOfRangeException(nameof(value), value, "Confidence out of range [0-100].");
     }
 
-    public static implicit operator Confidence(int value) => new Confidence(value);
-
     private int Value { get; }
+
+    public static implicit operator Confidence(int value)
+    {
+        return new Confidence(value);
+    }
 
     #region ConfidenceScales
 

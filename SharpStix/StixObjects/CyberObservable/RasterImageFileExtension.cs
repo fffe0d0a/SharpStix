@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record RasterImageFileExtension() : CyberObservableObject()
+public sealed record RasterImageFileExtension : CyberObservableObject
 {
     private const string TYPE = "raster-image-ext";
 

@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record IdentityClass(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "identity-class-ov";
-
     public enum EIdentityClass
     {
         /// <summary>
@@ -43,6 +41,8 @@ public sealed record IdentityClass(string Value) : StixOpenVocab(Value)
         /// </summary>
         Unknown
     }
+
+    private const string TYPE = "identity-class-ov";
 
     public IdentityClass(EIdentityClass value) : this(value.ToString().PascalToKebabCase())
     {

@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record WindowsPebinaryType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "windows-pebinary-type-ov";
-
     public enum EWindowsPebinaryType
     {
         /// <summary>
@@ -28,6 +26,8 @@ public sealed record WindowsPebinaryType(string Value) : StixOpenVocab(Value)
         /// </summary>
         Sys
     }
+
+    private const string TYPE = "windows-pebinary-type-ov";
 
     public WindowsPebinaryType(EWindowsPebinaryType value) : this(value.ToString().PascalToKebabCase())
     {

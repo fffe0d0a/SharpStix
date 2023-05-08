@@ -1,8 +1,6 @@
-﻿using SharpStix.StixTypes;
+﻿namespace SharpStix.StixObjects.CyberObservable;
 
-namespace SharpStix.StixObjects.CyberObservable;
-
-public sealed record TcpExtension() : CyberObservableObject()
+public sealed record TcpExtension : CyberObservableObject
 {
     private const string TYPE = "tcp-ext";
 

@@ -5,7 +5,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Relationship;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Sighting() : RelationshipObject()
+public sealed record Sighting : RelationshipObject
 {
     private const string TYPE = "sighting";
 

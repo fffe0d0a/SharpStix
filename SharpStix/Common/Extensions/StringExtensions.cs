@@ -5,7 +5,10 @@ namespace SharpStix.Extensions;
 
 public static class StringExtensions
 {
-    public static bool ContainsNoneAsciiCharacters(this string text) => Encoding.UTF8.GetByteCount(text) != text.Length;
+    public static bool ContainsNoneAsciiCharacters(this string text)
+    {
+        return Encoding.UTF8.GetByteCount(text) != text.Length;
+    }
 
     /// <summary>
     ///     todo

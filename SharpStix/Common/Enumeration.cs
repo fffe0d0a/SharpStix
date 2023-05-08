@@ -26,13 +26,9 @@ public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
         {
             Dictionary<string, T> items = new Dictionary<string, T>(AllItems.Value.Count);
             foreach (KeyValuePair<int, T> item in AllItems.Value)
-            {
                 if (!items.TryAdd(item.Value.DisplayName, item.Value))
-                {
                     throw new Exception(
                         $"DisplayName needs to be unique. '{item.Value.DisplayName}' already exists");
-                }
-            }
             return items.ToFrozenDictionary();
         });
     }
@@ -51,7 +47,16 @@ public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
 
     public int Value { get; }
     public string DisplayName { get; }
-    public override string ToString() => DisplayName;
+
+    public int CompareTo(T? other)
+    {
+        return Value.CompareTo(other!.Value);
+    }
+
+    public override string ToString()
+    {
+        return DisplayName;
+    }
 
     public static IEnumerable<T> GetAll()
     {
@@ -65,23 +70,15 @@ public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
 
     public static T FromValue(int value)
     {
-        if (AllItems.Value.TryGetValue(value, out T? matchingItem))
-        {
-            return matchingItem;
-        }
+        if (AllItems.Value.TryGetValue(value, out T? matchingItem)) return matchingItem;
         throw new InvalidOperationException($"'{value}' is not a valid value in {typeof(T)}");
     }
 
     public static T FromDisplayName(string displayName)
     {
-        if (AllItemsByName.Value.TryGetValue(displayName, out T? matchingItem))
-        {
-            return matchingItem;
-        }
+        if (AllItemsByName.Value.TryGetValue(displayName, out T? matchingItem)) return matchingItem;
         throw new InvalidOperationException($"'{displayName}' is not a valid display name in {typeof(T)}");
     }
-
-    public int CompareTo(T? other) => Value.CompareTo(other!.Value);
 
     protected TEnum AsEnum<TEnum>() where TEnum : Enum
     {

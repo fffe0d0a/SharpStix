@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record UserAccount() : CyberObservableObject()
+public sealed record UserAccount : CyberObservableObject
 {
     private const string TYPE = "user-account";
 

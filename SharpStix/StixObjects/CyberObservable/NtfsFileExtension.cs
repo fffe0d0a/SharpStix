@@ -4,16 +4,18 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record NtfsFileExtension() : CyberObservableObject()
+public sealed record NtfsFileExtension : CyberObservableObject
 {
     private const string TYPE = "ntfs-ext";
 
     public string? Sid { get; init; }
     public List<AlternateDataStream>? AlternateDataStreams { get; init; }
 
+    public override string Type => TYPE;
+
 
     [StixTypeDiscriminator(TYPE)]
-    public sealed record AlternateDataStream() : CyberObservableObject() //todo move me
+    public sealed record AlternateDataStream : CyberObservableObject //todo move me
     {
         private const string TYPE = "alternate-data-stream-type";
 
@@ -23,6 +25,4 @@ public sealed record NtfsFileExtension() : CyberObservableObject()
 
         public override string Type => TYPE;
     }
-
-    public override string Type => TYPE;
 }

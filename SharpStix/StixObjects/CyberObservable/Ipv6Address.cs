@@ -2,7 +2,7 @@
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-public sealed record Ipv6Address() : CyberObservableObject()
+public sealed record Ipv6Address : CyberObservableObject
 {
     private const string TYPE = "ipv6-addr";
 

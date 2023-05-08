@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Report() : DomainObject()
+public sealed record Report : DomainObject
 {
     private const string TYPE = "report";
 

@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record EmailMessage() : CyberObservableObject()
+public sealed record EmailMessage : CyberObservableObject
 {
     private const string TYPE = "email-message";
 
@@ -23,8 +23,10 @@ public sealed record EmailMessage() : CyberObservableObject()
     public List<EmailMimeComponent>? BodyMultipart { get; init; }
     public StixIdentifier? RawEmailRef { get; init; }
 
+    public override string Type => TYPE;
+
     [StixTypeDiscriminator(TYPE)]
-    public sealed record EmailMimeComponent() : CyberObservableObject() //todo move me and other components
+    public sealed record EmailMimeComponent : CyberObservableObject //todo move me and other components
     {
         private const string TYPE = "email-mime-part-type";
 
@@ -35,6 +37,4 @@ public sealed record EmailMessage() : CyberObservableObject()
 
         public override string Type => TYPE;
     }
-
-    public override string Type => TYPE;
 }

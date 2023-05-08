@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record MacAddress() : CyberObservableObject()
+public sealed record MacAddress : CyberObservableObject
 {
     private const string TYPE = "mac-addr";
 

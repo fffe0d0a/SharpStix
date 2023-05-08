@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record ThreatActor() : DomainObject()
+public sealed record ThreatActor : DomainObject
 {
     private const string TYPE = "threat-actor";
 

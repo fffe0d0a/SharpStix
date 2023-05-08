@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ThreatActorType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "theat-actor-type-ov";
-
     public enum EThreatActorType
     {
         /// <summary>
@@ -76,6 +74,8 @@ public sealed record ThreatActorType(string Value) : StixOpenVocab(Value)
         /// </summary>
         Unknown
     }
+
+    private const string TYPE = "theat-actor-type-ov";
 
     public ThreatActorType(EThreatActorType value) : this(value.ToString().PascalToKebabCase())
     {

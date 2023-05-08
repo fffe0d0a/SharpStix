@@ -5,7 +5,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Meta;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record LanguageContent() : MetaObject(), IVersioned
+public sealed record LanguageContent : MetaObject, IVersioned
 {
     private const string TYPE = "language-content";
 
@@ -17,8 +17,8 @@ public sealed record LanguageContent() : MetaObject(), IVersioned
     public DateTime? ObjectModified { get; init; }
     public Dictionary<StixIdentifier, object>? Extensions { get; init; }
     public required Dictionary<Lang, Dictionary<string, List<object>>> Contents { get; init; } //warn tf
-    public required DateTime Modified { get; init; }
-    public bool? Revoked { get; init; }
 
     public override string Type => TYPE;
+    public required DateTime Modified { get; init; }
+    public bool? Revoked { get; init; }
 }

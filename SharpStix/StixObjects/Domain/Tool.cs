@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Tool() : DomainObject()
+public sealed record Tool : DomainObject
 {
     private const string TYPE = "tool";
 

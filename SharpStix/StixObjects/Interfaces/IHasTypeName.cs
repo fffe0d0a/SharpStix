@@ -1,6 +1,4 @@
-﻿using SharpStix.Services;
-
-namespace SharpStix.StixObjects;
+﻿namespace SharpStix.StixObjects;
 
 public interface IHasTypeName
 {

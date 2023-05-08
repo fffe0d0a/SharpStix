@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record InfrastructureType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "infrastructure-type-ov";
-
     public enum EInfrastructureType
     {
         /// <summary>
@@ -90,6 +88,8 @@ public sealed record InfrastructureType(string Value) : StixOpenVocab(Value)
         /// </summary>
         Unknown
     }
+
+    private const string TYPE = "infrastructure-type-ov";
 
     public InfrastructureType(EInfrastructureType value) : this(value.ToString().PascalToKebabCase())
     {

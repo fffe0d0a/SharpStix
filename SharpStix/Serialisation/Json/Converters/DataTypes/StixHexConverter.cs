@@ -6,7 +6,10 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class StixHexConverter : JsonConverter<StixHex>
 {
-    public override StixHex Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => new StixHex(reader.GetString() ?? throw new InvalidOperationException());
+    public override StixHex Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        return new StixHex(reader.GetString() ?? throw new InvalidOperationException());
+    }
 
     public override void Write(Utf8JsonWriter writer, StixHex value, JsonSerializerOptions options)
     {

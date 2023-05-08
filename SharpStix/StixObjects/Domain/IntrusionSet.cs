@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record IntrusionSet() : DomainObject()
+public sealed record IntrusionSet : DomainObject
 {
     private const string TYPE = "intrusion-set";
 

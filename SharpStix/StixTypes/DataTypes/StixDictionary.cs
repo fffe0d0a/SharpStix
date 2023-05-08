@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
-using SharpStix.Common;
+using SharpStix.Common.Helpers;
 using SharpStix.Services;
-using RegularExpressions = SharpStix.Common.Helpers.RegularExpressions;
 
 namespace SharpStix.StixTypes;
 

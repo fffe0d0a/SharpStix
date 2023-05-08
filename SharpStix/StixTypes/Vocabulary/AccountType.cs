@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record AccountType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "account-type-ov";
-
     public enum EAccountType
     {
         /// <summary>
@@ -68,6 +66,8 @@ public sealed record AccountType(string Value) : StixOpenVocab(Value)
         /// </summary>
         WindowsDomain
     }
+
+    private const string TYPE = "account-type-ov";
 
     public AccountType(EAccountType value) : this(value.ToString().PascalToKebabCase())
     {

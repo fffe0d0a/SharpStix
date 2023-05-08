@@ -11,13 +11,19 @@ namespace SharpStix.StixTypes.Vocabulary;
 public abstract record StixOpenVocab(string Value) : IStixDataType
 {
     private const string TYPE = "open-vocab";
-
-    public abstract string Type { get; }
     protected string Value { get; } = Value;
 
-    public override string ToString() => Value;
+    public abstract string Type { get; }
 
-    public static implicit operator string(StixOpenVocab v) => v.ToString();
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static implicit operator string(StixOpenVocab v)
+    {
+        return v.ToString();
+    }
 }
 
 internal class StixOpenVocabValidator : AbstractValidator<StixOpenVocab>

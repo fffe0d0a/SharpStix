@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Mutex() : CyberObservableObject()
+public sealed record Mutex : CyberObservableObject
 {
     private const string TYPE = "mutex";
 

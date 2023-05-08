@@ -12,7 +12,7 @@ public readonly record struct StixHex(byte[] Value) : IStixDataType
     {
     }
 
-    public  string Type => TYPE;
+    public string Type => TYPE;
 
     public override string ToString()
     {

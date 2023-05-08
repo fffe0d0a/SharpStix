@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record PatternType(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "pattern-type-ov";
-
     public enum EPatternType
     {
         /// <summary>
@@ -43,6 +41,8 @@ public sealed record PatternType(string Value) : StixOpenVocab(Value)
         /// </summary>
         Yara
     }
+
+    private const string TYPE = "pattern-type-ov";
 
     public PatternType(EPatternType value) : this(value.ToString().PascalToKebabCase())
     {

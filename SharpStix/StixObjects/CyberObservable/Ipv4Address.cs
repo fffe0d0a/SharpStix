@@ -2,7 +2,7 @@
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-public sealed record Ipv4Address() : CyberObservableObject()
+public sealed record Ipv4Address : CyberObservableObject
 {
     private const string TYPE = "ipv4-addr";
 

@@ -1,5 +1,4 @@
-﻿using SharpStix.Common;
-using SharpStix.Services;
+﻿using SharpStix.Services;
 
 namespace SharpStix.StixTypes;
 
@@ -8,5 +7,5 @@ public readonly record struct StixString(string Value) : IStixDataType
 {
     private const string TYPE = "string";
 
-    public  string Type => TYPE;
+    public string Type => TYPE;
 }

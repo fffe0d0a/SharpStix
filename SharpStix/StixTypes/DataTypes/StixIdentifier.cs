@@ -13,7 +13,7 @@ namespace SharpStix.StixTypes;
 // every stix object and bundle has an ID
 
 /// <summary>
-/// A UUID4 for STIX object types.
+///     A UUID4 for STIX object types.
 /// </summary>
 [JsonConverter(typeof(StixIdentifierConverter))]
 [StixTypeDiscriminator(TYPE)]
@@ -34,19 +34,26 @@ public record StixIdentifier : IStixDataType
         UuidHalf = uuidHalf;
     }
 
-    public static StixIdentifier CreateNew<T>() where T : IHasTypeName => new StixIdentifier(StixTypeDiscriminationService.GetDiscriminatorFromType<T>()!, Guid.NewGuid().ToString());
 
+    [JsonIgnore] public string TypeHalf { get; }
 
-    [JsonIgnore]
-    public string TypeHalf { get; }
-    [JsonIgnore]
-    public string UuidHalf { get; }
-    [JsonIgnore]
-    public string Value => $"{TypeHalf}--{UuidHalf}";
-    
+    [JsonIgnore] public string UuidHalf { get; }
 
-    public override string ToString() => Value;
+    [JsonIgnore] public string Value => $"{TypeHalf}--{UuidHalf}";
+
     public string Type => TYPE;
+
+    public static StixIdentifier CreateNew<T>() where T : IHasTypeName
+    {
+        return new StixIdentifier(StixTypeDiscriminationService.GetDiscriminatorFromType<T>()!,
+            Guid.NewGuid().ToString());
+    }
+
+
+    public override string ToString()
+    {
+        return Value;
+    }
 }
 
 //public static class StixIdentifierExtensions

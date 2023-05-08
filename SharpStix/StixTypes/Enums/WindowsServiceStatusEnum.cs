@@ -29,6 +29,12 @@ public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatus
     public static readonly WindowsServiceStatusEnum Stopped =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_STOPPED);
 
+    private WindowsServiceStatusEnum(EWindowsServiceStatus value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
+
     private enum EWindowsServiceStatus
     {
         // ReSharper disable InconsistentNaming
@@ -43,10 +49,4 @@ public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatus
 
         // ReSharper restore InconsistentNaming
     }
-
-    private WindowsServiceStatusEnum(EWindowsServiceStatus value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

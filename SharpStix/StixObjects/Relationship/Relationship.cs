@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Relationship;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Relationship() : RelationshipObject()
+public sealed record Relationship : RelationshipObject
 {
     private const string TYPE = "relationship";
 

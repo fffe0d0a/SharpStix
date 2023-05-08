@@ -50,6 +50,12 @@ public sealed record WindowsRegistryDatatypeEnum : Enumeration<WindowsRegistryDa
     public static readonly WindowsRegistryDatatypeEnum Invalid =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_INVALID_TYPE);
 
+    private WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
+
     private enum EWindowsRegistryDatatype
     {
         // ReSharper disable InconsistentNaming
@@ -71,10 +77,4 @@ public sealed record WindowsRegistryDatatypeEnum : Enumeration<WindowsRegistryDa
 
         // ReSharper restore InconsistentNaming
     }
-
-    private WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

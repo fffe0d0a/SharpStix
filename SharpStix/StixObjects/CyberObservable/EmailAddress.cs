@@ -6,7 +6,7 @@ namespace SharpStix.StixObjects.CyberObservable;
 
 [DataContract(Name = "email-addr")] //todo untested
 [StixTypeDiscriminator(TYPE)]
-public sealed record EmailAddress() : CyberObservableObject()
+public sealed record EmailAddress : CyberObservableObject
 {
     private const string TYPE = "email-addr";
 

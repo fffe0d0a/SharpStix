@@ -1,6 +1,6 @@
-﻿using SharpStix.Extensions;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
-using System.Text.Json.Serialization;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
@@ -9,8 +9,6 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ImplementationLanguage(string Value) : StixOpenVocab(Value)
 {
-    private const string TYPE = "implementation-language-ov";
-
     public enum EImplementationLanguage
     {
         Applescript,
@@ -46,9 +44,13 @@ public sealed record ImplementationLanguage(string Value) : StixOpenVocab(Value)
         // ReSharper restore InconsistentNaming
     }
 
+    private const string TYPE = "implementation-language-ov";
+
     public ImplementationLanguage(EImplementationLanguage value) : this(FormatEImplementationLanguage(value))
     {
     }
+
+    public override string Type => TYPE;
 
     private static string FormatEImplementationLanguage(EImplementationLanguage language)
     {
@@ -84,6 +86,4 @@ public sealed record ImplementationLanguage(string Value) : StixOpenVocab(Value)
                 throw new ArgumentOutOfRangeException(nameof(language), language, "Unhandled switch case.");
         }
     }
-
-    public override string Type => TYPE;
 }

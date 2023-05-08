@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Incident() : DomainObject()
+public sealed record Incident : DomainObject
 {
     private const string TYPE = "incident";
 

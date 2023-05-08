@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Enums;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record WindowsRegistryKey() : CyberObservableObject()
+public sealed record WindowsRegistryKey : CyberObservableObject
 {
     private const string TYPE = "windows-registry-key";
 
@@ -15,9 +15,11 @@ public sealed record WindowsRegistryKey() : CyberObservableObject()
     public StixIdentifier? CreatorUserRef { get; init; }
     public int? NumberOfSubkeys { get; init; }
 
+    public override string Type => TYPE;
+
 
     [StixTypeDiscriminator(TYPE)]
-    public sealed record WindowsRegistryValue() : CyberObservableObject() //todo move me
+    public sealed record WindowsRegistryValue : CyberObservableObject //todo move me
     {
         private const string TYPE = "windows-registry-value-type";
 
@@ -27,6 +29,4 @@ public sealed record WindowsRegistryKey() : CyberObservableObject()
 
         public override string Type => TYPE;
     }
-
-    public override string Type => TYPE;
 }

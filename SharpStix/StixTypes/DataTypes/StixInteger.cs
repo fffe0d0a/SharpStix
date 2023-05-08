@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using SharpStix.Common;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes;

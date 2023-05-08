@@ -10,11 +10,19 @@ public sealed record WindowsIntegrityLevelEnum : Enumeration<WindowsIntegrityLev
 
     public static readonly WindowsIntegrityLevelEnum Low = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Low);
 
-    public static readonly WindowsIntegrityLevelEnum Medium = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Medium);
+    public static readonly WindowsIntegrityLevelEnum Medium =
+        new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Medium);
 
     public static readonly WindowsIntegrityLevelEnum High = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.High);
 
-    public static readonly WindowsIntegrityLevelEnum System = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.System);
+    public static readonly WindowsIntegrityLevelEnum System =
+        new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.System);
+
+    private WindowsIntegrityLevelEnum(EWindowsIntegrityLevel value) : base(value)
+    {
+    }
+
+    public string Type => TYPE;
 
     private enum EWindowsIntegrityLevel
     {
@@ -23,10 +31,4 @@ public sealed record WindowsIntegrityLevelEnum : Enumeration<WindowsIntegrityLev
         High,
         System
     }
-
-    private WindowsIntegrityLevelEnum(EWindowsIntegrityLevel value) : base(value)
-    {
-    }
-
-    public string Type => TYPE;
 }

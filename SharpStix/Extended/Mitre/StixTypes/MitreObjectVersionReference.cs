@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using SharpStix.Services;
+﻿using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixTypes;

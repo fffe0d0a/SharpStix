@@ -8,20 +8,20 @@ public sealed record EncryptionAlgorithmEnum : Enumeration<EncryptionAlgorithmEn
 {
     private const string TYPE = "encryption-algorithm-enum";
 
-    public static readonly EncryptionAlgorithmEnum Aes256Gcm = new EncryptionAlgorithmEnum(EEncryptionAlgorithm.Aes256Gcm);
-    public static readonly EncryptionAlgorithmEnum ChaCha20Poly1305 = new EncryptionAlgorithmEnum(EEncryptionAlgorithm.ChaCha20Poly1305);
-    public static readonly EncryptionAlgorithmEnum MineTypeIndicated = new EncryptionAlgorithmEnum(EEncryptionAlgorithm.MimeTypeIndicated);
+    public static readonly EncryptionAlgorithmEnum Aes256Gcm =
+        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.Aes256Gcm);
 
-    private enum EEncryptionAlgorithm
-    {
-        Aes256Gcm,
-        ChaCha20Poly1305,
-        MimeTypeIndicated
-    }
+    public static readonly EncryptionAlgorithmEnum ChaCha20Poly1305 =
+        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.ChaCha20Poly1305);
+
+    public static readonly EncryptionAlgorithmEnum MineTypeIndicated =
+        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.MimeTypeIndicated);
 
     private EncryptionAlgorithmEnum(EEncryptionAlgorithm value) : base(value)
     {
     }
+
+    public string Type => TYPE;
 
     public override string ToString()
     {
@@ -34,5 +34,10 @@ public sealed record EncryptionAlgorithmEnum : Enumeration<EncryptionAlgorithmEn
         };
     }
 
-    public string Type => TYPE;
+    private enum EEncryptionAlgorithm
+    {
+        Aes256Gcm,
+        ChaCha20Poly1305,
+        MimeTypeIndicated
+    }
 }
