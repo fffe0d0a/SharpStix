@@ -2,14 +2,17 @@
 using SharpStix.Common;
 using SharpStix.StixTypes.Vocabulary;
 using System.Linq;
+using SharpStix.Services;
 using RegularExpressions = SharpStix.Common.Helpers.RegularExpressions;
 
 namespace SharpStix.StixTypes;
 
-
+[StixTypeDiscriminator(TYPE)]
 public class StixHashes : Dictionary<HashingAlgorithm, StixString>, IStixDataType
 {
-    public static string TypeName => "hashes";
+    private const string TYPE = "hashes";
+
+    public string Type => TYPE;
 }
 
 internal class StixHashesValidator : AbstractValidator<StixHashes>

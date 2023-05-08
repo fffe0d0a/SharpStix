@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Relationship;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Relationship() : RelationshipObject()
 {
+    private const string TYPE = "relationship";
+
     public required string RelationshipType { get; init; }
     public string? Description { get; init; }
     public required StixIdentifier SourceRef { get; init; }
@@ -11,5 +15,5 @@ public sealed record Relationship() : RelationshipObject()
     public DateTime? StartTime { get; init; }
     public DateTime? StopTime { get; init; }
 
-    public new static string TypeName => "relationship";
+    public override string Type => TYPE;
 }

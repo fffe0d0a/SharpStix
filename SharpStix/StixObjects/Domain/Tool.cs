@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Tool() : DomainObject()
 {
+    private const string TYPE = "tool";
+
     public required string Name { get; init; }
     public string? Description { get; init; }
     public List<ToolType>? ToolTypes { get; init; }
@@ -12,5 +16,5 @@ public sealed record Tool() : DomainObject()
     public List<StixKillChainPhase>? KillChainPhases { get; init; }
     public string? ToolVersion { get; init; }
 
-    public new static string TypeName => "tool";
+    public override string Type => TYPE;
 }

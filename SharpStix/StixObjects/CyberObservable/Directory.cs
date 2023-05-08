@@ -1,10 +1,14 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-public sealed record Directory() : CyberObservableObject()
+[StixTypeDiscriminator(TYPE)]
+public sealed record Directory : CyberObservableObject
 {
+    private const string TYPE = "directory";
+
     public required string Path { get; init; }
     public string? PathEnc { get; init; }
 
@@ -16,5 +20,5 @@ public sealed record Directory() : CyberObservableObject()
 
     public List<StixIdentifier>? ContainsRefs { get; init; }
 
-    public new static string TypeName => "directory";
+    public override string Type => TYPE;
 }

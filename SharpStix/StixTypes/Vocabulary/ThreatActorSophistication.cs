@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ThreatActorSophistication>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record ThreatActorSophistication(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "threat-actor-sophistication-ov";
+
     public enum EThreatActorSophistication
     {
         /// <summary>
@@ -62,5 +66,5 @@ public sealed record ThreatActorSophistication(string Value) : StixOpenVocab(Val
     {
     }
 
-    public new static string TypeName => "threat-actor-sophistication-ov";
+    public override string Type => TYPE;
 }

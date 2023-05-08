@@ -1,9 +1,12 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 
 public abstract record DomainObject : CoreObject, IVersioned
 {
+    private const string TYPE = "domain-object";
+
     public required SpecVersion SpecVersion { get; init; }
     public List<string>? Labels { get; init; }
 
@@ -15,6 +18,4 @@ public abstract record DomainObject : CoreObject, IVersioned
     public required DateTime Created { get; init; }
     public required DateTime Modified { get; init; }
     public bool? Revoked { get; init; }
-
-    public new static string TypeName => "domain-object";
 }

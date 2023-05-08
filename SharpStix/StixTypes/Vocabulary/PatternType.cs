@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<PatternType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record PatternType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "pattern-type-ov";
+
     public enum EPatternType
     {
         /// <summary>
@@ -44,5 +48,5 @@ public sealed record PatternType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "pattern-type-ov";
+    public override string Type => TYPE;
 }

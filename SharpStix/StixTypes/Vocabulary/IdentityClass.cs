@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<IdentityClass>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record IdentityClass(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "identity-class-ov";
+
     public enum EIdentityClass
     {
         /// <summary>
@@ -44,5 +48,5 @@ public sealed record IdentityClass(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "identity-class-ov";
+    public override string Type => TYPE;
 }

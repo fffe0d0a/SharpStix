@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsRegistryDatatypeEnum : Enumeration<WindowsRegistryDatatypeEnum>, IStixEnum
 {
+    private const string TYPE = "windows-registry-datatype-enum";
+
     public static readonly WindowsRegistryDatatypeEnum None =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_NONE);
 
@@ -72,5 +76,5 @@ public sealed record WindowsRegistryDatatypeEnum : Enumeration<WindowsRegistryDa
     {
     }
 
-    public static string TypeName => "windows-registry-datatype-enum";
+    public string Type => TYPE;
 }

@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Vocabulary;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record UserAccount() : CyberObservableObject()
 {
+    private const string TYPE = "user-account";
+
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public string? UserId { get; init; }
     public string? Credential { get; init; }
@@ -20,5 +24,6 @@ public sealed record UserAccount() : CyberObservableObject()
     public DateTime? AccountFirstLogin { get; init; }
     public DateTime? AccountLastLogin { get; init; }
 
-    public new static string TypeName => "user-account";
+
+    public override string Type => TYPE;
 }

@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record X509Certificate() : CyberObservableObject()
 {
+    private const string TYPE = "x509-certificate";
+
     public bool? IsSelfSigned { get; init; }
     public StixHashes? Hashes { get; init; }
     public string? Version { get; init; }
@@ -18,5 +22,5 @@ public sealed record X509Certificate() : CyberObservableObject()
     public int? SubjectPublicKeyExponent { get; init; } //bug e could be > int.Max, this is a flaw with Stix itself
     public X509V3Extensions? X509V3Extensions { get; init; }
 
-    public new static string TypeName => "x509-certificate";
+    public override string Type => TYPE;
 }

@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ImplementationLanguage>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record ImplementationLanguage(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "implementation-language-ov";
+
     public enum EImplementationLanguage
     {
         Applescript,
@@ -81,5 +85,5 @@ public sealed record ImplementationLanguage(string Value) : StixOpenVocab(Value)
         }
     }
 
-    public new static string TypeName => "implementation-language-ov";
+    public override string Type => TYPE;
 }

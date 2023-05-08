@@ -1,8 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using SharpStix.Services;
 
 namespace SharpStix.StixObjects;
 
 public interface IHasTypeName
 {
-    public static abstract string TypeName { get; }
+    /// <summary>
+    ///     A type discriminator to aid serialisation.
+    /// </summary>
+    public string Type { get; }
 }

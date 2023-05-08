@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<Region>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record Region(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "region-ov";
+
     public enum ERegion
     {
         Africa,
@@ -44,5 +48,5 @@ public sealed record Region(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "region-ov";
+    public override string Type => TYPE;
 }

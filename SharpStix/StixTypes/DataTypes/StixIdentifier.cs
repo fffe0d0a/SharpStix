@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using SharpStix.Serialisation.Json.Converters.DataTypes;
+using SharpStix.Services;
 using SharpStix.StixObjects;
 
 namespace SharpStix.StixTypes;
@@ -15,8 +16,11 @@ namespace SharpStix.StixTypes;
 /// A UUID4 for STIX object types.
 /// </summary>
 [JsonConverter(typeof(StixIdentifierConverter))]
+[StixTypeDiscriminator(TYPE)]
 public record StixIdentifier : IStixDataType
 {
+    private const string TYPE = "identifier";
+
     internal StixIdentifier(string value)
     {
         string[] split = value.Split("--");
@@ -30,7 +34,7 @@ public record StixIdentifier : IStixDataType
         UuidHalf = uuidHalf;
     }
 
-    public static StixIdentifier CreateNew<T>() where T : IHasTypeName => new StixIdentifier(T.TypeName, Guid.NewGuid().ToString());
+    public static StixIdentifier CreateNew<T>() where T : IHasTypeName => new StixIdentifier(StixTypeDiscriminationService.GetDiscriminatorFromType<T>()!, Guid.NewGuid().ToString());
 
 
     [JsonIgnore]
@@ -42,7 +46,7 @@ public record StixIdentifier : IStixDataType
     
 
     public override string ToString() => Value;
-    public static string TypeName => "identifier";
+    public string Type => TYPE;
 }
 
 //public static class StixIdentifierExtensions

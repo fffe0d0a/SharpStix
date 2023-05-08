@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ToolType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record ToolType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "tool-type-ov";
+
     public enum EToolType
     {
         /// <summary>
@@ -55,5 +59,5 @@ public sealed record ToolType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "tool-type-ov";
+    public override string Type => TYPE;
 }

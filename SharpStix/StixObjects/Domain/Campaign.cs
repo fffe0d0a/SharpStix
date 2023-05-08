@@ -1,7 +1,12 @@
-﻿namespace SharpStix.StixObjects.Domain;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.Domain;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record Campaign() : DomainObject()
 {
+    private const string TYPE = "campagin";
+
     /// <summary>
     ///     A name used to identify the Campaign.
     /// </summary>
@@ -34,5 +39,5 @@ public sealed record Campaign() : DomainObject()
     /// </summary>
     public string? Objective { get; init; }
 
-    public new static string TypeName => "campaign";
+    public override string Type => TYPE;
 }

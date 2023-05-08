@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Vocabulary;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record ThreatActor() : DomainObject()
 {
+    private const string TYPE = "threat-actor";
+
     public required string Name { get; init; }
     public string? Description { get; init; }
     public List<ThreatActorType>? ThreatActorTypes { get; init; }
@@ -18,5 +22,5 @@ public sealed record ThreatActor() : DomainObject()
     public List<AttackMotivation>? SecondaryMotivations { get; init; }
     public List<AttackMotivation>? PersonalMotivations { get; init; }
 
-    public new static string TypeName => "threat-actor";
+    public override string Type => TYPE;
 }

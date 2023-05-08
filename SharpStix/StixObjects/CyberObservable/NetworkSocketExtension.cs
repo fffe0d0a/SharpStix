@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Enums;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Enums;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record NetworkSocketExtension() : CyberObservableObject()
 {
+    private const string TYPE = "socket-ext";
+
     public required NetworkSocketAddressFamilyEnum AddressFamilyEnum { get; init; }
     public bool? IsBlocking { get; init; }
     public bool? IsListening { get; init; }
@@ -12,5 +16,5 @@ public sealed record NetworkSocketExtension() : CyberObservableObject()
     public int? SocketDescriptor { get; init; }
     public int? SocketHandle { get; init; }
 
-    public new static string TypeName => "socket-ext";
+    public override string Type => TYPE;
 }

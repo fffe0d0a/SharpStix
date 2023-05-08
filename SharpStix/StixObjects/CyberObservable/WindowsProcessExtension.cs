@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Enums;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Enums;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsProcessExtension() : CyberObservableObject()
 {
+    private const string TYPE = "windows-process-ext";
+
     public bool? AslrEnabled { get; init; }
     public bool? DepEnabled { get; init; }
     public string? Priority { get; init; }
@@ -12,5 +16,5 @@ public sealed record WindowsProcessExtension() : CyberObservableObject()
     public Dictionary<string, string>? StartupInfo { get; init; }
     public WindowsIntegrityLevelEnum? IntegrityLevel { get; init; }
 
-    public new static string TypeName => "windows-process-ext";
+    public override string Type => TYPE;
 }

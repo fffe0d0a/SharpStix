@@ -1,7 +1,12 @@
-﻿namespace SharpStix.StixObjects.Domain;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.Domain;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record Incident() : DomainObject()
 {
+    private const string TYPE = "incident";
+
     /// <summary>
     ///     A name used to identify the Incident.
     /// </summary>
@@ -13,5 +18,5 @@ public sealed record Incident() : DomainObject()
     /// </summary>
     public string? Description { get; init; }
 
-    public new static string TypeName => "incident";
+    public override string Type => TYPE;
 }

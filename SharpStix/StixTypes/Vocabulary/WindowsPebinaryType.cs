@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<WindowsPebinaryType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsPebinaryType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "windows-pebinary-type-ov";
+
     public enum EWindowsPebinaryType
     {
         /// <summary>
@@ -29,5 +33,5 @@ public sealed record WindowsPebinaryType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "windows-pebinary-type-ov";
+    public override string Type => TYPE;
 }

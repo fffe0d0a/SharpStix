@@ -1,8 +1,13 @@
-﻿namespace SharpStix.StixObjects.CyberObservable;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.CyberObservable;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record Url() : CyberObservableObject()
 {
+    private const string TYPE = "url";
+
     public required string Value { get; init; }
 
-    public new static string TypeName => "url";
+    public override string Type => TYPE;
 }

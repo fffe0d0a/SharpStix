@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Note() : DomainObject()
 {
+    private const string TYPE = "note";
+
     /// <summary>
     ///     A brief summary of the note content.
     /// </summary>
@@ -24,5 +28,5 @@ public sealed record Note() : DomainObject()
     /// </summary>
     public List<StixIdentifier>? ObjectRefs { get; init; }
 
-    public new static string TypeName => "note";
+    public override string Type => TYPE;
 }

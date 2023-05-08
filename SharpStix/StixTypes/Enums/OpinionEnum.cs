@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
 {
+    private const string TYPE = "opinion-enum";
+
     /// <summary>
     /// The creator strongly disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
@@ -60,5 +64,5 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
         StronglyAgree = 5
     }
 
-    public static string TypeName => "opinion-enum";
+    public string Type => TYPE;
 }

@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Enums;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsServiceExtension() : CyberObservableObject()
 {
+    private const string TYPE = "window-service-ext";
+
     public string? ServiceName { get; init; }
     public List<string>? Descriptions { get; init; }
     public string? DisplayName { get; init; }
@@ -14,5 +18,5 @@ public sealed record WindowsServiceExtension() : CyberObservableObject()
     public WindowsServiceTypeEnum? ServiceType { get; init; }
     public WindowsServiceStatusEnum? ServiceStatus { get; init; }
 
-    public new static string TypeName => "windows-service-ext";
+    public override string Type => TYPE;
 }

@@ -6,6 +6,7 @@ using System.Text.Unicode;
 using SharpStix.Services;
 using SharpStix.StixObjects;
 using SharpStix.StixObjects.Domain;
+using SharpStix.StixTypes;
 
 namespace SharpStix.Tests;
 
@@ -15,11 +16,9 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
-        Type? t = StixTypeDiscriminationService.GetTypeFromString("bundle");
+        Type? t = StixTypeDiscriminationService.GetTypeFromDiscriminator("bundle");
 
         string q = File.ReadAllText("enterprise-attack.json");
-
-        
 
         JsonSerializerOptions options = new JsonSerializerOptions()
         {
@@ -28,13 +27,14 @@ public class UnitTest1
             WriteIndented = true,
             MaxDepth = 128,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
 
         var doc = JsonSerializer.SerializeToUtf8Bytes(quack, options);
         File.WriteAllBytes("test.json", doc);
+
 
         return;
 

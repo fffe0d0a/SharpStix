@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<IndicatorType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record IndicatorType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "indicator-type-ov";
+
     public enum EIndicatorType
     {
         /// <summary>
@@ -50,5 +54,5 @@ public sealed record IndicatorType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "indicator-type-ov";
+    public override string Type => TYPE;
 }

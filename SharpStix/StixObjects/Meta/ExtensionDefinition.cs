@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Enums;
 
 namespace SharpStix.StixObjects.Meta;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record ExtensionDefinition() : MetaObject(), IVersioned
 {
+    private const string TYPE = "extensions-definition";
+
     public List<string>? Labels { get; init; }
     public required string Name { get; init; }
     public string? Description { get; init; }
@@ -18,5 +22,5 @@ public sealed record ExtensionDefinition() : MetaObject(), IVersioned
 #pragma warning restore CS8767
     public bool? Revoked { get; init; }
 
-    public new static string TypeName => "extension-definition";
+    public override string Type => TYPE;
 }

@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Grouping() : DomainObject()
 {
+    private const string TYPE = "grouping";
+
     /// <summary>
     ///     A name used to identify the Grouping.
     /// </summary>
@@ -26,5 +30,5 @@ public sealed record Grouping() : DomainObject()
     /// </summary>
     public required List<StixIdentifier> ObjectRefs { get; init; }
 
-    public new static string TypeName => "grouping";
+    public override string Type => TYPE;
 }

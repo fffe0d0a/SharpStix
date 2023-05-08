@@ -1,12 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<AccountType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record AccountType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "account-type-ov";
+
     public enum EAccountType
     {
         /// <summary>
@@ -69,5 +73,5 @@ public sealed record AccountType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "account-type-ov";
+    public override string Type => TYPE;
 }

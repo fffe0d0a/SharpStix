@@ -5,8 +5,11 @@ using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixObjects;
 
+[StixTypeDiscriminator(TYPE)]
 public record MitreCollection : StixObject
 {
+    private const string TYPE = "x-mitre-collection";
+
     public required string Name { get; init; }
     public string? Description { get; init; }
     public required StixTimestamp Created { get; init; }
@@ -18,5 +21,5 @@ public record MitreCollection : StixObject
     public required StixList<StixIdentifier> ObjectMarkingRefs { get; init; }
     public required StixList<MitreObjectVersionReference> XMitreContents { get; init; }
 
-    public new static string TypeName => "x-mitre-collection";
+    public override string Type => TYPE;
 }

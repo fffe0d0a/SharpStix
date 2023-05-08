@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ReportType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record ReportType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "report-type-ov";
+
     public enum EReportType
     {
         /// <summary>
@@ -69,5 +73,5 @@ public sealed record ReportType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "report-type-ov";
+    public override string Type => TYPE;
 }

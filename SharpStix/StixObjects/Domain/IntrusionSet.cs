@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Vocabulary;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record IntrusionSet() : DomainObject()
 {
+    private const string TYPE = "intrusion-set";
+
     /// <summary>
     ///     A name used to identify this Intrusion Set.
     /// </summary>
@@ -55,5 +59,5 @@ public sealed record IntrusionSet() : DomainObject()
     /// </summary>
     public List<AttackMotivation>? SecondaryMotivations { get; init; }
 
-    public new static string TypeName => "intrusion-set";
+    public override string Type => TYPE;
 }

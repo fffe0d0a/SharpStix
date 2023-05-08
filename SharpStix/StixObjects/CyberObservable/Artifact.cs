@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Enums;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Artifact : CyberObservableObject
 {
+    private const string TYPE = "artifact";
+
     public string? MimeType { get; init; }
     public Memory<byte>? PayloadBin { get; init; }
     public string? Url { get; init; }
@@ -12,5 +16,5 @@ public sealed record Artifact : CyberObservableObject
     public EncryptionAlgorithmEnum? EncryptionAlgorithm { get; init; }
     public string? DecryptionKey { get; init; }
 
-    public new static string TypeName => "artifact";
+    public override string Type => TYPE;
 }

@@ -17,7 +17,7 @@ public class StixObjectConverter : JsonConverter<StixObject>
         if (string.IsNullOrWhiteSpace(typeName)) //typeName is string.Empty when type property does not exist
             throw new Exception("missing type discriminator");
 
-        return StixTypeDiscriminationService.GetTypeFromString(typeName); //may return null
+        return StixTypeDiscriminationService.GetTypeFromDiscriminator(typeName); //may return null
     }
 
     public override StixObject? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

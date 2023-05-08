@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketAddressFamilyEnum>, IStixEnum
 {
+    private const string TYPE = "network-socket-address-family-enum";
+
     public static readonly NetworkSocketAddressFamilyEnum Unspecified =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_UNSPEC);
 
@@ -48,5 +52,5 @@ public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketA
     {
     }
 
-    public static string TypeName => "network-socket-address-family-enum";
+    public string Type => TYPE;
 }

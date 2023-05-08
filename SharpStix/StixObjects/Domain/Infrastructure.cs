@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Infrastructure() : DomainObject()
 {
+    private const string TYPE = "infrastructure";
+
     /// <summary>
     ///     A name or characterizing text used to identify the Infrastructure.
     /// </summary>
@@ -42,5 +46,5 @@ public sealed record Infrastructure() : DomainObject()
     /// </summary>
     public DateTime? LastSeen { get; init; }
 
-    public new static string TypeName => "infrastructure";
+    public override string Type => TYPE;
 }

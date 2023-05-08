@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsServiceTypeEnum : Enumeration<WindowsServiceTypeEnum>, IStixEnum
 {
+    private const string TYPE = "windows-service-type-enum";
+
     public static readonly WindowsServiceTypeEnum KernelDriver =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_KERNEL_DRIVER);
 
@@ -32,5 +36,5 @@ public sealed record WindowsServiceTypeEnum : Enumeration<WindowsServiceTypeEnum
     {
     }
 
-    public static string TypeName => "windows-service-type-enum";
+    public string Type => TYPE;
 }

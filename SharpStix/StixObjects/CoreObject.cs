@@ -9,5 +9,4 @@ public abstract record CoreObject : StixObject
     public List<GranularMarking>? GranularMarkings { get; init; }
     [JsonExtensionData]
     public Dictionary<string, object>? Extensions { get; init; } //warn, object
-    public new static string TypeName => "core-object";
 }

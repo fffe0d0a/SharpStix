@@ -1,10 +1,14 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-public sealed record File() : CyberObservableObject()
+[StixTypeDiscriminator(TYPE)]
+public sealed record File : CyberObservableObject
 {
+    private const string TYPE = "file";
+
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public StixHashes? Hashes { get; init; }
     public int? Size { get; init; }
@@ -23,5 +27,5 @@ public sealed record File() : CyberObservableObject()
     public List<StixIdentifier>? ContainsRefs { get; init; }
     public StixIdentifier? ContentRef { get; init; }
 
-    public new static string TypeName => "file";
+    public override string Type => TYPE;
 }

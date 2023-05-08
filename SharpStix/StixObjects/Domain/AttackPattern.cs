@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record AttackPattern() : DomainObject()
 {
+    private const string TYPE = "attack-pattern";
+
     /// <summary>
     ///     A name used to identify the Attack Pattern.
     /// </summary>
@@ -25,5 +29,5 @@ public sealed record AttackPattern() : DomainObject()
     /// </summary>
     public List<StixKillChainPhase>? KillChainPhases { get; init; }
 
-    public new static string TypeName => "attack-pattern";
+    public override string Type => TYPE;
 }

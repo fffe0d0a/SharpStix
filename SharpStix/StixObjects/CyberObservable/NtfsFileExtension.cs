@@ -1,20 +1,28 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record NtfsFileExtension() : CyberObservableObject()
 {
+    private const string TYPE = "ntfs-ext";
+
     public string? Sid { get; init; }
     public List<AlternateDataStream>? AlternateDataStreams { get; init; }
 
-    public new static string TypeName => "ntfs-ext";
 
+    [StixTypeDiscriminator(TYPE)]
     public sealed record AlternateDataStream() : CyberObservableObject() //todo move me
     {
+        private const string TYPE = "alternate-data-stream-type";
+
         public required string Name { get; init; }
         public StixHashes? Hashes { get; init; }
         public int? Size { get; init; }
 
-        public new static string TypeName => "alternate-data-stream-type";
+        public override string Type => TYPE;
     }
+
+    public override string Type => TYPE;
 }

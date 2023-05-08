@@ -1,15 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record ObservedData() : DomainObject()
 {
-    [Obsolete]
-    public ObservedData(object objects) : this()
-    {
-        Objects = objects;
-    }
+    private const string TYPE = "observed-data";
+
+    //[Obsolete]
+    //public ObservedData(object objects) : this()
+    //{
+    //    Objects = objects;
+    //}
 
     public ObservedData(params StixIdentifier[] objectRefs) : this()
     {
@@ -32,12 +36,12 @@ public sealed record ObservedData() : DomainObject()
     [Range(1, 999999999)]
     public required int NumberObserved { get; init; }
 
-    [Obsolete] public object? Objects { get; init; } //todo observable-container
+    //[Obsolete] public object? Objects { get; init; } //todo observable-container
 
     /// <summary>
     ///     A list of SCOs and SROs representing the observation.
     /// </summary>
     public List<StixIdentifier>? ObjectRefs { get; init; }
 
-    public new static string TypeName => "observed-data";
+    public override string Type => TYPE;
 }

@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<InfrastructureType>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record InfrastructureType(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "infrastructure-type-ov";
+
     public enum EInfrastructureType
     {
         /// <summary>
@@ -91,5 +95,5 @@ public sealed record InfrastructureType(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "infrastructure-type-ov";
+    public override string Type => TYPE;
 }

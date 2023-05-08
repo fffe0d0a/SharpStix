@@ -1,7 +1,12 @@
-﻿namespace SharpStix.StixObjects.Domain;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.Domain;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record CourseOfAction() : DomainObject()
 {
+    private const string TYPE = "course-of-action";
+
     /// <summary>
     ///     A name used to identify the Course of Action.
     /// </summary>
@@ -13,10 +18,10 @@ public sealed record CourseOfAction() : DomainObject()
     /// </summary>
     public string? Description { get; init; }
 
-    /// <summary>
-    ///     RESERVED – To capture structured/automated courses of action.
-    /// </summary>
-    public object? Action { get; init; } //warn
+    ///// <summary>
+    /////     RESERVED – To capture structured/automated courses of action.
+    ///// </summary>
+    //public object? Action { get; init; } //warn, object properties should be forbidden
 
-    public new static string TypeName => "course-of-action";
+    public override string Type => TYPE;
 }

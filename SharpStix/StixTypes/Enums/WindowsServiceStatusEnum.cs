@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatusEnum>, IStixEnum
 {
+    private const string TYPE = "windows-service-status-enum";
+
     public static readonly WindowsServiceStatusEnum ContinuePending =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_CONTINUE_PENDING);
 
@@ -44,5 +48,5 @@ public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatus
     {
     }
 
-    public static string TypeName => "windows-service-status-enum";
+    public string Type => TYPE;
 }

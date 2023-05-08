@@ -5,10 +5,12 @@ using RegularExpressions = SharpStix.Common.Helpers.RegularExpressions;
 
 namespace SharpStix.StixTypes;
 
-[GenericTypeNameHelper("dictionary")]
+[StixTypeDiscriminator("dictionary")]
 public class StixDictionary<TValue> : Dictionary<string, TValue>, IStixDataType
 {
-    public static string TypeName => "dictionary";
+    private const string TYPE = "dictionary";
+
+    public string Type => TYPE;
 }
 
 internal class StixDictionaryValidator<TValue> : AbstractValidator<StixDictionary<TValue>>

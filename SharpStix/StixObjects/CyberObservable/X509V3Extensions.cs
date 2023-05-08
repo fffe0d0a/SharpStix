@@ -1,7 +1,12 @@
-﻿namespace SharpStix.StixObjects.CyberObservable;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.CyberObservable;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record X509V3Extensions() : CyberObservableObject()
 {
+    private const string TYPE = "x509-v3-extensions-type";
+
     public string? BasicConstraints { get; init; }
     public string? NameConstraints { get; init; }
     public string? PolicyConstraints { get; init; }
@@ -19,5 +24,5 @@ public sealed record X509V3Extensions() : CyberObservableObject()
     public string? CertificatePolicies { get; init; }
     public string? PolicyMappings { get; init; }
 
-    public new static string TypeName => "x509-v3-extensions-type";
+    public override string Type => TYPE;
 }

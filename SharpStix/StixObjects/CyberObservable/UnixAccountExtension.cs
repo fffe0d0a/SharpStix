@@ -1,11 +1,16 @@
-﻿namespace SharpStix.StixObjects.CyberObservable;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.CyberObservable;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record UnixAccountExtension() : CyberObservableObject()
 {
+    private const string TYPE = "unix-account-ext";
+
     public int? Gid { get; init; }
     public List<string>? Groups { get; init; }
     public string? HomeDir { get; init; }
     public string? Shell { get; init; }
 
-    public new static string TypeName => "unix-account-ext";
+    public override string Type => TYPE;
 }

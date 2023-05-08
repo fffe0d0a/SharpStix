@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record EmailMessage() : CyberObservableObject()
 {
+    private const string TYPE = "email-message";
+
     public required bool IsMultipart { get; init; }
     public DateTime? Date { get; init; }
     public string? ContentType { get; init; }
@@ -19,15 +23,18 @@ public sealed record EmailMessage() : CyberObservableObject()
     public List<EmailMimeComponent>? BodyMultipart { get; init; }
     public StixIdentifier? RawEmailRef { get; init; }
 
-    public new static string TypeName => "email-message";
-
+    [StixTypeDiscriminator(TYPE)]
     public sealed record EmailMimeComponent() : CyberObservableObject() //todo move me and other components
     {
+        private const string TYPE = "email-mime-part-type";
+
         public string? Body { get; init; }
         public StixIdentifier? BodyRawRef { get; init; }
         public string? ContentType { get; init; }
         public string? ContentDisposition { get; init; }
 
-        public new static string TypeName => "email-mime-part-type";
+        public override string Type => TYPE;
     }
+
+    public override string Type => TYPE;
 }

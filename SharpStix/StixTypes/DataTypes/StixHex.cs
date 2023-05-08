@@ -6,11 +6,13 @@ namespace SharpStix.StixTypes;
 [JsonConverter(typeof(StixHexConverter))]
 public readonly record struct StixHex(byte[] Value) : IStixDataType
 {
+    private const string TYPE = "hex";
+
     public StixHex(string value) : this(Convert.FromHexString(value))
     {
     }
 
-    public static string TypeName => "hex";
+    public  string Type => TYPE;
 
     public override string ToString()
     {

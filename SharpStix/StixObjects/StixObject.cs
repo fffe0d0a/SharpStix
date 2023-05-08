@@ -1,6 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Text.Json.Serialization;
 using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;
@@ -8,8 +11,8 @@ namespace SharpStix.StixObjects;
 [JsonConverter(typeof(StixObjectConverter))]
 public abstract record StixObject : IStixType, IHasId
 {
-    public required StixIdentifier Id { get; init; }
-    public static string TypeName => "stix-object";
+    private const string TYPE = "stix-object";
 
-    public string Type => TypeName; //I prevent the redundant type property from showing up in Extensions
+    public required StixIdentifier Id { get; init; }
+    public abstract string Type { get; }
 }

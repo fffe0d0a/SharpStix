@@ -1,10 +1,14 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Indicator() : DomainObject()
 {
+    private const string TYPE = "indicator";
+
     /// <summary>
     ///     A name used to identify the Indicator.
     /// </summary>
@@ -52,5 +56,5 @@ public sealed record Indicator() : DomainObject()
     /// </summary>
     public List<StixKillChainPhase>? KillChainPhases { get; init; }
 
-    public new static string TypeName => "indicator";
+    public override string Type => TYPE;
 }

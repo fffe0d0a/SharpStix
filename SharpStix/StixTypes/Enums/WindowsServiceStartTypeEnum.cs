@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceStartTypeEnum>, IStixEnum
 {
+    private const string TYPE = "windows-service-start-type-enum";
+
     public static readonly WindowsServiceStartTypeEnum AutoStart = 
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_AUTO_START);
 
@@ -36,5 +40,5 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
     {
     }
 
-    public static string TypeName => "windows-service-start-type-enum";
+    public string Type => TYPE;
 }

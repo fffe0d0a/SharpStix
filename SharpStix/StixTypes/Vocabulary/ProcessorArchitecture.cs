@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ProcessorArchitecture>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "processor-architecture-ov";
+
     public enum EProcessorArchitecture
     {
         /// <summary>
@@ -74,5 +78,5 @@ public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
         }
     }
 
-    public new static string TypeName => "processor-architecture-ov";
+    public override string Type => TYPE;
 }

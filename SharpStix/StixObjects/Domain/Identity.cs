@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes.Vocabulary;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Identity() : DomainObject()
 {
+    private const string TYPE = "identity";
+
     /// <summary>
     ///     The name of this Identity. When referring to a specific entity (e.g., an individual or organization), this property
     ///     SHOULD contain the canonical name of the specific entity.
@@ -36,5 +40,5 @@ public sealed record Identity() : DomainObject()
     /// </summary>
     public string? ContactInformation { get; init; }
 
-    public new static string TypeName => "identity";
+    public override string Type => TYPE;
 }

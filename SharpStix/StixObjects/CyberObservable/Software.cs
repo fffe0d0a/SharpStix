@@ -1,7 +1,12 @@
-﻿namespace SharpStix.StixObjects.CyberObservable;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.CyberObservable;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record Software() : CyberObservableObject()
 {
+    private const string TYPE = "software";
+
     public required string Name { get; init; }
     public string? Cpe { get; init; }
     public string? Swid { get; init; }
@@ -9,5 +14,5 @@ public sealed record Software() : CyberObservableObject()
     public string? Vendor { get; init; }
     public string? Version { get; init; }
 
-    public new static string TypeName => "software";
+    public override string Type => TYPE;
 }

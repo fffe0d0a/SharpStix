@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Process() : CyberObservableObject()
 {
+    private const string TYPE = "process";
+
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public bool? IsHidden { get; init; }
     public int? Pid { get; init; }
@@ -17,5 +21,5 @@ public sealed record Process() : CyberObservableObject()
     public StixIdentifier? ParentRef { get; init; }
     public List<StixIdentifier>? ChildRefs { get; init; }
 
-    public new static string TypeName => "process";
+    public override string Type => TYPE;
 }

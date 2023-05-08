@@ -1,12 +1,16 @@
 ﻿using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<AttackMotivation>))]
+[StixTypeDiscriminator(TYPE)]
 public sealed record AttackMotivation(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "attack-motivation-ov";
+
     public enum EAttackMotivation
     {
         /// <summary>
@@ -65,5 +69,5 @@ public sealed record AttackMotivation(string Value) : StixOpenVocab(Value)
     {
     }
 
-    public new static string TypeName => "attack-motivation-ov";
+    public override string Type => TYPE;
 }

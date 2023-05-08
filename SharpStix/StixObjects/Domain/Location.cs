@@ -1,10 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SharpStix.Services;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record Location() : DomainObject()
 {
+    private const string TYPE = "location";
+
     public Location(Region region) : this()
     {
         Region = region;
@@ -81,5 +85,5 @@ public sealed record Location() : DomainObject()
     /// </summary>
     public string? PostalCode { get; init; }
 
-    public new static string TypeName => "location";
+    public override string Type => TYPE;
 }

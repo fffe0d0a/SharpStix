@@ -1,17 +1,20 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixTypes;
 
 [JsonConverter(typeof(MitreAttackSpecVersionConverter))]
+[StixTypeDiscriminator(TYPE)]
 public readonly record struct MitreAttackSpecVersion : IStixDataType
 {
+    private const string TYPE = "x-mitre-attack-spec-version";
+
     public required string Version { get; init; }
 
-    public static string TypeName => "x-mitre-attack-spec-version";
-
     public override string ToString() => Version;
+    public string Type => TYPE;
 }
 
 public class MitreAttackSpecVersionConverter : JsonConverter<MitreAttackSpecVersion>

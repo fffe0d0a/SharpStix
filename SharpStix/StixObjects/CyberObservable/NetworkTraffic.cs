@@ -1,9 +1,13 @@
-﻿using SharpStix.StixTypes;
+﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record NetworkTraffic() : CyberObservableObject()
 {
+    private const string TYPE = "network-traffic";
+
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public DateTime? Start { get; init; }
     public DateTime? End { get; init; }
@@ -23,5 +27,5 @@ public sealed record NetworkTraffic() : CyberObservableObject()
     public List<StixIdentifier>? EncapsulatesRefs { get; init; }
     public StixIdentifier? EncapsulatedByRef { get; init; }
 
-    public new static string TypeName => "network-traffic";
+    public override string Type => TYPE;
 }

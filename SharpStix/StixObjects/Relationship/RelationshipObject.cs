@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Relationship;
 
 public abstract record RelationshipObject() : CoreObject(), IVersioned
 {
+    private const string TYPE = "relationship-object";
+
     public required SpecVersion SpecVersion { get; init; }
     public List<string>? Labels { get; init; }
 
@@ -16,6 +19,4 @@ public abstract record RelationshipObject() : CoreObject(), IVersioned
     public required DateTime Created { get; init; }
     public required DateTime Modified { get; init; }
     public bool? Revoked { get; init; }
-
-    public new static string TypeName => "relationship-object";
 }

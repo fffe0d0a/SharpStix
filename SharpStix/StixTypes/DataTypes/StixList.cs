@@ -3,10 +3,12 @@ using SharpStix.Services;
 
 namespace SharpStix.StixTypes;
 
-[GenericTypeNameHelper("list")]
+[StixTypeDiscriminator(TYPE)]
 public class StixList<T> : List<T>, IStixDataType
 {
-    public static string TypeName => "list";
+    private const string TYPE = "list";
+
+    public string Type => TYPE;
 }
 
 internal class StixListValidator<T> : AbstractValidator<StixList<T>>

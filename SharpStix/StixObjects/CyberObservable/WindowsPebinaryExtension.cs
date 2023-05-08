@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record WindowsPebinaryExtension() : CyberObservableObject()
 {
+    private const string TYPE = "windows-pebinary-ext";
+
     public required WindowsPebinaryType PeType { get; init; }
     public string? Imphash { get; init; }
     public byte[]? MachineHex { get; init; }
@@ -20,9 +24,11 @@ public sealed record WindowsPebinaryExtension() : CyberObservableObject()
     public WindowsPeOptionalHeader? OptionalHeader { get; init; }
     public List<WindowsPeSection>? Sections { get; init; }
 
-    public new static string TypeName => "windows-pebinary-ext";
+    [StixTypeDiscriminator(TYPE)]
     public sealed record WindowsPeOptionalHeader() : CyberObservableObject() //todo move me
     {
+        private const string TYPE = "win32-pe-optional-header-type";
+
         public byte[]? MagicHex { get; init; }
         public int? MajorLinkerVersion { get; init; }
         public int? MinorLinkerVersion { get; init; }
@@ -57,11 +63,14 @@ public sealed record WindowsPebinaryExtension() : CyberObservableObject()
         public int? NumberOfRvaAndSizes { get; init; }
         public StixHashes? Hashes { get; init; }
 
-        public new static string TypeName => "windows-pe-optional-header-type";
+        public override string Type => TYPE;
     }
 
+    [StixTypeDiscriminator(TYPE)]
     public sealed record WindowsPeSection() : CyberObservableObject() //todo move me
     {
+        private const string TYPE = "windows-pe-section-type";
+
         public required string Name { get; init; }
         public int? Size { get; init; }
 
@@ -69,6 +78,8 @@ public sealed record WindowsPebinaryExtension() : CyberObservableObject()
 
         public StixHashes? Hashes { get; init; }
 
-        public new static string TypeName => "windows-pe-section-type";
+        public override string Type => TYPE;
     }
+
+    public override string Type => TYPE;
 }

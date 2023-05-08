@@ -1,9 +1,13 @@
 ﻿using SharpStix.Common;
+using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
+[StixTypeDiscriminator(TYPE)]
 public sealed record NetworkSocketTypeEnum : Enumeration<NetworkSocketTypeEnum>, IStixEnum
 {
+    private const string TYPE = "network-socket-type-enum";
+
     /// <summary>
     /// Specifies a pipe-like socket which operates over a connection with a particular remote socket and transmits data reliably as a stream of bytes.
     /// </summary>
@@ -46,5 +50,5 @@ public sealed record NetworkSocketTypeEnum : Enumeration<NetworkSocketTypeEnum>,
     {
     }
 
-    public static string TypeName => "network-socket-type-enum";
+    public string Type => TYPE;
 }

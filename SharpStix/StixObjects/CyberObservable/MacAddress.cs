@@ -1,8 +1,13 @@
-﻿namespace SharpStix.StixObjects.CyberObservable;
+﻿using SharpStix.Services;
 
+namespace SharpStix.StixObjects.CyberObservable;
+
+[StixTypeDiscriminator(TYPE)]
 public sealed record MacAddress() : CyberObservableObject()
 {
+    private const string TYPE = "mac-addr";
+
     public required string Value { get; init; }
 
-    public new static string TypeName => "mac-addr";
+    public override string Type => TYPE;
 }
