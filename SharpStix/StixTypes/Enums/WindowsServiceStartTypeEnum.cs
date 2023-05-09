@@ -8,19 +8,19 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
 {
     private const string TYPE = "windows-service-start-type-enum";
 
-    public static readonly WindowsServiceStartTypeEnum AutoStart =
+    public readonly static WindowsServiceStartTypeEnum AutoStart =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_AUTO_START);
 
-    public static readonly WindowsServiceStartTypeEnum BootStart =
+    public readonly static WindowsServiceStartTypeEnum BootStart =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_BOOT_START);
 
-    public static readonly WindowsServiceStartTypeEnum DemandStart =
+    public readonly static WindowsServiceStartTypeEnum DemandStart =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_DEMAND_START);
 
-    public static readonly WindowsServiceStartTypeEnum Disabled =
+    public readonly static WindowsServiceStartTypeEnum Disabled =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_DISABLED);
 
-    public static readonly WindowsServiceStartTypeEnum SystemAlert =
+    public readonly static WindowsServiceStartTypeEnum SystemAlert =
         new WindowsServiceStartTypeEnum(EWindowsServiceStartType.SERVICE_SYSTEM_ALERT);
 
     private WindowsServiceStartTypeEnum(EWindowsServiceStartType value) : base(value)

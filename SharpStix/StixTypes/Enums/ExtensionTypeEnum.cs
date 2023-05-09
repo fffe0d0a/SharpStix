@@ -8,17 +8,17 @@ public sealed record ExtensionTypeEnum : Enumeration<ExtensionTypeEnum>, IStixEn
 {
     private const string TYPE = "extension-type-enum";
 
-    public static readonly ExtensionTypeEnum NewStixDomainObject = new ExtensionTypeEnum(EExtensionType.NewSdo);
+    public readonly static ExtensionTypeEnum NewStixDomainObject = new ExtensionTypeEnum(EExtensionType.NewSdo);
 
-    public static readonly ExtensionTypeEnum
+    public readonly static ExtensionTypeEnum
         NewStixCyberObservableObject = new ExtensionTypeEnum(EExtensionType.NewSco);
 
-    public static readonly ExtensionTypeEnum NewStixRelationshipObject = new ExtensionTypeEnum(EExtensionType.NewSro);
+    public readonly static ExtensionTypeEnum NewStixRelationshipObject = new ExtensionTypeEnum(EExtensionType.NewSro);
 
-    public static readonly ExtensionTypeEnum
+    public readonly static ExtensionTypeEnum
         PropertyExtension = new ExtensionTypeEnum(EExtensionType.PropertyExtension);
 
-    public static readonly ExtensionTypeEnum ToplevelPropertyExtension =
+    public readonly static ExtensionTypeEnum ToplevelPropertyExtension =
         new ExtensionTypeEnum(EExtensionType.ToplevelPropertyExtension);
 
     private ExtensionTypeEnum(EExtensionType value) : base(value)

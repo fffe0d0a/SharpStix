@@ -15,15 +15,9 @@ public abstract record StixOpenVocab(string Value) : IStixDataType, IHasTypeName
 
     public abstract string Type { get; }
 
-    public override string ToString()
-    {
-        return Value;
-    }
+    public override string ToString() => Value;
 
-    public static implicit operator string(StixOpenVocab v)
-    {
-        return v.ToString();
-    }
+    public static implicit operator string(StixOpenVocab v) => v.ToString();
 }
 
 internal class StixOpenVocabValidator : AbstractValidator<StixOpenVocab>

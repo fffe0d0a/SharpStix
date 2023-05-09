@@ -18,8 +18,8 @@ public class StixTypeDiscriminatorAttribute : Attribute
 
 public static class StixTypeDiscriminationService
 {
-    private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
-    private static readonly Dictionary<Type, string> DiscriminatorMap = new Dictionary<Type, string>();
+    private readonly static Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
+    private readonly static Dictionary<Type, string> DiscriminatorMap = new Dictionary<Type, string>();
 
     static StixTypeDiscriminationService()
     {
@@ -94,8 +94,5 @@ public static class StixTypeDiscriminationService
         return value;
     }
 
-    public static int MapTypesFromAssembly(Assembly assembly)
-    {
-        return MapTypes(assembly);
-    }
+    public static int MapTypesFromAssembly(Assembly assembly) => MapTypes(assembly);
 }

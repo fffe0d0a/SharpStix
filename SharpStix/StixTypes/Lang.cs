@@ -25,8 +25,5 @@ public record Lang
 
     private string LanguageCode { get; }
 
-    public override string ToString()
-    {
-        return LanguageCode;
-    }
+    public override string ToString() => LanguageCode;
 }

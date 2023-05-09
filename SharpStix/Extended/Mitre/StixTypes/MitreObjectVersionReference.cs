@@ -1,5 +1,4 @@
-﻿using SharpStix.Services;
-using SharpStix.StixTypes;
+﻿using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixTypes;
 

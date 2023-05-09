@@ -8,8 +8,5 @@ public readonly record struct StixBinary(byte[] Value) : IStixDataType
 {
     private const string TYPE = "binary";
 
-    public override string ToString()
-    {
-        return Convert.ToBase64String(Value);
-    }
+    public override string ToString() => Convert.ToBase64String(Value);
 }

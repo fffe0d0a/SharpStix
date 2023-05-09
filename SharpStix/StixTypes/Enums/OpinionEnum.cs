@@ -11,27 +11,27 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
     /// <summary>
     ///     The creator strongly disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public static readonly OpinionEnum StronglyDisagree = new OpinionEnum(EOpinion.StronglyDisagree);
+    public readonly static OpinionEnum StronglyDisagree = new OpinionEnum(EOpinion.StronglyDisagree);
 
     /// <summary>
     ///     The creator disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public static readonly OpinionEnum Disagree = new OpinionEnum(EOpinion.Disagree);
+    public readonly static OpinionEnum Disagree = new OpinionEnum(EOpinion.Disagree);
 
     /// <summary>
     ///     The creator is neutral about the accuracy or correctness of the information.
     /// </summary>
-    public static readonly OpinionEnum Neutral = new OpinionEnum(EOpinion.Neutral);
+    public readonly static OpinionEnum Neutral = new OpinionEnum(EOpinion.Neutral);
 
     /// <summary>
     ///     The creator agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public static readonly OpinionEnum Agree = new OpinionEnum(EOpinion.Agree);
+    public readonly static OpinionEnum Agree = new OpinionEnum(EOpinion.Agree);
 
     /// <summary>
     ///     The creator strongly agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public static readonly OpinionEnum StronglyAgree = new OpinionEnum(EOpinion.StronglyAgree);
+    public readonly static OpinionEnum StronglyAgree = new OpinionEnum(EOpinion.StronglyAgree);
 
     private OpinionEnum(EOpinion value) : base(value)
     {

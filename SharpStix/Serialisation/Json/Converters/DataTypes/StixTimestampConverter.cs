@@ -6,10 +6,8 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class StixTimestampConverter : JsonConverter<StixTimestamp>
 {
-    public override StixTimestamp Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        return new StixTimestamp(reader.GetDateTime());
-    }
+    public override StixTimestamp Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
+        new StixTimestamp(reader.GetDateTime());
 
     public override void Write(Utf8JsonWriter writer, StixTimestamp value, JsonSerializerOptions options)
     {

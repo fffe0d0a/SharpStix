@@ -41,17 +41,12 @@ public record StixIdentifier : IStixDataType
     [JsonIgnore] public string Value => $"{TypeHalf}--{UuidHalf}";
 
 
-    public static StixIdentifier CreateNew<T>() where T : IHasTypeName
-    {
-        return new StixIdentifier(StixTypeDiscriminationService.GetDiscriminatorFromType<T>()!,
+    public static StixIdentifier CreateNew<T>() where T : IHasTypeName =>
+        new StixIdentifier(StixTypeDiscriminationService.GetDiscriminatorFromType<T>()!,
             Guid.NewGuid().ToString());
-    }
 
 
-    public override string ToString()
-    {
-        return Value;
-    }
+    public override string ToString() => Value;
 }
 
 //public static class StixIdentifierExtensions

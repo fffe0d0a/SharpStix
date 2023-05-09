@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.Extended.Mitre.StixTypes;
@@ -14,10 +13,7 @@ public readonly record struct MitreVersion : IStixDataType
     public required int MinorVersion { get; init; }
     public required int PatchVersion { get; init; }
 
-    public override string ToString()
-    {
-        return $"{MajorVersion}.{MinorVersion}.{PatchVersion}";
-    }
+    public override string ToString() => $"{MajorVersion}.{MinorVersion}.{PatchVersion}";
 
     public static MitreVersion FromString(string value)
     {
@@ -33,10 +29,8 @@ public readonly record struct MitreVersion : IStixDataType
 
 public class MitreVersionConverter : JsonConverter<MitreVersion>
 {
-    public override MitreVersion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        return MitreVersion.FromString(reader.GetString() ?? throw new InvalidOperationException());
-    }
+    public override MitreVersion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
+        MitreVersion.FromString(reader.GetString() ?? throw new InvalidOperationException());
 
     public override void Write(Utf8JsonWriter writer, MitreVersion value, JsonSerializerOptions options)
     {

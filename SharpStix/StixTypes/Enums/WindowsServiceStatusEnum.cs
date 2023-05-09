@@ -8,25 +8,25 @@ public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatus
 {
     private const string TYPE = "windows-service-status-enum";
 
-    public static readonly WindowsServiceStatusEnum ContinuePending =
+    public readonly static WindowsServiceStatusEnum ContinuePending =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_CONTINUE_PENDING);
 
-    public static readonly WindowsServiceStatusEnum PausePending
+    public readonly static WindowsServiceStatusEnum PausePending
         = new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_PAUSE_PENDING);
 
-    public static readonly WindowsServiceStatusEnum Paused =
+    public readonly static WindowsServiceStatusEnum Paused =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_PAUSED);
 
-    public static readonly WindowsServiceStatusEnum Running =
+    public readonly static WindowsServiceStatusEnum Running =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_RUNNING);
 
-    public static readonly WindowsServiceStatusEnum StartPending =
+    public readonly static WindowsServiceStatusEnum StartPending =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_START_PENDING);
 
-    public static readonly WindowsServiceStatusEnum StopPending =
+    public readonly static WindowsServiceStatusEnum StopPending =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_STOP_PENDING);
 
-    public static readonly WindowsServiceStatusEnum Stopped =
+    public readonly static WindowsServiceStatusEnum Stopped =
         new WindowsServiceStatusEnum(EWindowsServiceStatus.SERVICE_STOPPED);
 
     private WindowsServiceStatusEnum(EWindowsServiceStatus value) : base(value)

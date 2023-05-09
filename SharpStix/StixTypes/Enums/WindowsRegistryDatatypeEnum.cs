@@ -8,46 +8,46 @@ public sealed record WindowsRegistryDatatypeEnum : Enumeration<WindowsRegistryDa
 {
     private const string TYPE = "windows-registry-datatype-enum";
 
-    public static readonly WindowsRegistryDatatypeEnum None =
+    public readonly static WindowsRegistryDatatypeEnum None =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_NONE);
 
-    public static readonly WindowsRegistryDatatypeEnum String =
+    public readonly static WindowsRegistryDatatypeEnum String =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_SZ);
 
-    public static readonly WindowsRegistryDatatypeEnum ExpandString =
+    public readonly static WindowsRegistryDatatypeEnum ExpandString =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_EXPAND_SZ);
 
-    public static readonly WindowsRegistryDatatypeEnum Binary =
+    public readonly static WindowsRegistryDatatypeEnum Binary =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_BINARY);
 
-    public static readonly WindowsRegistryDatatypeEnum DWord =
+    public readonly static WindowsRegistryDatatypeEnum DWord =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_DWORD);
 
-    public static readonly WindowsRegistryDatatypeEnum DWordBigEndian =
+    public readonly static WindowsRegistryDatatypeEnum DWordBigEndian =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_DWORD_BIG_ENDIAN);
 
-    public static readonly WindowsRegistryDatatypeEnum DWordLittleEndian =
+    public readonly static WindowsRegistryDatatypeEnum DWordLittleEndian =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_DWORD_LITTLE_ENDIAN);
 
-    public static readonly WindowsRegistryDatatypeEnum Link =
+    public readonly static WindowsRegistryDatatypeEnum Link =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_LINK);
 
-    public static readonly WindowsRegistryDatatypeEnum MultiString =
+    public readonly static WindowsRegistryDatatypeEnum MultiString =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_MULTI_SZ);
 
-    public static readonly WindowsRegistryDatatypeEnum ResourceList =
+    public readonly static WindowsRegistryDatatypeEnum ResourceList =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_RESOURCE_LIST);
 
-    public static readonly WindowsRegistryDatatypeEnum FullResourceDescription =
+    public readonly static WindowsRegistryDatatypeEnum FullResourceDescription =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_FULL_RESOURCE_DESCRIPTION);
 
-    public static readonly WindowsRegistryDatatypeEnum ResourceRequirementsList =
+    public readonly static WindowsRegistryDatatypeEnum ResourceRequirementsList =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_RESOURCE_REQUIREMENTS_LIST);
 
-    public static readonly WindowsRegistryDatatypeEnum QWord =
+    public readonly static WindowsRegistryDatatypeEnum QWord =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_QWORD);
 
-    public static readonly WindowsRegistryDatatypeEnum Invalid =
+    public readonly static WindowsRegistryDatatypeEnum Invalid =
         new WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype.REG_INVALID_TYPE);
 
     private WindowsRegistryDatatypeEnum(EWindowsRegistryDatatype value) : base(value)

@@ -8,16 +8,16 @@ public sealed record WindowsServiceTypeEnum : Enumeration<WindowsServiceTypeEnum
 {
     private const string TYPE = "windows-service-type-enum";
 
-    public static readonly WindowsServiceTypeEnum KernelDriver =
+    public readonly static WindowsServiceTypeEnum KernelDriver =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_KERNEL_DRIVER);
 
-    public static readonly WindowsServiceTypeEnum FileSystemDriver =
+    public readonly static WindowsServiceTypeEnum FileSystemDriver =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_FILE_SYSTEM_DRIVER);
 
-    public static readonly WindowsServiceTypeEnum Win32OwnProcess =
+    public readonly static WindowsServiceTypeEnum Win32OwnProcess =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_WIN32_OWN_PROCESS);
 
-    public static readonly WindowsServiceTypeEnum Win32ShareProcess =
+    public readonly static WindowsServiceTypeEnum Win32ShareProcess =
         new WindowsServiceTypeEnum(EWindowsServiceType.SERVICE_WIN32_SHARE_PROCESS);
 
     private WindowsServiceTypeEnum(Enum @enum) : base(@enum)

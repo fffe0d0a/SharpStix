@@ -8,28 +8,28 @@ public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketA
 {
     private const string TYPE = "network-socket-address-family-enum";
 
-    public static readonly NetworkSocketAddressFamilyEnum Unspecified =
+    public readonly static NetworkSocketAddressFamilyEnum Unspecified =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_UNSPEC);
 
-    public static readonly NetworkSocketAddressFamilyEnum INet =
+    public readonly static NetworkSocketAddressFamilyEnum INet =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_INET);
 
-    public static readonly NetworkSocketAddressFamilyEnum INet6 =
+    public readonly static NetworkSocketAddressFamilyEnum INet6 =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_INET6);
 
-    public static readonly NetworkSocketAddressFamilyEnum IPX =
+    public readonly static NetworkSocketAddressFamilyEnum IPX =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_IPX);
 
-    public static readonly NetworkSocketAddressFamilyEnum AppleTalk =
+    public readonly static NetworkSocketAddressFamilyEnum AppleTalk =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_APPLETALK);
 
-    public static readonly NetworkSocketAddressFamilyEnum NetBIOS =
+    public readonly static NetworkSocketAddressFamilyEnum NetBIOS =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_NETBIOS);
 
-    public static readonly NetworkSocketAddressFamilyEnum IRDA =
+    public readonly static NetworkSocketAddressFamilyEnum IRDA =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_IRDA);
 
-    public static readonly NetworkSocketAddressFamilyEnum BTH =
+    public readonly static NetworkSocketAddressFamilyEnum BTH =
         new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_BTH);
 
     private NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily value) : base(value)

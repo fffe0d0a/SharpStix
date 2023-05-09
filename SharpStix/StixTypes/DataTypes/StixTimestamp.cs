@@ -14,8 +14,5 @@ public readonly record struct StixTimestamp(DateTime Value) : IStixDataType
     }
 
 
-    public override string ToString()
-    {
-        return XmlConvert.ToString(Value, XmlDateTimeSerializationMode.Utc);
-    }
+    public override string ToString() => XmlConvert.ToString(Value, XmlDateTimeSerializationMode.Utc);
 }

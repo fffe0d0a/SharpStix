@@ -15,10 +15,7 @@ public record struct Confidence
 
     private int Value { get; }
 
-    public static implicit operator Confidence(int value)
-    {
-        return new Confidence(value);
-    }
+    public static implicit operator Confidence(int value) => new Confidence(value);
 
     #region ConfidenceScales
 
@@ -102,10 +99,8 @@ public record struct Confidence
 
 public static class ConfidenceExtensions
 {
-    public static string AsAdmiraltyCredibility(this Confidence? confidence)
-    {
-        return confidence == null
+    public static string AsAdmiraltyCredibility(this Confidence? confidence) =>
+        confidence == null
             ? "Truth cannot be judged"
             : confidence.AsAdmiraltyCredibility();
-    }
 }

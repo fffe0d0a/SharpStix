@@ -4,7 +4,7 @@ using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixTypes;
 
-public class StixHashes : Dictionary<HashingAlgorithm, StixString>, IStixDataType
+public class StixHashes : Dictionary<HashingAlgorithm, string>, IStixDataType
 {
     private const string TYPE = "hashes";
 }

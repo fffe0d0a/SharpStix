@@ -13,8 +13,5 @@ public readonly record struct StixHex(byte[] Value) : IStixDataType
     }
 
 
-    public override string ToString()
-    {
-        return Convert.ToHexString(Value).ToLowerInvariant();
-    }
+    public override string ToString() => Convert.ToHexString(Value).ToLowerInvariant();
 }

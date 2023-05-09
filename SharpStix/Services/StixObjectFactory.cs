@@ -6,19 +6,10 @@ namespace SharpStix.Services;
 
 public static class StixObjectFactory
 {
-    public static StixObject CreateObjectFromJson(JsonNode jsonNode)
-    {
-        throw new NotImplementedException();
-    }
+    public static StixObject CreateObjectFromJson(JsonNode jsonNode) => throw new NotImplementedException();
 
-    public static IStixDataType CreateDataTypeFromJson(JsonNode jsonNode)
-    {
-        throw new NotImplementedException();
-    }
+    public static IStixDataType CreateDataTypeFromJson(JsonNode jsonNode) => throw new NotImplementedException();
 
-    public static Bundle CreateBundleFromJson(JsonNode jsonNode)
-    {
-        throw new NotImplementedException();
-        // this'll be big
-    }
+    public static Bundle CreateBundleFromJson(JsonNode jsonNode) => throw new NotImplementedException();
+    // this'll be big
 }

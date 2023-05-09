@@ -8,14 +8,14 @@ public sealed record WindowsIntegrityLevelEnum : Enumeration<WindowsIntegrityLev
 {
     private const string TYPE = "windows-integrity-level-enum";
 
-    public static readonly WindowsIntegrityLevelEnum Low = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Low);
+    public readonly static WindowsIntegrityLevelEnum Low = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Low);
 
-    public static readonly WindowsIntegrityLevelEnum Medium =
+    public readonly static WindowsIntegrityLevelEnum Medium =
         new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Medium);
 
-    public static readonly WindowsIntegrityLevelEnum High = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.High);
+    public readonly static WindowsIntegrityLevelEnum High = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.High);
 
-    public static readonly WindowsIntegrityLevelEnum System =
+    public readonly static WindowsIntegrityLevelEnum System =
         new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.System);
 
     private WindowsIntegrityLevelEnum(EWindowsIntegrityLevel value) : base(value)
