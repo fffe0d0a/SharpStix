@@ -2,15 +2,15 @@
 using FluentValidation;
 using SharpStix.Common.Helpers;
 using SharpStix.Serialisation.Json.Converters;
-using SharpStix.Services;
+using SharpStix.StixObjects;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<StixOpenVocab>))]
-[StixTypeDiscriminator(TYPE)]
-public abstract record StixOpenVocab(string Value) : IStixDataType
+public abstract record StixOpenVocab(string Value) : IStixDataType, IHasTypeName
 {
     private const string TYPE = "open-vocab";
+
     protected string Value { get; } = Value;
 
     public abstract string Type { get; }

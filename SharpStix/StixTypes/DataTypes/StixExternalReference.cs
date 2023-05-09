@@ -1,9 +1,7 @@
 ﻿using FluentValidation;
-using SharpStix.Services;
 
 namespace SharpStix.StixTypes;
 
-[StixTypeDiscriminator(TYPE)]
 public record StixExternalReference : IStixDataType
 {
     private const string TYPE = "external-reference";
@@ -13,8 +11,6 @@ public record StixExternalReference : IStixDataType
     public string? Url { get; init; }
     public StixHashes? Hashes { get; init; }
     public string? ExternalId { get; init; }
-
-    public string Type => TYPE;
 }
 
 internal class StixExternalReferenceValidator : AbstractValidator<StixExternalReference>

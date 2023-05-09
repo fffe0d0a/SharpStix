@@ -6,13 +6,11 @@ using SharpStix.StixTypes;
 namespace SharpStix.Extended.Mitre.StixTypes;
 
 [JsonConverter(typeof(MitreAttackSpecVersionConverter))]
-[StixTypeDiscriminator(TYPE)]
 public readonly record struct MitreAttackSpecVersion : IStixDataType
 {
     private const string TYPE = "x-mitre-attack-spec-version";
 
     public required string Version { get; init; }
-    public string Type => TYPE;
 
     public override string ToString()
     {
