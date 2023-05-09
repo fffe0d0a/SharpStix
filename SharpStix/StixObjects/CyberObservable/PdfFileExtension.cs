@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
@@ -10,7 +11,7 @@ public sealed record PdfFileExtension : CyberObservableObject
 
     public string? Version { get; init; }
     public bool? IsOptimized { get; init; }
-    public Dictionary<string, string>? DocumentInfoDict { get; init; }
+    public StixDictionary<string>? DocumentInfoDict { get; init; }
 
     [JsonPropertyName("pdfid0")] public string? Pdfid0 { get; init; }
 

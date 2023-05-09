@@ -14,17 +14,17 @@ public sealed record NetworkTraffic : CyberObservableObject
     public bool? IsActive { get; init; }
     public StixIdentifier? SrcRef { get; init; }
     public StixIdentifier? DstRef { get; init; }
-    public int? SrcPort { get; init; }
-    public int? DstPort { get; init; }
-    public required List<string> Protocols { get; init; }
-    public int? SrcByteCount { get; init; }
-    public int? DstByteCount { get; init; }
-    public int? SrcPackets { get; init; }
-    public int? DstPackets { get; init; }
-    public Dictionary<string, string>? Ipfix { get; init; }
+    public StixInteger? SrcPort { get; init; }
+    public StixInteger? DstPort { get; init; }
+    public required StixList<string> Protocols { get; init; }
+    public StixInteger? SrcByteCount { get; init; }
+    public StixInteger? DstByteCount { get; init; }
+    public StixInteger? SrcPackets { get; init; }
+    public StixInteger? DstPackets { get; init; }
+    public StixDictionary<string>? Ipfix { get; init; }
     public StixIdentifier? SrcPayloadRef { get; init; }
     public StixIdentifier? DstPayloadRef { get; init; }
-    public List<StixIdentifier>? EncapsulatesRefs { get; init; }
+    public StixList<StixIdentifier>? EncapsulatesRefs { get; init; }
     public StixIdentifier? EncapsulatedByRef { get; init; }
 
     public override string Type => TYPE;

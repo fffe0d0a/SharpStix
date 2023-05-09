@@ -2,14 +2,15 @@
 
 namespace SharpStix.StixTypes;
 
-public record Lang
+//todo looks dirty; this is a struct replacing a string
+public readonly record struct Language
 {
-    public Lang()
+    public Language()
     {
         LanguageCode = "en";
     }
 
-    public Lang(string lang)
+    public Language(string lang)
     {
         try
         {

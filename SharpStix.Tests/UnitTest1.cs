@@ -3,6 +3,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using System.Text.Unicode;
+using SharpStix.Serialisation.Json.Converters;
+using SharpStix.Serialisation.Json.Converters.DataTypes;
 using SharpStix.Services;
 using SharpStix.StixObjects;
 using SharpStix.StixObjects.Domain;
@@ -28,6 +30,7 @@ public class UnitTest1
             MaxDepth = 128,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            Converters = { new DateTimeConverter() }
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);

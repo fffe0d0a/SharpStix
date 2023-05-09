@@ -8,7 +8,7 @@ namespace SharpStix.StixObjects;
 public sealed record Bundle : IStixType, IHasTypeName, IHasId //warn this is not a StixObject
 {
     private const string TYPE = "bundle";
-    public List<StixObject>? Objects { get; init; }
+    public StixList<StixObject>? Objects { get; init; }
     public required StixIdentifier Id { get; init; }
 
     public string Type => TYPE;

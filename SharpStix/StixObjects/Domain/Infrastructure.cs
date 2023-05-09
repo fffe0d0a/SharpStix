@@ -24,17 +24,17 @@ public sealed record Infrastructure : DomainObject
     /// <summary>
     ///     The type of infrastructure being described.
     /// </summary>
-    public List<InfrastructureType>? InfrastructureTypes { get; init; }
+    public StixList<InfrastructureType>? InfrastructureTypes { get; init; }
 
     /// <summary>
     ///     Alternative names used to identify this Infrastructure.
     /// </summary>
-    public List<string>? Aliases { get; init; }
+    public StixList<string>? Aliases { get; init; }
 
     /// <summary>
     ///     The list of Kill Chain Phases for which this Infrastructure is used.
     /// </summary>
-    public List<StixKillChainPhase>? KillChainPhases { get; init; }
+    public StixList<StixKillChainPhase>? KillChainPhases { get; init; }
 
     /// <summary>
     ///     The time that this Infrastructure was first seen performing malicious activities.

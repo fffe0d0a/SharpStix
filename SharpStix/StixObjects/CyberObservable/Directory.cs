@@ -18,7 +18,7 @@ public sealed record Directory : CyberObservableObject
 
     [JsonPropertyName("atime")] public DateTime? AccessedTime { get; init; }
 
-    public List<StixIdentifier>? ContainsRefs { get; init; }
+    public StixList<StixIdentifier>? ContainsRefs { get; init; }
 
     public override string Type => TYPE;
 }

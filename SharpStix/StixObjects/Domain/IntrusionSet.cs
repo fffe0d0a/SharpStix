@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
@@ -22,7 +23,7 @@ public sealed record IntrusionSet : DomainObject
     /// <summary>
     ///     Alternative names used to identify this Intrusion Set.
     /// </summary>
-    public List<string>? Aliases { get; init; }
+    public StixList<string>? Aliases { get; init; }
 
     /// <summary>
     ///     The time that this Intrusion Set was first seen.
@@ -39,7 +40,7 @@ public sealed record IntrusionSet : DomainObject
     ///     by personal gain, but their goal is to steal credit card numbers. To do this, they may execute specific Campaigns
     ///     that have detailed objectives like compromising point of sale systems at a large retailer.
     /// </summary>
-    public List<string>? Goals { get; init; }
+    public StixList<string>? Goals { get; init; }
 
     /// <summary>
     ///     This property specifies the organizational level at which this Intrusion Set typically works, which in turn
@@ -57,7 +58,7 @@ public sealed record IntrusionSet : DomainObject
     ///     The secondary reasons, motivations, or purposes behind this Intrusion Set. These motivations can exist as an equal
     ///     or near-equal cause to the primary motivation.
     /// </summary>
-    public List<AttackMotivation>? SecondaryMotivations { get; init; }
+    public StixList<AttackMotivation>? SecondaryMotivations { get; init; }
 
     public override string Type => TYPE;
 }

@@ -23,7 +23,7 @@ public sealed record Indicator : DomainObject
     /// <summary>
     ///     A set of categorizations for this indicator.
     /// </summary>
-    public List<IndicatorType>? IndicatorTypes { get; init; }
+    public StixList<IndicatorType>? IndicatorTypes { get; init; }
 
     /// <summary>
     ///     The detection pattern for this Indicator.
@@ -54,7 +54,7 @@ public sealed record Indicator : DomainObject
     /// <summary>
     ///     The kill chain phase(s) to which this Indicator corresponds.
     /// </summary>
-    public List<StixKillChainPhase>? KillChainPhases { get; init; }
+    public StixList<StixKillChainPhase>? KillChainPhases { get; init; }
 
     public override string Type => TYPE;
 }

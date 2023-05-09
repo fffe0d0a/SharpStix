@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
@@ -7,8 +8,8 @@ public sealed record UnixAccountExtension : CyberObservableObject
 {
     private const string TYPE = "unix-account-ext";
 
-    public int? Gid { get; init; }
-    public List<string>? Groups { get; init; }
+    public StixInteger? Gid { get; init; }
+    public StixList<string>? Groups { get; init; }
     public string? HomeDir { get; init; }
     public string? Shell { get; init; }
 

@@ -21,12 +21,12 @@ public sealed record Note : DomainObject
     /// <summary>
     ///     The name of the author(s) of this note (e.g., the analyst(s) that created it).
     /// </summary>
-    public List<string>? Authors { get; init; }
+    public StixList<string>? Authors { get; init; }
 
     /// <summary>
     ///     The STIX Objects that the note is being applied to.
     /// </summary>
-    public List<StixIdentifier>? ObjectRefs { get; init; }
+    public StixList<StixIdentifier>? ObjectRefs { get; init; }
 
     public override string Type => TYPE;
 }

@@ -4,7 +4,6 @@ using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-[DataContract(Name = "email-addr")] //todo untested
 [StixTypeDiscriminator(TYPE)]
 public sealed record EmailAddress : CyberObservableObject
 {

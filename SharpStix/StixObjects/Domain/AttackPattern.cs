@@ -22,12 +22,12 @@ public sealed record AttackPattern : DomainObject
     /// <summary>
     ///     Alternative names used to identify this Attack Pattern.
     /// </summary>
-    public List<string>? Aliases { get; init; }
+    public StixList<string>? Aliases { get; init; }
 
     /// <summary>
     ///     The list of Kill Chain Phases for which this Attack Pattern is used.
     /// </summary>
-    public List<StixKillChainPhase>? KillChainPhases { get; init; }
+    public StixList<StixKillChainPhase>? KillChainPhases { get; init; }
 
     public override string Type => TYPE;
 }

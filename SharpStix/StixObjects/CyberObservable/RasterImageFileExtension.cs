@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
@@ -7,10 +8,10 @@ public sealed record RasterImageFileExtension : CyberObservableObject
 {
     private const string TYPE = "raster-image-ext";
 
-    public int? ImageHeight { get; init; }
-    public int? ImageWidth { get; init; }
-    public int? BitsPerPixel { get; init; }
-    public Dictionary<string, string>? ExifTags { get; init; } //warn not compliant
+    public StixInteger? ImageHeight { get; init; }
+    public StixInteger? ImageWidth { get; init; }
+    public StixInteger? BitsPerPixel { get; init; }
+    public StixDictionary<ExifTag>? ExifTags { get; init; } //warn not compliant
 
     public override string Type => TYPE;
 }

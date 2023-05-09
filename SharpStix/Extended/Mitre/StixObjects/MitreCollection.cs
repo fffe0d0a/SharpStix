@@ -12,8 +12,8 @@ public record MitreCollection : StixObject
 
     public required string Name { get; init; }
     public string? Description { get; init; }
-    public required StixTimestamp Created { get; init; }
-    public required StixTimestamp Modified { get; init; }
+    public required DateTime Created { get; init; }
+    public required DateTime Modified { get; init; }
     public required MitreVersion XMitreVersion { get; init; }
     public required SpecVersion SpecVersion { get; init; }
     public required MitreAttackSpecVersion XMitreAttackSpecVersion { get; init; }

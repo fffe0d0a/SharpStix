@@ -9,14 +9,14 @@ public sealed record LanguageContent : MetaObject, IVersioned
 {
     private const string TYPE = "language-content";
 
-    public List<string>? Labels { get; init; }
+    public StixList<string>? Labels { get; init; }
 
-    [Range(0, 100)] public int? Confidence { get; init; }
+    public Confidence? Confidence { get; init; }
 
     public required StixIdentifier ObjectRef { get; init; }
     public DateTime? ObjectModified { get; init; }
-    public Dictionary<StixIdentifier, object>? Extensions { get; init; }
-    public required Dictionary<Lang, Dictionary<string, List<object>>> Contents { get; init; } //warn tf
+    public Dictionary<StixIdentifier, object>? Extensions { get; init; } //warn not compiant
+    //public required Dictionary<Language, Dictionary<string, List<object>>> Contents { get; init; } //warn tf, big warn, object
 
     public override string Type => TYPE;
     public required DateTime Modified { get; init; }

@@ -1,25 +1,32 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Location() : DomainObject
+public sealed record Location : DomainObject
 {
     private const string TYPE = "location";
 
-    public Location(Region region) : this()
+    public Location(Region region)
     {
         Region = region;
     }
 
-    public Location(string country) : this()
+    public Location(string country)
     {
         Country = country;
     }
 
-    public Location(double latitude, double longitude) : this()
+    public Location(double latitude, double longitude)
+    {
+        Latitude = new StixFloat(latitude);
+        Longitude = new StixFloat(longitude);
+    }
+
+    public Location(StixFloat latitude, StixFloat longitude)
     {
         Latitude = latitude;
         Longitude = longitude;
@@ -40,20 +47,20 @@ public sealed record Location() : DomainObject
     ///     negative numbers describe latitudes south of the equator.
     /// </summary>
     [Range(-90d, 90d)]
-    public double? Latitude { get; init; }
+    public StixFloat? Latitude { get; init; } //warn validate in this class
 
     /// <summary>
     ///     The longitude of the Location in decimal degrees. Positive numbers describe longitudes east of the prime meridian
     ///     and negative numbers describe longitudes west of the prime meridian.
     /// </summary>
     [Range(-90d, 90d)]
-    public double? Longitude { get; init; }
+    public StixFloat? Longitude { get; init; }
 
     /// <summary>
     ///     Defines the precision of the coordinates specified by the latitude and longitude properties. This is measured in
     ///     meters. The actual Location may be anywhere up to precision meters from the defined point.
     /// </summary>
-    public double? Precision { get; init; }
+    public StixFloat? Precision { get; init; }
 
     /// <summary>
     ///     The region that this Location describes.

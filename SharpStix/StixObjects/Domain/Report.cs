@@ -11,9 +11,9 @@ public sealed record Report : DomainObject
 
     public required string Name { get; init; }
     public string? Description { get; init; }
-    public List<ReportType>? ReportTypes { get; init; }
+    public StixList<ReportType>? ReportTypes { get; init; }
     public required DateTime Published { get; init; }
-    public required List<StixIdentifier> ObjectRefs { get; init; }
+    public required StixList<StixIdentifier> ObjectRefs { get; init; }
 
     public override string Type => TYPE;
 }

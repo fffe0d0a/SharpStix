@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.Domain;
@@ -23,7 +24,7 @@ public sealed record Identity : DomainObject
     /// <summary>
     ///     The list of roles that this Identity performs (e.g., CEO, Domain Administrators, Doctors, Hospital, or Retailer).
     /// </summary>
-    public List<string>? Roles { get; init; }
+    public StixList<string>? Roles { get; init; }
 
     /// <summary>
     ///     The type of entity that this Identity describes, e.g., an individual or organization.
@@ -33,7 +34,7 @@ public sealed record Identity : DomainObject
     /// <summary>
     ///     The list of industry sectors that this Identity belongs to.
     /// </summary>
-    public List<IndustrySector>? Sectors { get; init; }
+    public StixList<IndustrySector>? Sectors { get; init; }
 
     /// <summary>
     ///     The contact information (e-mail, phone number, etc.) for this Identity.

@@ -28,7 +28,7 @@ public sealed record Grouping : DomainObject
     /// <summary>
     ///     Specifies the STIX Objects that are referred to by this Grouping.
     /// </summary>
-    public required List<StixIdentifier> ObjectRefs { get; init; }
+    public required StixList<StixIdentifier> ObjectRefs { get; init; }
 
     public override string Type => TYPE;
 }

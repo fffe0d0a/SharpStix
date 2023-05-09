@@ -10,9 +10,9 @@ public sealed record Artifact : CyberObservableObject
     private const string TYPE = "artifact";
 
     public string? MimeType { get; init; }
-    public Memory<byte>? PayloadBin { get; init; }
+    public StixBinary? PayloadBin { get; init; }
     public string? Url { get; init; }
-    public StixHashes? Hashes { get; init; } //warn not compliant //note hashes itself is not compliant afaik
+    public StixHashes? Hashes { get; init; } //warn not compliant
     public EncryptionAlgorithmEnum? EncryptionAlgorithm { get; init; }
     public string? DecryptionKey { get; init; }
 

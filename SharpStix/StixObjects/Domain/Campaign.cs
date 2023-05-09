@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 
@@ -21,7 +22,7 @@ public sealed record Campaign : DomainObject
     /// <summary>
     ///     Alternative names used to identify this Campaign
     /// </summary>
-    public List<string>? Aliases { get; init; }
+    public StixList<string>? Aliases { get; init; }
 
     /// <summary>
     ///     The time that this Campaign was first seen.

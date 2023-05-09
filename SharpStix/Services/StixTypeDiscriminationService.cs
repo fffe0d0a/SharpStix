@@ -6,6 +6,7 @@ using SharpStix.StixObjects;
 namespace SharpStix.Services;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
+//Like a fine cheese
 public class StixTypeDiscriminatorAttribute : Attribute
 {
     public StixTypeDiscriminatorAttribute(string typeName)

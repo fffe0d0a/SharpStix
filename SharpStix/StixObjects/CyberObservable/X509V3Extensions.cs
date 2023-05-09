@@ -1,4 +1,5 @@
 ﻿using SharpStix.Services;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;
 

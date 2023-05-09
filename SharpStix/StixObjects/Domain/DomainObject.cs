@@ -7,12 +7,12 @@ public abstract record DomainObject : CoreObject, IVersioned
     private const string TYPE = "domain-object";
 
     public required SpecVersion SpecVersion { get; init; }
-    public List<string>? Labels { get; init; }
+    public StixList<string>? Labels { get; init; }
 
     public Confidence? Confidence { get; init; }
 
-    public Lang? Lang { get; init; }
-    public List<StixExternalReference>? ExternalReferences { get; init; }
+    public Language? Lang { get; init; }
+    public StixList<StixExternalReference>? ExternalReferences { get; init; }
     public StixIdentifier? CreatedByRef { get; init; }
     public required DateTime Created { get; init; }
     public required DateTime Modified { get; init; }

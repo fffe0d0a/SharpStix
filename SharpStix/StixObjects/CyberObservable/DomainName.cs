@@ -9,7 +9,7 @@ public sealed record DomainName : CyberObservableObject
     private const string TYPE = "domain-name";
 
     public required string Value { get; init; }
-    public List<StixIdentifier>? ResolvesToRefs { get; init; }
+    public StixList<StixIdentifier>? ResolvesToRefs { get; init; }
 
     public override string Type => TYPE;
 }

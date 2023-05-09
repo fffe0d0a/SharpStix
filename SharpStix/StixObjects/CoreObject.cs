@@ -5,8 +5,8 @@ namespace SharpStix.StixObjects;
 
 public abstract record CoreObject : StixObject
 {
-    public List<StixIdentifier>? ObjectMarkingRefs { get; init; }
-    public List<GranularMarking>? GranularMarkings { get; init; }
+    public StixList<StixIdentifier>? ObjectMarkingRefs { get; init; }
+    public StixList<GranularMarking>? GranularMarkings { get; init; }
 
-    [JsonExtensionData] public Dictionary<string, object>? Extensions { get; init; } //warn, object
+    [JsonExtensionData] public Dictionary<string, object>? Extensions { get; init; } //warn, object and not stixdict
 }

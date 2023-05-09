@@ -2,6 +2,10 @@
 
 namespace SharpStix.StixTypes;
 
+/// <summary>
+///     A signed 54-bit integer number.
+/// </summary>
+/// <param name="Value"></param>
 public readonly record struct StixInteger(long Value) : IStixDataType
 {
     private const string TYPE = "integer";
