@@ -16,7 +16,6 @@ namespace SharpStix.StixTypes;
 ///     A UUID4 for STIX object types.
 /// </summary>
 [JsonConverter(typeof(StixIdentifierConverter))]
-[StixTypeDiscriminator(TYPE)]
 public record StixIdentifier : IStixDataType
 {
     private const string TYPE = "identifier";
@@ -41,7 +40,6 @@ public record StixIdentifier : IStixDataType
 
     [JsonIgnore] public string Value => $"{TypeHalf}--{UuidHalf}";
 
-    public string Type => TYPE;
 
     public static StixIdentifier CreateNew<T>() where T : IHasTypeName
     {

@@ -1,14 +1,10 @@
 ﻿using FluentValidation;
-using SharpStix.Services;
 
 namespace SharpStix.StixTypes;
 
-[StixTypeDiscriminator(TYPE)]
 public class StixList<T> : List<T>, IStixDataType
 {
     private const string TYPE = "list";
-
-    public string Type => TYPE;
 }
 
 internal class StixListValidator<T> : AbstractValidator<StixList<T>>

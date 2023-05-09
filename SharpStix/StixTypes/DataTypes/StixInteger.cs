@@ -1,14 +1,10 @@
 ﻿using FluentValidation;
-using SharpStix.Services;
 
 namespace SharpStix.StixTypes;
 
-[StixTypeDiscriminator(TYPE)]
 public readonly record struct StixInteger(long Value) : IStixDataType
 {
     private const string TYPE = "integer";
-
-    public string Type => TYPE;
 }
 
 internal class StixIntegerValidator : AbstractValidator<StixInteger>

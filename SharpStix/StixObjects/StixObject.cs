@@ -6,7 +6,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects;
 
 [JsonConverter(typeof(StixObjectConverter))]
-public abstract record StixObject : IStixType, IHasId
+public abstract record StixObject : IStixType, IHasTypeName, IHasId
 {
     private const string TYPE = "stix-object";
 
