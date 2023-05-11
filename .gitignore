@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /SharpStix.Tests/enterprise-attack.json
+/SharpStix.Tests/test.json
