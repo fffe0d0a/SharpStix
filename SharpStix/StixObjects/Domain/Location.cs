@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using FluentValidation;
+using SharpStix.Common;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
@@ -11,6 +14,11 @@ public sealed record Location : DomainObject
 {
     private const string TYPE = "location";
 
+    [JsonConstructor]
+    public Location()
+    {
+
+    }
 
     public Location(Region region)
     {
@@ -22,16 +30,10 @@ public sealed record Location : DomainObject
         Country = country;
     }
 
-    public Location(double latitude, double longitude)
+    public Location(GeographicCoordinates coordinates)
     {
-        Latitude = new StixFloat(latitude);
-        Longitude = new StixFloat(longitude);
-    }
-
-    public Location(StixFloat latitude, StixFloat longitude)
-    {
-        Latitude = latitude;
-        Longitude = longitude;
+        Latitude = new StixFloat(coordinates.Latitude);
+        Longitude = new StixFloat(coordinates.Longitude);
     }
 
     /// <summary>
@@ -95,4 +97,70 @@ public sealed record Location : DomainObject
     public string? PostalCode { get; init; }
 
     public override string Type => TYPE;
+
+    public GeographicCoordinates? GetCoordinates()
+    {
+        if (Latitude is null || Longitude is null)
+            return null;
+        return Precision is not null
+            ? new GeographicCoordinates(Latitude.Value, Longitude.Value, Precision.Value) 
+            : new GeographicCoordinates(Latitude.Value, Longitude.Value);
+    }
+}
+
+public class LocationValidator : AbstractValidator<Location>
+{
+    private const string MISSING_ONE_OF_MESSAGE =
+        $"One of {nameof(Location.Region)}, {nameof(Location.Country)}, or {nameof(Location.Latitude)} & {nameof(Location.Longitude)} must be set.";
+
+    public LocationValidator()
+    {
+        RuleFor(x => x.Region)
+            .NotNull()
+            .When(x => x.Country is null && (x.Longitude is null || x.Latitude is null))
+            .WithSeverity(Severity.Error)
+            .WithMessage(MISSING_ONE_OF_MESSAGE);
+
+        RuleFor(x => x.Country)
+            .NotNull()
+            .When(x => x.Region is null && (x.Longitude is null || x.Latitude is null))
+            .WithSeverity(Severity.Error)
+            .WithMessage(MISSING_ONE_OF_MESSAGE);
+
+        RuleFor(x => x.Longitude)
+            .NotNull()
+            .When(x => x.Country is null && x.Region is null)
+            .WithSeverity(Severity.Error)
+            .WithMessage(MISSING_ONE_OF_MESSAGE);
+
+        RuleFor(x => x.Latitude)
+            .NotNull()
+            .When(x => x.Country is null && x.Region is null)
+            .WithSeverity(Severity.Error)
+            .WithMessage(MISSING_ONE_OF_MESSAGE);
+
+        RuleFor(x => x.Longitude)
+            .NotNull()
+            .When(x => x.Latitude is not null)
+            .WithSeverity(Severity.Error)
+            .WithMessage($"{nameof(Location.Longitude)} must be set when {nameof(Location.Latitude)} is set.");
+
+        RuleFor(x => x.Latitude)
+            .NotNull()
+            .When(x => x.Longitude is not null)
+            .WithSeverity(Severity.Error)
+            .WithMessage($"{nameof(Location.Latitude)} must be set when {nameof(Location.Longitude)} is set.");
+
+        RuleFor(x => x.Latitude!.Value.Value)
+            .InclusiveBetween(-90d, 90d)
+            .When(x => x.Latitude is not null)
+            .WithSeverity(Severity.Error)
+            .WithMessage("Latitude must be between -90 and 90");
+
+        RuleFor(x => x.Longitude!.Value.Value)
+            .InclusiveBetween(-180d, 180d)
+            .When(x => x.Longitude is not null)
+            .WithSeverity(Severity.Error)
+            .WithMessage("Longitude must be between -180 and 180");
+    }
 }

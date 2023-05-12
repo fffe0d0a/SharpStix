@@ -9,6 +9,8 @@ namespace SharpStix.StixTypes;
 public readonly record struct StixInteger(long Value) : IStixDataType
 {
     private const string TYPE = "integer";
+
+    public static explicit operator long(StixInteger value) => value.Value;
 }
 
 internal class StixIntegerValidator : AbstractValidator<StixInteger>
