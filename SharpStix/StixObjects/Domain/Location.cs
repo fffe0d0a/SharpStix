@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
@@ -9,6 +10,7 @@ namespace SharpStix.StixObjects.Domain;
 public sealed record Location : DomainObject
 {
     private const string TYPE = "location";
+
 
     public Location(Region region)
     {

@@ -1,4 +1,5 @@
 ﻿using SharpStix.StixTypes;
+using System.Globalization;
 
 namespace SharpStix.StixObjects;
 
@@ -13,7 +14,7 @@ public record GranularMarking
 {
     private const string TYPE = "granular-marking";
 
-    public Language? Lang { get; set; }
+    public CultureInfo? Lang { get; set; }
     public StixIdentifier? MarkingRef { get; set; }
     public required StixList<string> Selectors { get; set; } //Selectors contained in the selectors list are strings that consist of multiple components that MUST be separated by the . character.
 }

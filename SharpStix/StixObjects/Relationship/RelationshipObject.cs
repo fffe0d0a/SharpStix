@@ -1,4 +1,5 @@
-﻿using SharpStix.StixTypes;
+﻿using System.Globalization;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Relationship;
 
@@ -11,7 +12,7 @@ public abstract record RelationshipObject : CoreObject, IVersioned
 
     public Confidence? Confidence { get; init; }
 
-    public Language? Lang { get; init; }
+    public CultureInfo? Lang { get; init; }
     public StixList<StixExternalReference>? ExternalReferences { get; init; }
     public StixIdentifier? CreatedByRef { get; init; }
     public required DateTime Created { get; init; }

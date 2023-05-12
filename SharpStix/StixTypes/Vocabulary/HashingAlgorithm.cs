@@ -8,56 +8,18 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record HashingAlgorithm(string Value) : StixOpenVocab(Value)
 {
-    public enum EHashingAlgorithm
-    {
-        // ReSharper disable InconsistentNaming
-        /// <summary>
-        ///     Specifies the MD5 message digest algorithm.
-        /// </summary>
-        MD5,
+    public static readonly HashingAlgorithm MD5 = new HashingAlgorithm("MD5");
+    public static readonly HashingAlgorithm SHA_1 = new HashingAlgorithm("SHA-1");
+    public static readonly HashingAlgorithm SHA_256 = new HashingAlgorithm("SHA-256");
+    public static readonly HashingAlgorithm SHA_512 = new HashingAlgorithm("SHA-512");
+    public static readonly HashingAlgorithm SHA3_256 = new HashingAlgorithm("SHA3-256");
+    public static readonly HashingAlgorithm SHA3_512 = new HashingAlgorithm("SHA3-512");
+    public static readonly HashingAlgorithm SSDeep = new HashingAlgorithm("SSDEEP");
+    public static readonly HashingAlgorithm TLSH = new HashingAlgorithm("TLSH");
 
-        /// <summary>
-        ///     Specifies the SHA­-1 (secure-­hash algorithm 1) cryptographic hash function.
-        /// </summary>
-        SHA_1,
-
-        /// <summary>
-        ///     Specifies the SHA-­256 cryptographic hash function (part of the SHA­2 family).
-        /// </summary>
-        SHA_256,
-
-        /// <summary>
-        ///     Specifies the SHA-­512 cryptographic hash function (part of the SHA­2 family).
-        /// </summary>
-        SHA_512,
-
-        /// <summary>
-        ///     Specifies the SHA3-256 cryptographic hash function.
-        /// </summary>
-        SHA3_256,
-
-        /// <summary>
-        ///     Specifies the SHA3-512 cryptographic hash function.
-        /// </summary>
-        SHA3_512,
-
-        /// <summary>
-        ///     Specifies the ssdeep fuzzy hashing algorithm.
-        /// </summary>
-        SSDEEP,
-
-        /// <summary>
-        ///     Specifies the TLSH fuzzy hashing algorithm.
-        /// </summary>
-        TLSH
-        // ReSharper restore InconsistentNaming
-    }
 
     private const string TYPE = "hashing-algorithm-ov";
 
-    public HashingAlgorithm(EHashingAlgorithm value) : this(value.ToString().Replace('_', '-'))
-    {
-    }
 
     public override string Type => TYPE;
 }

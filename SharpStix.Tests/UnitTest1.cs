@@ -5,6 +5,7 @@ using System.Text.Json.Serialization.Metadata;
 using System.Text.Unicode;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Serialisation.Json.Converters.DataTypes;
+using SharpStix.Serialisation.Json.Converters.Structs;
 using SharpStix.Services;
 using SharpStix.StixObjects;
 using SharpStix.StixObjects.Domain;
@@ -30,7 +31,11 @@ public class UnitTest1
             MaxDepth = 128,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            Converters = { new DateTimeConverter() }
+            Converters =
+            {
+                new DateTimeConverter(),
+                new CultureInfoConverter()
+            }
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);

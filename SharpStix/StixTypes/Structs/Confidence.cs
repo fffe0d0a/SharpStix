@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
+using SharpStix.Serialisation.Json.Converters;
 
 namespace SharpStix.StixTypes;
 
+[JsonConverter(typeof(ConfidenceConverter))]
 [DebuggerDisplay("{Value}")]
 public record struct Confidence
 {
@@ -16,6 +19,7 @@ public record struct Confidence
     private int Value { get; }
 
     public static implicit operator Confidence(int value) => new Confidence(value);
+    public static explicit operator int (Confidence value) => value.Value;
 
     #region ConfidenceScales
 
