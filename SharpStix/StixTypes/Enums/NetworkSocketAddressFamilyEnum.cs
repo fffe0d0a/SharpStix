@@ -1,56 +1,43 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
+using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
 [StixTypeDiscriminator(TYPE)]
+[JsonConverter(typeof(EnumerationConverterFactory))]
 public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketAddressFamilyEnum>, IStixEnum
 {
     private const string TYPE = "network-socket-address-family-enum";
 
-    public readonly static NetworkSocketAddressFamilyEnum Unspecified =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_UNSPEC);
+    public static readonly NetworkSocketAddressFamilyEnum Unspecified =
+        new NetworkSocketAddressFamilyEnum(0, "AF_UNSPEC");
 
-    public readonly static NetworkSocketAddressFamilyEnum INet =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_INET);
+    public static readonly NetworkSocketAddressFamilyEnum INet =
+        new NetworkSocketAddressFamilyEnum(1, "AF_INET");
 
-    public readonly static NetworkSocketAddressFamilyEnum INet6 =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_INET6);
+    public static readonly NetworkSocketAddressFamilyEnum IPX =
+        new NetworkSocketAddressFamilyEnum(2, "AF_IPX");
 
-    public readonly static NetworkSocketAddressFamilyEnum IPX =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_IPX);
+    public static readonly NetworkSocketAddressFamilyEnum AppleTalk =
+        new NetworkSocketAddressFamilyEnum(3, "AF_APPLETALK");
 
-    public readonly static NetworkSocketAddressFamilyEnum AppleTalk =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_APPLETALK);
+    public static readonly NetworkSocketAddressFamilyEnum NetBIOS =
+        new NetworkSocketAddressFamilyEnum(4, "AF_NETBIOS");
 
-    public readonly static NetworkSocketAddressFamilyEnum NetBIOS =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_NETBIOS);
+    public static readonly NetworkSocketAddressFamilyEnum INet6 =
+        new NetworkSocketAddressFamilyEnum(5, "AF_INET6");
 
-    public readonly static NetworkSocketAddressFamilyEnum IRDA =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_IRDA);
+    public static readonly NetworkSocketAddressFamilyEnum IRDA =
+        new NetworkSocketAddressFamilyEnum(6, "AF_IRDA");
 
-    public readonly static NetworkSocketAddressFamilyEnum BTH =
-        new NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily.AF_BTH);
+    public static readonly NetworkSocketAddressFamilyEnum BTH =
+        new NetworkSocketAddressFamilyEnum(7, "AF_BTH");
 
-    private NetworkSocketAddressFamilyEnum(ENetworkSocketAddressFamily value) : base(value)
+    private NetworkSocketAddressFamilyEnum(int value, string displayName) : base(value, displayName)
     {
     }
 
     public string Type => TYPE;
-
-    private enum ENetworkSocketAddressFamily
-    {
-        // ReSharper disable InconsistentNaming
-
-        AF_UNSPEC,
-        AF_INET,
-        AF_IPX,
-        AF_APPLETALK,
-        AF_NETBIOS,
-        AF_INET6,
-        AF_IRDA,
-        AF_BTH
-
-        // ReSharper restore InconsistentNaming
-    }
 }

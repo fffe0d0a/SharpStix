@@ -1,34 +1,27 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
+using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
 [StixTypeDiscriminator(TYPE)]
+[JsonConverter(typeof(EnumerationConverterFactory))]
 public sealed record WindowsIntegrityLevelEnum : Enumeration<WindowsIntegrityLevelEnum>, IStixEnum
 {
     private const string TYPE = "windows-integrity-level-enum";
 
-    public readonly static WindowsIntegrityLevelEnum Low = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Low);
+    public static readonly WindowsIntegrityLevelEnum Low = new WindowsIntegrityLevelEnum(0, "low");
 
-    public readonly static WindowsIntegrityLevelEnum Medium =
-        new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.Medium);
+    public static readonly WindowsIntegrityLevelEnum Medium = new WindowsIntegrityLevelEnum(1, "medium");
 
-    public readonly static WindowsIntegrityLevelEnum High = new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.High);
+    public static readonly WindowsIntegrityLevelEnum High = new WindowsIntegrityLevelEnum(2, "high");
 
-    public readonly static WindowsIntegrityLevelEnum System =
-        new WindowsIntegrityLevelEnum(EWindowsIntegrityLevel.System);
+    public static readonly WindowsIntegrityLevelEnum System = new WindowsIntegrityLevelEnum(3, "system");
 
-    private WindowsIntegrityLevelEnum(EWindowsIntegrityLevel value) : base(value)
+    private WindowsIntegrityLevelEnum(int value, string displayName) : base(value, displayName)
     {
     }
 
     public string Type => TYPE;
-
-    private enum EWindowsIntegrityLevel
-    {
-        Low,
-        Medium,
-        High,
-        System
-    }
 }

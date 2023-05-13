@@ -1,9 +1,12 @@
 ﻿using SharpStix.Common;
+using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
+using System.Text.Json.Serialization;
 
 namespace SharpStix.StixTypes.Enums;
 
 [StixTypeDiscriminator(TYPE)]
+[JsonConverter(typeof(EnumerationConverterFactory))]
 public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
 {
     private const string TYPE = "opinion-enum";
@@ -11,29 +14,29 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
     /// <summary>
     ///     The creator strongly disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public readonly static OpinionEnum StronglyDisagree = new OpinionEnum(EOpinion.StronglyDisagree);
+    public readonly static OpinionEnum StronglyDisagree = new OpinionEnum(1, "strongly-disagree");
 
     /// <summary>
     ///     The creator disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public readonly static OpinionEnum Disagree = new OpinionEnum(EOpinion.Disagree);
+    public readonly static OpinionEnum Disagree = new OpinionEnum(2, "disagree");
 
     /// <summary>
     ///     The creator is neutral about the accuracy or correctness of the information.
     /// </summary>
-    public readonly static OpinionEnum Neutral = new OpinionEnum(EOpinion.Neutral);
+    public readonly static OpinionEnum Neutral = new OpinionEnum(3, "neutral");
 
     /// <summary>
     ///     The creator agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public readonly static OpinionEnum Agree = new OpinionEnum(EOpinion.Agree);
+    public readonly static OpinionEnum Agree = new OpinionEnum(4, "agree");
 
     /// <summary>
     ///     The creator strongly agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public readonly static OpinionEnum StronglyAgree = new OpinionEnum(EOpinion.StronglyAgree);
+    public readonly static OpinionEnum StronglyAgree = new OpinionEnum(5, "strongly-agree");
 
-    private OpinionEnum(EOpinion value) : base(value)
+    private OpinionEnum(int value, string displayName) : base(value, displayName)
     {
     }
 
@@ -61,14 +64,5 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
             5 => StronglyAgree,
             _ => throw new ArgumentOutOfRangeException(nameof(value), value, "Opinion scale is 1-5 (inclusive).")
         };
-    }
-
-    private enum EOpinion
-    {
-        StronglyDisagree = 1,
-        Disagree = 2,
-        Neutral = 3,
-        Agree = 4,
-        StronglyAgree = 5
     }
 }

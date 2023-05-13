@@ -1,43 +1,27 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
+using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
 namespace SharpStix.StixTypes.Enums;
 
 [StixTypeDiscriminator(TYPE)]
+[JsonConverter(typeof(EnumerationConverterFactory))]
 public sealed record EncryptionAlgorithmEnum : Enumeration<EncryptionAlgorithmEnum>, IStixEnum
 {
     private const string TYPE = "encryption-algorithm-enum";
 
-    public readonly static EncryptionAlgorithmEnum Aes256Gcm =
-        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.Aes256Gcm);
+    public static readonly EncryptionAlgorithmEnum Aes256Gcm =
+        new EncryptionAlgorithmEnum(0, "AES-256-GCM");
 
-    public readonly static EncryptionAlgorithmEnum ChaCha20Poly1305 =
-        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.ChaCha20Poly1305);
+    public static readonly EncryptionAlgorithmEnum ChaCha20Poly1305 =
+        new EncryptionAlgorithmEnum(1, "ChaCha20-Poly1305");
 
-    public readonly static EncryptionAlgorithmEnum MineTypeIndicated =
-        new EncryptionAlgorithmEnum(EEncryptionAlgorithm.MimeTypeIndicated);
+    public static readonly EncryptionAlgorithmEnum MineTypeIndicated =
+        new EncryptionAlgorithmEnum(2, "mime-type-indicated");
 
-    private EncryptionAlgorithmEnum(EEncryptionAlgorithm value) : base(value)
-    {
-    }
+  
+    private EncryptionAlgorithmEnum(int value, string displayName) : base(value, displayName){}
 
     public string Type => TYPE;
-
-    public override string ToString()
-    {
-        return AsEnum<EEncryptionAlgorithm>() switch
-        {
-            EEncryptionAlgorithm.Aes256Gcm => "AES-256-GCM",
-            EEncryptionAlgorithm.ChaCha20Poly1305 => "ChaCha20-Poly1305",
-            EEncryptionAlgorithm.MimeTypeIndicated => "mime-type-indicated",
-            _ => throw new Exception("Library error")
-        };
-    }
-
-    private enum EEncryptionAlgorithm
-    {
-        Aes256Gcm,
-        ChaCha20Poly1305,
-        MimeTypeIndicated
-    }
 }

@@ -8,9 +8,9 @@ namespace SharpStix.Common;
 //https://josef.codes/enumeration-class-in-c-sharp-using-records/
 public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
 {
-    private readonly static Lazy<FrozenDictionary<int, T>> AllItems;
-    private readonly static Lazy<FrozenDictionary<string, T>> AllItemsByName;
-
+    private static readonly Lazy<FrozenDictionary<int, T>> AllItems;
+    private static readonly Lazy<FrozenDictionary<string, T>> AllItemsByName;
+    
     static Enumeration()
     {
         AllItems = new Lazy<FrozenDictionary<int, T>>(() =>
