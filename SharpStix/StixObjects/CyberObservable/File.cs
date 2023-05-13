@@ -11,7 +11,7 @@ public sealed record File : CyberObservableObject
 
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public StixHashes? Hashes { get; init; }
-    public StixInteger? Size { get; init; }
+    public Int54? Size { get; init; }
     public string? Name { get; init; }
     public string? NameEnc { get; init; }
     public StixHex? MagicNumberHex { get; init; }

@@ -14,11 +14,11 @@ public sealed record WindowsPebinaryExtension : CyberObservableObject
     public required WindowsPebinaryType PeType { get; init; }
     public string? Imphash { get; init; }
     public StixHex? MachineHex { get; init; }
-    public StixInteger? NumberOfSections { get; init; }
+    public Int54? NumberOfSections { get; init; }
     public DateTime? TimeDateStamp { get; init; }
     public StixHex? PointerToSymbolTableHex { get; init; }
-    public StixInteger? NumberOfSymbols { get; init; }
-    public StixInteger? SizeOfOptionalHeader { get; init; }
+    public Int54? NumberOfSymbols { get; init; }
+    public Int54? SizeOfOptionalHeader { get; init; }
     public StixHex? CharacteristicsHex { get; init; }
     public StixHashes? FileHeaderHashes { get; init; }
     public WindowsPeOptionalHeader? OptionalHeader { get; init; }

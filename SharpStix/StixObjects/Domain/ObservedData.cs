@@ -34,7 +34,7 @@ public sealed record ObservedData() : DomainObject
     ///     The number of times that each Cyber-observable object represented in the objects or object_ref property was seen.
     /// </summary>
     [Range(1, 999999999)]
-    public required StixInteger NumberObserved { get; init; } //warn validate in class
+    public required Int54 NumberObserved { get; init; } //warn validate in class
 
     //[Obsolete] public object? Objects { get; init; } //todo observable-container
 

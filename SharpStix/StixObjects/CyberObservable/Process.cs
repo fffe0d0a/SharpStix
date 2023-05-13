@@ -10,7 +10,7 @@ public sealed record Process : CyberObservableObject
 
     public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
     public bool? IsHidden { get; init; }
-    public StixInteger? Pid { get; init; }
+    public Int54? Pid { get; init; }
     public DateTime? CreatedTime { get; init; }
     public string? Cwd { get; init; }
     public string? CommandLine { get; init; }

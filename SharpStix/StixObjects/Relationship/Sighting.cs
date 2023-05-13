@@ -13,7 +13,7 @@ public sealed record Sighting : RelationshipObject
     public DateTime? FirstSeen { get; init; }
     public DateTime? LastSeen { get; init; }
 
-    [Range(0, 999999999)] public StixInteger? Count { get; init; } //todo validate in class
+    [Range(0, 999999999)] public Int54? Count { get; init; } //todo validate in class
 
     public required StixIdentifier SightingOfRef { get; init; }
     public StixList<StixIdentifier>? ObservedDataRefs { get; init; }

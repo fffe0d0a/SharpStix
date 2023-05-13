@@ -12,5 +12,5 @@ public readonly record struct ExifTag //todo, or use nicer library implementatio
     public string Value { get; }
 
 
-    public StixInteger ValueAsInteger() => throw new NotImplementedException();
+    public Int54 ValueAsInteger() => throw new NotImplementedException();
 }

@@ -12,7 +12,7 @@ public sealed record WindowsRegistryKey : CyberObservableObject
     public StixList<WindowsRegistryValue>? Values { get; init; }
     public DateTime? ModifiedTime { get; init; }
     public StixIdentifier? CreatorUserRef { get; init; }
-    public StixInteger? NumberOfSubkeys { get; init; }
+    public Int54? NumberOfSubkeys { get; init; }
 
     public override string Type => TYPE;
 }

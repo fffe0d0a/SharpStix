@@ -8,7 +8,7 @@ public sealed record AutonomousSystem : CyberObservableObject
 {
     private const string TYPE = "autonomous-system";
 
-    public required StixInteger Number { get; init; }
+    public required Int54 Number { get; init; }
     public string? Name { get; init; }
     public string? Rir { get; init; }
 

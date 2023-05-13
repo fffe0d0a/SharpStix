@@ -1,15 +1,10 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-using System.Text.Unicode;
 using SharpStix.Serialisation.Json.Converters;
-using SharpStix.Serialisation.Json.Converters.DataTypes;
 using SharpStix.Serialisation.Json.Converters.Structs;
 using SharpStix.Services;
 using SharpStix.StixObjects;
-using SharpStix.StixObjects.Domain;
-using SharpStix.StixTypes;
 
 namespace SharpStix.Tests;
 

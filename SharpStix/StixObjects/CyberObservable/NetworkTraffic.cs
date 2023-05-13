@@ -14,13 +14,13 @@ public sealed record NetworkTraffic : CyberObservableObject
     public bool? IsActive { get; init; }
     public StixIdentifier? SrcRef { get; init; }
     public StixIdentifier? DstRef { get; init; }
-    public StixInteger? SrcPort { get; init; }
-    public StixInteger? DstPort { get; init; }
+    public Int54? SrcPort { get; init; }
+    public Int54? DstPort { get; init; }
     public required StixList<string> Protocols { get; init; }
-    public StixInteger? SrcByteCount { get; init; }
-    public StixInteger? DstByteCount { get; init; }
-    public StixInteger? SrcPackets { get; init; }
-    public StixInteger? DstPackets { get; init; }
+    public Int54? SrcByteCount { get; init; }
+    public Int54? DstByteCount { get; init; }
+    public Int54? SrcPackets { get; init; }
+    public Int54? DstPackets { get; init; }
     public StixDictionary<string>? Ipfix { get; init; }
     public StixIdentifier? SrcPayloadRef { get; init; }
     public StixIdentifier? DstPayloadRef { get; init; }

@@ -14,8 +14,8 @@ public sealed record NetworkSocketExtension : CyberObservableObject
     public bool? IsListening { get; init; }
     public StixDictionary<int>? Options { get; init; } //todo this can be an string, enum
     public NetworkSocketTypeEnum? SocketType { get; init; }
-    public StixInteger? SocketDescriptor { get; init; }
-    public StixInteger? SocketHandle { get; init; }
+    public Int54? SocketDescriptor { get; init; }
+    public Int54? SocketHandle { get; init; }
 
     public override string Type => TYPE;
 }

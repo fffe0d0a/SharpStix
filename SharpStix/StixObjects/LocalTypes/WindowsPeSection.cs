@@ -11,7 +11,7 @@ public sealed record WindowsPeSection : CyberObservableObject
     private const string TYPE = "windows-pe-section-type";
 
     public required string Name { get; init; }
-    public StixInteger? Size { get; init; }
+    public Int54? Size { get; init; }
 
     [Range(0, 8)] public StixFloat? Entropy { get; init; } //todo validate in this obj
 

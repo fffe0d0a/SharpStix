@@ -8,7 +8,7 @@ public sealed record UnixAccountExtension : CyberObservableObject
 {
     private const string TYPE = "unix-account-ext";
 
-    public StixInteger? Gid { get; init; }
+    public Int54? Gid { get; init; }
     public StixList<string>? Groups { get; init; }
     public string? HomeDir { get; init; }
     public string? Shell { get; init; }

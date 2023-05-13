@@ -11,7 +11,7 @@ public sealed record AlternateDataStream : CyberObservableObject
 
     public required string Name { get; init; }
     public StixHashes? Hashes { get; init; }
-    public StixInteger? Size { get; init; }
+    public Int54? Size { get; init; }
 
     public override string Type => TYPE;
 }
