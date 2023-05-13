@@ -1,8 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using FluentValidation;
-using SharpStix.Common;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
@@ -30,12 +27,6 @@ public sealed record Location : DomainObject
         Country = country;
     }
 
-    public Location(GeographicCoordinates coordinates)
-    {
-        Latitude = new StixFloat(coordinates.Latitude);
-        Longitude = new StixFloat(coordinates.Longitude);
-    }
-
     /// <summary>
     ///     A name used to identify the Location.
     /// </summary>
@@ -50,15 +41,13 @@ public sealed record Location : DomainObject
     ///     The latitude of the Location in decimal degrees. Positive numbers describe latitudes north of the equator, and
     ///     negative numbers describe latitudes south of the equator.
     /// </summary>
-    [Range(-90d, 90d)]
-    public StixFloat? Latitude { get; init; } //warn validate in this class
+    public Latitude? Latitude { get; init; } //warn validate in this class
 
     /// <summary>
     ///     The longitude of the Location in decimal degrees. Positive numbers describe longitudes east of the prime meridian
     ///     and negative numbers describe longitudes west of the prime meridian.
     /// </summary>
-    [Range(-90d, 90d)]
-    public StixFloat? Longitude { get; init; }
+    public Longitude? Longitude { get; init; }
 
     /// <summary>
     ///     Defines the precision of the coordinates specified by the latitude and longitude properties. This is measured in
@@ -97,15 +86,6 @@ public sealed record Location : DomainObject
     public string? PostalCode { get; init; }
 
     public override string Type => TYPE;
-
-    public GeographicCoordinates? GetCoordinates()
-    {
-        if (Latitude is null || Longitude is null)
-            return null;
-        return Precision is not null
-            ? new GeographicCoordinates(Latitude.Value, Longitude.Value, Precision.Value) 
-            : new GeographicCoordinates(Latitude.Value, Longitude.Value);
-    }
 }
 
 public class LocationValidator : AbstractValidator<Location>
@@ -150,17 +130,5 @@ public class LocationValidator : AbstractValidator<Location>
             .When(x => x.Longitude is not null)
             .WithSeverity(Severity.Error)
             .WithMessage($"{nameof(Location.Latitude)} must be set when {nameof(Location.Longitude)} is set.");
-
-        RuleFor(x => x.Latitude!.Value.Value)
-            .InclusiveBetween(-90d, 90d)
-            .When(x => x.Latitude is not null)
-            .WithSeverity(Severity.Error)
-            .WithMessage("Latitude must be between -90 and 90");
-
-        RuleFor(x => x.Longitude!.Value.Value)
-            .InclusiveBetween(-180d, 180d)
-            .When(x => x.Longitude is not null)
-            .WithSeverity(Severity.Error)
-            .WithMessage("Longitude must be between -180 and 180");
     }
 }

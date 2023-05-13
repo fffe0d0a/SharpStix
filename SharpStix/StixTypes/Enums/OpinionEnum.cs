@@ -41,8 +41,8 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
 
 
     /// <summary>
-    ///     Returns an <see cref="OpinionEnum" /> from the equivalent numeric representation, from 1 (
-    ///     <see cref="StronglyDisagree" />) to 5 (<see cref="StronglyAgree" />).
+    ///     Returns an <see cref="OpinionEnum" /> from the equivalent numeric representation, from 1 
+    ///     (<see cref="StronglyDisagree" />) to 5 (<see cref="StronglyAgree" />).
     /// </summary>
     /// <param name="value">The numeric representation of the opinion.</param>
     /// <returns>An <see cref="OpinionEnum" /> of equivalent value.</returns>
