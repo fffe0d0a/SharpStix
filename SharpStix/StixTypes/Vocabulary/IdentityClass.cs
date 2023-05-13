@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,44 +8,21 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record IdentityClass(string Value) : StixOpenVocab(Value)
 {
-    public enum EIdentityClass
-    {
-        /// <summary>
-        ///     A single person.
-        /// </summary>
-        Individual,
+    public static readonly IdentityClass Individual = new IdentityClass("individual");
 
-        /// <summary>
-        ///     An informal collection of people, without formal governance, such as a distributed hacker group.
-        /// </summary>
-        Group,
+    public static readonly IdentityClass Group = new IdentityClass("group");
 
-        /// <summary>
-        ///     A computer system, such as a SIEM.
-        /// </summary>
-        System,
+    public static readonly IdentityClass System = new IdentityClass("system");
 
-        /// <summary>
-        ///     A formal organization of people, with governance, such as a company or country.
-        /// </summary>
-        Organization,
+    public static readonly IdentityClass Organisational = new IdentityClass("organizational");
 
-        /// <summary>
-        ///     A class of entities, such as all hospitals, all Europeans, or the Domain Administrators in a system.
-        /// </summary>
-        Class,
+    public static readonly IdentityClass @Class = new IdentityClass("class");
 
-        /// <summary>
-        ///     It is unknown whether the classification is an individual, group, system, organization, or class.
-        /// </summary>
-        Unknown
-    }
+    public static readonly IdentityClass Unknown = new IdentityClass("unknown");
 
     private const string TYPE = "identity-class-ov";
 
-    public IdentityClass(EIdentityClass value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

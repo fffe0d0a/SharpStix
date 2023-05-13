@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,69 +8,32 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record AccountType(string Value) : StixOpenVocab(Value)
 {
-    public enum EAccountType
-    {
-        /// <summary>
-        ///     Specifies a Facebook account.
-        /// </summary>
-        Facebook,
+    public static readonly AccountType Facebook = new AccountType("facebook");
 
-        /// <summary>
-        ///     Specifies an LDAP account.
-        /// </summary>
-        Ldap,
+    public static readonly AccountType Ldap = new AccountType("ldap");
 
-        /// <summary>
-        ///     Specifies a NIS account.
-        /// </summary>
-        Nis,
+    public static readonly AccountType Nis = new AccountType("nis");
 
-        /// <summary>
-        ///     Specifies a OpenID account.
-        /// </summary>
-        Openid,
+    public static readonly AccountType OpenId = new AccountType("openid");
 
-        /// <summary>
-        ///     Specifies a RADIUS account.
-        /// </summary>
-        Radius,
+    public static readonly AccountType Radius = new AccountType("radius");
 
-        /// <summary>
-        ///     Specifies a Skype account.
-        /// </summary>
-        Skype,
+    public static readonly AccountType Skype = new AccountType("skype");
 
-        /// <summary>
-        ///     Specifies a TACACS account.
-        /// </summary>
-        Tacacs,
+    public static readonly AccountType Tacacs = new AccountType("tacacs");
 
-        /// <summary>
-        ///     Specifies a Twitter account.
-        /// </summary>
-        Twitter,
+    public static readonly AccountType Twitter = new AccountType("twitter");
 
-        /// <summary>
-        ///     Specifies a POSIX account.
-        /// </summary>
-        Unix,
+    public static readonly AccountType Unix = new AccountType("unix");
 
-        /// <summary>
-        ///     Specifies a Windows local account.
-        /// </summary>
-        WindowsLocal,
+    public static readonly AccountType WindowsLocal = new AccountType("windows-local");
 
-        /// <summary>
-        ///     Specifies a Windows domain account.
-        /// </summary>
-        WindowsDomain
-    }
+    public static readonly AccountType WindowsDomain = new AccountType("windows-domain");
+
 
     private const string TYPE = "account-type-ov";
 
-    public AccountType(EAccountType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

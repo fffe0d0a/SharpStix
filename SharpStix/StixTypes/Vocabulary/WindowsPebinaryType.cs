@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,29 +8,15 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record WindowsPebinaryType(string Value) : StixOpenVocab(Value)
 {
-    public enum EWindowsPebinaryType
-    {
-        /// <summary>
-        ///     Specifies that the PE binary is a dynamically linked library (DLL).
-        /// </summary>
-        Dll,
+    public static readonly WindowsPebinaryType Dll = new WindowsPebinaryType("dll");
 
-        /// <summary>
-        ///     Specifies that the PE binary is an executable image (i.e., not an OBJ or DLL).
-        /// </summary>
-        Exe,
+    public static readonly WindowsPebinaryType Exe = new WindowsPebinaryType("exe");
 
-        /// <summary>
-        ///     Specifies that the PE binary is a device driver (SYS).
-        /// </summary>
-        Sys
-    }
+    public static readonly WindowsPebinaryType Sys = new WindowsPebinaryType("sys");
 
     private const string TYPE = "windows-pebinary-type-ov";
 
-    public WindowsPebinaryType(EWindowsPebinaryType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

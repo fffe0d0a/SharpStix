@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using SharpStix.Common;
 using SharpStix.StixTypes;
@@ -24,6 +25,13 @@ public class StixHashesConverter : JsonConverter<StixHashes>
 
     public override void Write(Utf8JsonWriter writer, StixHashes value, JsonSerializerOptions options)
     {
-        throw new NotImplementedException();
+        Dictionary<string, string> niceJsonDict = new Dictionary<string, string>();
+        foreach (KeyValuePair<HashingAlgorithm, string> pair in value)
+        {
+            niceJsonDict.Add(pair.Key.ToString(), pair.Value);
+        }
+
+        using JsonDocument document = JsonSerializer.SerializeToDocument(niceJsonDict, options);
+        document.WriteTo(writer);
     }
 }

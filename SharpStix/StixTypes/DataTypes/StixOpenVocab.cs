@@ -19,7 +19,7 @@ public abstract record StixOpenVocab(string Value) : IStixDataType, IHasTypeName
 
     public override string ToString() => Value;
 
-    public static implicit operator string(StixOpenVocab v) => v.ToString();
+    public static implicit operator string(StixOpenVocab v) => v.Value;
 
 
     public static T FromString<T>(string value) where T : StixOpenVocab
@@ -29,8 +29,6 @@ public abstract record StixOpenVocab(string Value) : IStixDataType, IHasTypeName
 
         return (T)Activator.CreateInstance(typeof(T), value)!;
     }
-
-
 }
 
 internal class StixOpenVocabValidator : AbstractValidator<StixOpenVocab>

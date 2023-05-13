@@ -8,6 +8,7 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record HashingAlgorithm(string Value) : StixOpenVocab(Value)
 {
+    private const string TYPE = "hashing-algorithm-ov";
     public static readonly HashingAlgorithm MD5 = new HashingAlgorithm("MD5");
     public static readonly HashingAlgorithm SHA_1 = new HashingAlgorithm("SHA-1");
     public static readonly HashingAlgorithm SHA_256 = new HashingAlgorithm("SHA-256");
@@ -18,8 +19,7 @@ public sealed record HashingAlgorithm(string Value) : StixOpenVocab(Value)
     public static readonly HashingAlgorithm TLSH = new HashingAlgorithm("TLSH");
 
 
-    private const string TYPE = "hashing-algorithm-ov";
-
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

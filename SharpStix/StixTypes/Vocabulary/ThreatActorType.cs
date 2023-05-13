@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,77 +8,33 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ThreatActorType(string Value) : StixOpenVocab(Value)
 {
-    public enum EThreatActorType
-    {
-        /// <summary>
-        ///     Highly motivated, potentially destructive supporter of a social or political cause (e.g., trade, labor,
-        ///     environment, etc.) that attempts to disrupt an organization's business model or damage their image.
-        /// </summary>
-        Activist,
+    public static readonly ThreatActorType Activist = new ThreatActorType("activist");
 
-        /// <summary>
-        ///     An organization that competes in the same economic marketplace.
-        /// </summary>
-        Competitor,
+    public static readonly ThreatActorType Competitor = new ThreatActorType("competitor");
 
-        /// <summary>
-        ///     An enterprise organized to conduct significant, large-scale criminal activity for profit.
-        /// </summary>
-        CrimeSyndicate,
+    public static readonly ThreatActorType CrimeSyndicate = new ThreatActorType("crime-syndicate");
 
-        /// <summary>
-        ///     Individual who commits computer crimes, often for personal financial gain and often involves the theft of something
-        ///     valuable.
-        /// </summary>
-        Criminal,
+    public static readonly ThreatActorType Criminal = new ThreatActorType("criminal");
 
-        /// <summary>
-        ///     An individual that tends to break into networks for the thrill or the challenge of doing so.
-        /// </summary>
-        Hacker,
+    public static readonly ThreatActorType Hacker = new ThreatActorType("hacker");
 
-        /// <summary>
-        ///     A non-hostile insider who unintentionally exposes the organization to harm.
-        /// </summary>
-        InsiderAccidental,
+    public static readonly ThreatActorType InsiderAccidental = new ThreatActorType("insider-accidental");
 
-        /// <summary>
-        ///     Current or former insiders who seek revengeful and harmful retaliation for perceived wrongs.
-        /// </summary>
-        InsiderDisgruntled,
+    public static readonly ThreatActorType InsiderDisgruntled = new ThreatActorType("insider-disgruntled");
 
-        /// <summary>
-        ///     Entities who work for the government or military of a nation state or who work at their direction.
-        /// </summary>
-        NationState,
+    public static readonly ThreatActorType NationState = new ThreatActorType("nation-state");
 
-        /// <summary>
-        ///     Seeks to cause embarrassment and brand damage by exposing sensitive information in a manner designed to cause a
-        ///     public relations crisis.
-        /// </summary>
-        Sensationalist,
+    public static readonly ThreatActorType Sensationalist = new ThreatActorType("sensationalist");
 
-        /// <summary>
-        ///     Secretly collects sensitive information for use, dissemination, or sale.
-        /// </summary>
-        Spy,
+    public static readonly ThreatActorType Spy = new ThreatActorType("spy");
 
-        /// <summary>
-        ///     Uses extreme violence to advance a social or political agenda as well as monetary crimes to support its activities.
-        /// </summary>
-        Terrorist,
+    public static readonly ThreatActorType Terrorist = new ThreatActorType("terrorist");
 
-        /// <summary>
-        ///     There is not enough information available to determine the type of threat actor.
-        /// </summary>
-        Unknown
-    }
+    public static readonly ThreatActorType Unknown = new ThreatActorType("unknown");
 
     private const string TYPE = "theat-actor-type-ov";
 
-    public ThreatActorType(EThreatActorType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

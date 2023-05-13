@@ -9,45 +9,21 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record AttackResourceLevel(string Value) : StixOpenVocab(Value)
 {
-    public enum EAttackResourceLevel
-    {
-        /// <summary>
-        ///     Resources limited to the average individual; Threat Actor acts independently.
-        /// </summary>
-        Individual,
+    public static readonly AttackResourceLevel Individual = new AttackResourceLevel("individual");
 
-        /// <summary>
-        ///     Members interact on a social and volunteer basis, often with little personal interest in the specific target.
-        /// </summary>
-        Club,
+    public static readonly AttackResourceLevel Club = new AttackResourceLevel("club");
 
-        /// <summary>
-        ///     A short-lived and perhaps anonymous interaction that concludes when the participants have achieved a single goal.
-        /// </summary>
-        Contest,
+    public static readonly AttackResourceLevel Contest = new AttackResourceLevel("contest");
 
-        /// <summary>
-        ///     A formally organized group with a leader, typically motivated by a specific goal and organized around that goal.
-        /// </summary>
-        Team,
+    public static readonly AttackResourceLevel Team = new AttackResourceLevel("team");
 
-        /// <summary>
-        ///     Larger and better resourced than a team; typically, a company or crime syndicate. Usually operates in multiple
-        ///     geographic areas and persists long term.
-        /// </summary>
-        Organization,
+    public static readonly AttackResourceLevel Organisation = new AttackResourceLevel("organization");
 
-        /// <summary>
-        ///     Controls public assets and functions within a jurisdiction; very well resourced and persists long term.
-        /// </summary>
-        Government
-    }
+    public static readonly AttackResourceLevel Government = new AttackResourceLevel("government");
 
     private const string TYPE = "attack-resource-level-ov";
 
-    public AttackResourceLevel(EAttackResourceLevel value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

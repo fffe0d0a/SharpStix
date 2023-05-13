@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,30 +8,15 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record GroupingContext(string Value) : StixOpenVocab(Value)
 {
-    public enum EGroupingContext
-    {
-        /// <summary>
-        ///     A set of STIX content related to a particular suspicious activity event.
-        /// </summary>
-        SuspiciousActivity,
+    public static readonly GroupingContext SuspiciousActivity = new GroupingContext("suspicious-activity");
 
-        /// <summary>
-        ///     A set of STIX content related to a particular malware instance or family.
-        /// </summary>
-        MalwareAnalysis,
+    public static readonly GroupingContext MalwareAnalysis = new GroupingContext("malware-analysis");
 
-        /// <summary>
-        ///     A set of STIX content contextually related but without any precise characterization of the contextual relationship
-        ///     between the objects.
-        /// </summary>
-        Unspecified
-    }
+    public static readonly GroupingContext Unspecified = new GroupingContext("unspecified");
 
     private const string TYPE = "grouping-context-ov";
 
-    public GroupingContext(EGroupingContext value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

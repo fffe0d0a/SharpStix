@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,91 +8,39 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record InfrastructureType(string Value) : StixOpenVocab(Value)
 {
-    public enum EInfrastructureType
-    {
-        /// <summary>
-        ///     Specifies infrastructure used for conducting amplification attacks.
-        /// </summary>
-        Amplification,
+    public static readonly InfrastructureType Amplification = new InfrastructureType("amplification");
 
-        /// <summary>
-        ///     Specific infrastructure used for anonymization, such as a proxy.
-        /// </summary>
-        Anonymization,
+    public static readonly InfrastructureType Anonymisation = new InfrastructureType("anonymization");
 
-        /// <summary>
-        ///     Specifies the membership/makeup of a botnet, in terms of the network addresses of the hosts that comprise the
-        ///     botnet.
-        /// </summary>
-        Botnet,
+    public static readonly InfrastructureType Botnet = new InfrastructureType("botnet");
 
-        /// <summary>
-        ///     Specifies infrastructure used for command and control (C2). This is typically a domain name or IP address.
-        /// </summary>
-        CommandAndControl,
+    public static readonly InfrastructureType CommandAndControl = new InfrastructureType("command-and-control");
 
-        /// <summary>
-        ///     Specifies equipment such as IoT, HMI, RTU, PLC or other ICS devices.
-        /// </summary>
-        ControlSystem,
+    public static readonly InfrastructureType ControlSystem = new InfrastructureType("control-system");
 
-        /// <summary>
-        ///     Specifies infrastructure used as an endpoint for data exfiltration.
-        /// </summary>
-        Exfiltration,
+    public static readonly InfrastructureType Exfiltration = new InfrastructureType("exfiltration");
 
-        /// <summary>
-        ///     Specifies a device that inspects network traffic and restricts it based upon defined policies.
-        /// </summary>
-        Firewall,
+    public static readonly InfrastructureType Firewall = new InfrastructureType("firewall");
 
-        /// <summary>
-        ///     Specifies infrastructure used for hosting malware.
-        /// </summary>
-        HostingMalware,
+    public static readonly InfrastructureType HostingMalware = new InfrastructureType("hosting-malware");
 
-        /// <summary>
-        ///     Specifies infrastructure used for hosting a list of targets for DDOS attacks, phishing, and other malicious
-        ///     activities. This is typically a domain name or IP address.
-        /// </summary>
-        HostingTargetLists,
+    public static readonly InfrastructureType HostingTargetLists = new InfrastructureType("hosting-target-lists");
 
-        /// <summary>
-        ///     Specifies infrastructure used for conducting phishing attacks.
-        /// </summary>
-        Phishing,
+    public static readonly InfrastructureType Phishing = new InfrastructureType("phishing");
 
-        /// <summary>
-        ///     Specifies infrastructure used for conducting reconnaissance activities.
-        /// </summary>
-        Reconnaissance,
+    public static readonly InfrastructureType Reconnaissance = new InfrastructureType("reconnaissance");
 
-        /// <summary>
-        ///     Specifies IT infrastructure used to connect devices to the network.
-        /// </summary>
-        RoutersSwitches,
+    public static readonly InfrastructureType RoutersSwitches = new InfrastructureType("routers-switches");
 
-        /// <summary>
-        ///     Specifies infrastructure used for staging.
-        /// </summary>
-        Staging,
+    public static readonly InfrastructureType Staging = new InfrastructureType("staging");
 
-        /// <summary>
-        ///     Specifies an endpoint machine used for work by an organization that needs protection.
-        /// </summary>
-        Workstation,
+    public static readonly InfrastructureType Workstation = new InfrastructureType("workstation");
 
-        /// <summary>
-        ///     Specifies an infrastructure of some unknown type.
-        /// </summary>
-        Unknown
-    }
+    public static readonly InfrastructureType Unknown = new InfrastructureType("unknown");
 
     private const string TYPE = "infrastructure-type-ov";
 
-    public InfrastructureType(EInfrastructureType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

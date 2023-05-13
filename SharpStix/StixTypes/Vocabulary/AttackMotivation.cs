@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,65 +8,29 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record AttackMotivation(string Value) : StixOpenVocab(Value)
 {
-    public enum EAttackMotivation
-    {
-        /// <summary>
-        ///     A non-hostile actor whose benevolent or harmless intent inadvertently causes harm.
-        /// </summary>
-        Accidental,
+    public static readonly AttackMotivation Accidental = new AttackMotivation("accidental");
 
-        /// <summary>
-        ///     Being forced to act on someone else's behalf.
-        /// </summary>
-        Coercion,
+    public static readonly AttackMotivation Coercion = new AttackMotivation("coercion");
 
-        /// <summary>
-        ///     A desire to assert superiority over someone or something else.
-        /// </summary>
-        Dominance,
+    public static readonly AttackMotivation Dominance = new AttackMotivation("dominance");
 
-        /// <summary>
-        ///     A passion to express a set of ideas, beliefs, and values that may shape and drive harmful and illegal acts.
-        /// </summary>
-        Ideology,
+    public static readonly AttackMotivation Ideology = new AttackMotivation("ideology");
 
-        /// <summary>
-        ///     Seeking prestige or to become well known through some activity.
-        /// </summary>
-        Notoriety,
+    public static readonly AttackMotivation Notoriety = new AttackMotivation("notoriety");
 
-        /// <summary>
-        ///     Seeking advantage over a competing organization, including a military organization.
-        /// </summary>
-        OrganizationalGain,
+    public static readonly AttackMotivation OrganisationalGain = new AttackMotivation("organizational-gain");
 
-        /// <summary>
-        ///     The desire to improve one’s own financial status.
-        /// </summary>
-        PersonalGain,
+    public static readonly AttackMotivation PersonalGain = new AttackMotivation("personal-gain");
 
-        /// <summary>
-        ///     A desire to satisfy a strictly personal goal, including curiosity, thrill-seeking, amusement, etc.
-        /// </summary>
-        PersonalSatisfaction,
+    public static readonly AttackMotivation PersonalSatisfaction = new AttackMotivation("personal-satisfaction");
 
-        /// <summary>
-        ///     A desire to avenge perceived wrongs through harmful actions such as sabotage, violence, theft, fraud, or
-        ///     embarrassing certain individuals or the organization.
-        /// </summary>
-        Revenge,
+    public static readonly AttackMotivation Revenge = new AttackMotivation("revenge");
 
-        /// <summary>
-        ///     Acting without identifiable reason or purpose and creating unpredictable events.
-        /// </summary>
-        Unpredictable
-    }
+    public static readonly AttackMotivation Unpredictable = new AttackMotivation("unpredictable");
 
     private const string TYPE = "attack-motivation-ov";
 
-    public AttackMotivation(EAttackMotivation value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

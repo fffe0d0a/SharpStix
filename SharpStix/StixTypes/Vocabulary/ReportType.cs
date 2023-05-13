@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,69 +8,31 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ReportType(string Value) : StixOpenVocab(Value)
 {
-    public enum EReportType
-    {
-        /// <summary>
-        ///     Report subject is a characterization of one or more attack patterns and related information.
-        /// </summary>
-        AttackPattern,
+    public static readonly ReportType AttackPattern = new ReportType("attack-pattern");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more campaigns and related information.
-        /// </summary>
-        Campaign,
+    public static readonly ReportType Campaign = new ReportType("campaign");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more identities and related information.
-        /// </summary>
-        Identity,
+    public static readonly ReportType Identity = new ReportType("identity");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more indicators and related information.
-        /// </summary>
-        Indicator,
+    public static readonly ReportType Indicator = new ReportType("indicator");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more intrusion sets and related information.
-        /// </summary>
-        IntrusionSet,
+    public static readonly ReportType IntrusionSet = new ReportType("intrusion-set");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more malware instances and related information.
-        /// </summary>
-        Malware,
+    public static readonly ReportType Malware = new ReportType("malware");
 
-        /// <summary>
-        ///     Report subject is a characterization of observed data and related information.
-        /// </summary>
-        ObservedData,
+    public static readonly ReportType ObservedData = new ReportType("observed-data");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more threat actors and related information.
-        /// </summary>
-        ThreatActor,
+    public static readonly ReportType ThreatActor = new ReportType("threat-actor");
 
-        /// <summary>
-        ///     Report subject is a broad characterization of a threat across multiple facets.
-        /// </summary>
-        ThreatReport,
+    public static readonly ReportType ThreatReport = new ReportType("threat-report");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more tools and related information.
-        /// </summary>
-        Tool,
+    public static readonly ReportType Tool = new ReportType("tool");
 
-        /// <summary>
-        ///     Report subject is a characterization of one or more vulnerabilities and related information.
-        /// </summary>
-        Vulnerability
-    }
+    public static readonly ReportType Vulnerability = new ReportType("vulnerability");
 
     private const string TYPE = "report-type-ov";
 
-    public ReportType(EReportType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

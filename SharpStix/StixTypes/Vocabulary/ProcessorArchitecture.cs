@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,74 +8,25 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ProcessorArchitecture(string Value) : StixOpenVocab(Value)
 {
-    public enum EProcessorArchitecture
-    {
-        /// <summary>
-        ///     Specifies the Alpha architecture.
-        /// </summary>
-        Alpha,
+    public static readonly ProcessorArchitecture Alpha = new ProcessorArchitecture("alpha");
 
-        /// <summary>
-        ///     Specifies the ARM architecture.
-        /// </summary>
-        Arm,
+    public static readonly ProcessorArchitecture Arm = new ProcessorArchitecture("arm");
 
-        /// <summary>
-        ///     Specifies the 64-bit IA (Itanium) architecture.
-        /// </summary>
-        Ia_64,
+    public static readonly ProcessorArchitecture IA_64 = new ProcessorArchitecture("ia_64");
 
-        /// <summary>
-        ///     Specifies the MIPS architecture.
-        /// </summary>
-        Mips,
+    public static readonly ProcessorArchitecture Mips = new ProcessorArchitecture("mips");
 
-        /// <summary>
-        ///     Specifies the PowerPC architecture.
-        /// </summary>
-        Powerpc,
+    public static readonly ProcessorArchitecture PowerPc = new ProcessorArchitecture("powerpc");
 
-        /// <summary>
-        ///     Specifies the SPARC architecture.
-        /// </summary>
-        Sparc,
+    public static readonly ProcessorArchitecture Sparc = new ProcessorArchitecture("sparc");
 
-        /// <summary>
-        ///     Specifies the 32-bit x86 architecture.
-        /// </summary>
-        x86,
+    public static readonly ProcessorArchitecture X86 = new ProcessorArchitecture("x86");
 
-        /// <summary>
-        ///     Specifies the 64-bit x86 architecture.
-        /// </summary>
-        x86_64
-    }
+    public static readonly ProcessorArchitecture x86_64 = new ProcessorArchitecture("x86-64");
 
     private const string TYPE = "processor-architecture-ov";
 
-    public ProcessorArchitecture(EProcessorArchitecture value) : this(FormatEProcessorArchitecture(value))
-    {
-    }
-
     public override string Type => TYPE;
 
-    private static string FormatEProcessorArchitecture(EProcessorArchitecture processorArchitecture)
-    {
-        switch (processorArchitecture)
-        {
-            case EProcessorArchitecture.Alpha:
-            case EProcessorArchitecture.Arm:
-            case EProcessorArchitecture.Mips:
-            case EProcessorArchitecture.Powerpc:
-            case EProcessorArchitecture.Sparc:
-            case EProcessorArchitecture.x86:
-                return processorArchitecture.ToString().PascalToKebabCase();
-            case EProcessorArchitecture.Ia_64:
-            case EProcessorArchitecture.x86_64:
-                return processorArchitecture.ToString().ToLowerInvariant().Replace('_', '-');
-            default:
-                throw new ArgumentOutOfRangeException(nameof(processorArchitecture), processorArchitecture,
-                    "Unhandled switch argument.");
-        }
-    }
+    public override string ToString() => base.ToString();
 }

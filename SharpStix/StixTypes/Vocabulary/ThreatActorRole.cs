@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,50 +8,23 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record ThreatActorRole(string Value) : StixOpenVocab(Value)
 {
-    public enum EThreatActorRole
-    {
-        /// <summary>
-        ///     Threat actor executes attacks either on behalf of themselves or at the direction of someone else.
-        /// </summary>
-        Agent,
+    public static readonly ThreatActorRole Agent = new ThreatActorRole("agent");
 
-        /// <summary>
-        ///     The threat actor who directs the activities, goals, and objectives of the malicious activities.
-        /// </summary>
-        Director,
+    public static readonly ThreatActorRole Director = new ThreatActorRole("director");
 
-        /// <summary>
-        ///     A threat actor acting by themselves.
-        /// </summary>
-        Independent,
+    public static readonly ThreatActorRole Independent = new ThreatActorRole("independent");
 
-        /// <summary>
-        ///     Someone who designs the battle space.
-        /// </summary>
-        InfrastructureArchitect,
+    public static readonly ThreatActorRole InfrastructureArchitect = new ThreatActorRole("infrastructure-architect");
 
-        /// <summary>
-        ///     The threat actor who provides and supports the attack infrastructure that is used to deliver the attack (botnet
-        ///     providers, cloud services, etc.).
-        /// </summary>
-        InfrastructureOperator,
+    public static readonly ThreatActorRole InfrastructureOperator = new ThreatActorRole("infrastructure-operator");
 
-        /// <summary>
-        ///     The threat actor who authors malware or other malicious tools.
-        /// </summary>
-        MalwareAuthor,
+    public static readonly ThreatActorRole MalwareAuthor = new ThreatActorRole("malware-author");
 
-        /// <summary>
-        ///     The threat actor who funds the malicious activities.
-        /// </summary>
-        Sponsor
-    }
+    public static readonly ThreatActorRole Sponsor = new ThreatActorRole("sponsor");
 
     private const string TYPE = "threat-actor-role-ov";
 
-    public ThreatActorRole(EThreatActorRole value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,50 +8,23 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record IndicatorType(string Value) : StixOpenVocab(Value)
 {
-    public enum EIndicatorType
-    {
-        /// <summary>
-        ///     Unexpected, or unusual activity that may not necessarily be malicious or indicate compromise.
-        /// </summary>
-        AnomalousActivity,
+    public static readonly IndicatorType AnomalousActivity = new IndicatorType("anomalous-activity");
 
-        /// <summary>
-        ///     Suspected anonymization tools or infrastructure (proxy, TOR, VPN, etc.).
-        /// </summary>
-        Anonymization,
+    public static readonly IndicatorType Anonymisation = new IndicatorType("anonymization");
 
-        /// <summary>
-        ///     Activity that is not suspicious or malicious in and of itself, but when combined with other activity may indicate
-        ///     suspicious or malicious behaviour.
-        /// </summary>
-        Benign,
+    public static readonly IndicatorType Benign = new IndicatorType("benign");
 
-        /// <summary>
-        ///     Assets that are suspected to be compromised.
-        /// </summary>
-        Compromised,
+    public static readonly IndicatorType Compromised = new IndicatorType("compromised");
 
-        /// <summary>
-        ///     Patterns of suspected malicious objects and/or activity.
-        /// </summary>
-        MaliciousActivity,
+    public static readonly IndicatorType MaliciousActivity = new IndicatorType("malicious-activity");
 
-        /// <summary>
-        ///     Patterns of behavior that indicate attribution to a particular Threat Actor or Campaign.
-        /// </summary>
-        Attribution,
+    public static readonly IndicatorType Attribution = new IndicatorType("attribution");
 
-        /// <summary>
-        ///     There is not enough information available to determine the type of indicator.
-        /// </summary>
-        Unknown
-    }
+    public static readonly IndicatorType Unknown = new IndicatorType("unknown");
 
     private const string TYPE = "indicator-type-ov";
 
-    public IndicatorType(EIndicatorType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

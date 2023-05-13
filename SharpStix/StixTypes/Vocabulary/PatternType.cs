@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -9,44 +8,21 @@ namespace SharpStix.StixTypes.Vocabulary;
 [StixTypeDiscriminator(TYPE)]
 public sealed record PatternType(string Value) : StixOpenVocab(Value)
 {
-    public enum EPatternType
-    {
-        /// <summary>
-        ///     Specifies the STIX pattern language.
-        /// </summary>
-        Stix,
+    public static readonly PatternType Stix = new PatternType("stix");
 
-        /// <summary>
-        ///     Specifies the Perl Compatible Regular Expressions language.
-        /// </summary>
-        Pcre,
+    public static readonly PatternType Pcre = new PatternType("pcre");
 
-        /// <summary>
-        ///     Specifies the SIGMA language.
-        /// </summary>
-        Sigma,
+    public static readonly PatternType Sigma = new PatternType("sigma");
 
-        /// <summary>
-        ///     Specifies the SNORT language.
-        /// </summary>
-        Snort,
+    public static readonly PatternType Snort = new PatternType("snort");
 
-        /// <summary>
-        ///     Specifies the SURICATA language.
-        /// </summary>
-        Suricata,
+    public static readonly PatternType Suricata = new PatternType("suricata");
 
-        /// <summary>
-        ///     Specifies the YARA language.
-        /// </summary>
-        Yara
-    }
+    public static readonly PatternType Yara = new PatternType("yara");
 
     private const string TYPE = "pattern-type-ov";
 
-    public PatternType(EPatternType value) : this(value.ToString().PascalToKebabCase())
-    {
-    }
-
     public override string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }
