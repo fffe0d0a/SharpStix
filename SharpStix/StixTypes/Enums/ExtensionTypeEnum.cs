@@ -29,4 +29,6 @@ public sealed record ExtensionTypeEnum : Enumeration<ExtensionTypeEnum>, IStixEn
     }
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

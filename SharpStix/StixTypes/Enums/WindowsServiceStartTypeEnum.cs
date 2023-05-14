@@ -31,4 +31,6 @@ public sealed record WindowsServiceStartTypeEnum : Enumeration<WindowsServiceSta
     }
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

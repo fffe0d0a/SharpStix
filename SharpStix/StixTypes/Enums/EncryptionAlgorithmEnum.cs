@@ -24,4 +24,6 @@ public sealed record EncryptionAlgorithmEnum : Enumeration<EncryptionAlgorithmEn
     private EncryptionAlgorithmEnum(int value, string displayName) : base(value, displayName){}
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

@@ -40,4 +40,6 @@ public sealed record NetworkSocketAddressFamilyEnum : Enumeration<NetworkSocketA
     }
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

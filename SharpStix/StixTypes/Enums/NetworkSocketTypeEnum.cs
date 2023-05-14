@@ -42,4 +42,6 @@ public sealed record NetworkSocketTypeEnum : Enumeration<NetworkSocketTypeEnum>,
     }
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

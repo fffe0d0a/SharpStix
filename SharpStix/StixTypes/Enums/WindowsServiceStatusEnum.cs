@@ -37,4 +37,6 @@ public sealed record WindowsServiceStatusEnum : Enumeration<WindowsServiceStatus
     }
 
     public string Type => TYPE;
+
+    public override string ToString() => base.ToString();
 }

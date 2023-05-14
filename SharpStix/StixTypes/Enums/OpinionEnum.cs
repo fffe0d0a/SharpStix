@@ -42,6 +42,8 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
 
     public string Type => TYPE;
 
+    public override string ToString() => base.ToString();
+
 
     /// <summary>
     ///     Returns an <see cref="OpinionEnum" /> from the equivalent numeric representation, from 1 

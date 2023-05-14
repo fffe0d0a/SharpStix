@@ -9,7 +9,6 @@ namespace SharpStix.StixObjects;
 public abstract record StixObject : IStixType, IHasTypeName, IHasId
 {
     private const string TYPE = "stix-object";
-
     public required StixIdentifier Id { get; init; }
     public abstract string Type { get; }
 }
