@@ -6,7 +6,7 @@ namespace SharpStix.StixObjects.Domain;
 [StixTypeDiscriminator(TYPE)]
 public sealed record Campaign : DomainObject
 {
-    private const string TYPE = "campagin";
+    private const string TYPE = "campaign";
 
     /// <summary>
     ///     A name used to identify the Campaign.
