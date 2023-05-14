@@ -44,12 +44,6 @@ public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
         DisplayName = displayName;
     }
 
-    protected Enumeration(Enum @enum)
-    {
-        Value = Convert.ToInt32(@enum); //warn theoretically, this can be outside the range of an int.
-        DisplayName = @enum.ToString();
-    }
-
     public int Value { get; }
     public string DisplayName { get; }
 
