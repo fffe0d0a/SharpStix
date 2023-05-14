@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Serialisation.Json.Converters.Structs;
+using SharpStix.Serialisation.Json.Converters;
 
 namespace SharpStix.StixTypes;
 
@@ -17,4 +17,11 @@ public readonly record struct SpecVersion
     public string Version { get; }
 
     public override string ToString() => Version;
+
+    public static SpecVersion GetVersion(string version)
+    {
+        if (version == CURRENT_VERSION_NUMBER)
+            return CurrentVersion;
+        return new SpecVersion(version);
+    }
 }

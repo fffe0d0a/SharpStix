@@ -30,13 +30,14 @@ public class UnitTest1
             {
                 new DateTimeConverter(),
                 new CultureInfoConverter()
-            }
+            },
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
 
         var doc = JsonSerializer.SerializeToUtf8Bytes(quack, options);
-        File.WriteAllBytes("test.json", doc);
+        File.WriteAllBytes("testx.json", doc);
 
 
         return;
