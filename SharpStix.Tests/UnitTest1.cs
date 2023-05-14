@@ -31,7 +31,8 @@ public class UnitTest1
                 new DateTimeConverter(),
                 new CultureInfoConverter()
             },
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+            
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
