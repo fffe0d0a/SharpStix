@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using SharpStix.Extensions;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
