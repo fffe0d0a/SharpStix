@@ -18,7 +18,7 @@ public sealed record Sighting : RelationshipObject
     public required StixIdentifier SightingOfRef { get; init; }
     public StixList<StixIdentifier>? ObservedDataRefs { get; init; }
     public StixList<StixIdentifier>? WhereSighedRefs { get; init; }
-    public bool? Summary { get; init; } = false;
+    public bool? Summary { get; init; }
 
     public override string Type => TYPE;
 }
