@@ -6,7 +6,7 @@ namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<AccountType>))]
 [StixTypeDiscriminator(TYPE)]
-public sealed record AccountType(string Value) : StixOpenVocab(Value)
+public sealed record AccountType : StixOpenVocab
 {
     public static readonly AccountType Facebook = new AccountType("facebook");
 
@@ -30,10 +30,19 @@ public sealed record AccountType(string Value) : StixOpenVocab(Value)
 
     public static readonly AccountType WindowsDomain = new AccountType("windows-domain");
 
+    public AccountType(string Value) : base(Value)
+    {
+    }
+
 
     private const string TYPE = "account-type-ov";
 
     public override string Type => TYPE;
 
     public override string ToString() => base.ToString();
+
+    public void Deconstruct(out string Value)
+    {
+        Value = this.Value;
+    }
 }

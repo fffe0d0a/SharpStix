@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace SharpStix.StixObjects;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record WindowsPeOptionalHeader : CyberObservableObject //todo move me
+public sealed record WindowsPeOptionalHeader : CyberObservableObject
 {
     private const string TYPE = "win32-pe-optional-header-type";
 
