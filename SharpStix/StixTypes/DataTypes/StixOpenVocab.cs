@@ -1,14 +1,11 @@
 ﻿using System.Diagnostics;
-using System.Text.Json.Serialization;
 using FluentValidation;
 using SharpStix.Common.Helpers;
-using SharpStix.Serialisation.Json.Converters;
-using SharpStix.Services;
 using SharpStix.StixObjects;
 
 namespace SharpStix.StixTypes.Vocabulary;
 
-[JsonConverter(typeof(StixOpenVocabConverter<StixOpenVocab>))]
+//[JsonConverter(typeof(StixOpenVocabConverter<StixOpenVocab>))]
 [DebuggerDisplay("{Value}")]
 public abstract record StixOpenVocab : IStixDataType, IHasTypeName
 {
@@ -26,19 +23,6 @@ public abstract record StixOpenVocab : IStixDataType, IHasTypeName
     public override string ToString() => Value;
 
     public static implicit operator string(StixOpenVocab v) => v.Value;
-
-
-    public static T FromString<T>(string value) where T : StixOpenVocab
-    {
-        if (OpenVocabManager<T>.TryGetValue(value, out T? vocab))
-            return vocab!;
-
-        vocab = (T)Activator.CreateInstance(typeof(T), value)!;
-
-        OpenVocabManager<T>.TryAdd(vocab);
-
-        return vocab;
-    }
 }
 
 internal class StixOpenVocabValidator : AbstractValidator<StixOpenVocab>

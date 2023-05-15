@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -6,23 +7,36 @@ namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<PatternType>))]
 [StixTypeDiscriminator(TYPE)]
-public sealed record PatternType(string Value) : StixOpenVocab(Value)
+public sealed record PatternType : StixOpenVocab, IFromString<PatternType>
 {
-    public static readonly PatternType Stix = new PatternType("stix");
-
-    public static readonly PatternType Pcre = new PatternType("pcre");
-
-    public static readonly PatternType Sigma = new PatternType("sigma");
-
-    public static readonly PatternType Snort = new PatternType("snort");
-
-    public static readonly PatternType Suricata = new PatternType("suricata");
-
-    public static readonly PatternType Yara = new PatternType("yara");
-
     private const string TYPE = "pattern-type-ov";
+    public static readonly PatternType Stix = FromString("stix");
+
+    public static readonly PatternType Pcre = FromString("pcre");
+
+    public static readonly PatternType Sigma = FromString("sigma");
+
+    public static readonly PatternType Snort = FromString("snort");
+
+    public static readonly PatternType Suricata = FromString("suricata");
+
+    public static readonly PatternType Yara = FromString("yara");
+
+    private PatternType(string Value) : base(Value)
+    {
+    }
 
     public override string Type => TYPE;
+
+    public static PatternType FromString(string value)
+    {
+        if (OpenVocabManager<PatternType>.TryGetValue(value, out PatternType? vocab))
+            return vocab!;
+
+        vocab = new PatternType(value);
+        OpenVocabManager<PatternType>.TryAdd(vocab);
+        return vocab;
+    }
 
     public override string ToString() => base.ToString();
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -6,25 +7,38 @@ namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<ThreatActorSophistication>))]
 [StixTypeDiscriminator(TYPE)]
-public sealed record ThreatActorSophistication(string Value) : StixOpenVocab(Value)
+public sealed record ThreatActorSophistication : StixOpenVocab, IFromString<ThreatActorSophistication>
 {
-    public static readonly ThreatActorSophistication None = new ThreatActorSophistication("none");
-
-    public static readonly ThreatActorSophistication Minimal = new ThreatActorSophistication("minimal");
-
-    public static readonly ThreatActorSophistication Intermediate = new ThreatActorSophistication("intermediate");
-
-    public static readonly ThreatActorSophistication Advanced = new ThreatActorSophistication("advanced");
-
-    public static readonly ThreatActorSophistication Expert = new ThreatActorSophistication("expert");
-
-    public static readonly ThreatActorSophistication Innovator = new ThreatActorSophistication("innovator");
-
-    public static readonly ThreatActorSophistication Strategic = new ThreatActorSophistication("strategic");
-
     private const string TYPE = "threat-actor-sophistication-ov";
+    public static readonly ThreatActorSophistication None = FromString("none");
+
+    public static readonly ThreatActorSophistication Minimal = FromString("minimal");
+
+    public static readonly ThreatActorSophistication Intermediate = FromString("intermediate");
+
+    public static readonly ThreatActorSophistication Advanced = FromString("advanced");
+
+    public static readonly ThreatActorSophistication Expert = FromString("expert");
+
+    public static readonly ThreatActorSophistication Innovator = FromString("innovator");
+
+    public static readonly ThreatActorSophistication Strategic = FromString("strategic");
+
+    private ThreatActorSophistication(string Value) : base(Value)
+    {
+    }
 
     public override string Type => TYPE;
+
+    public static ThreatActorSophistication FromString(string value)
+    {
+        if (OpenVocabManager<ThreatActorSophistication>.TryGetValue(value, out ThreatActorSophistication? vocab))
+            return vocab!;
+
+        vocab = new ThreatActorSophistication(value);
+        OpenVocabManager<ThreatActorSophistication>.TryAdd(vocab);
+        return vocab;
+    }
 
     public override string ToString() => base.ToString();
 }

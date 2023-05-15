@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
 
@@ -6,79 +7,92 @@ namespace SharpStix.StixTypes.Vocabulary;
 
 [JsonConverter(typeof(StixOpenVocabConverter<IndustrySector>))]
 [StixTypeDiscriminator(TYPE)]
-public sealed record IndustrySector(string Value) : StixOpenVocab(Value)
+public sealed record IndustrySector : StixOpenVocab, IFromString<IndustrySector>
 {
-    public static readonly IndustrySector Agriculture = new IndustrySector("agriculture");
-
-    public static readonly IndustrySector Aerospace = new IndustrySector("aerospace");
-
-    public static readonly IndustrySector Automotive = new IndustrySector("automotive");
-
-    public static readonly IndustrySector Chemical = new IndustrySector("chemical");
-
-    public static readonly IndustrySector Commercial = new IndustrySector("commercial");
-
-    public static readonly IndustrySector Communications = new IndustrySector("communications");
-
-    public static readonly IndustrySector Construction = new IndustrySector("construction");
-
-    public static readonly IndustrySector Defence = new IndustrySector("defense");
-
-    public static readonly IndustrySector Education = new IndustrySector("education");
-
-    public static readonly IndustrySector Energy = new IndustrySector("energy");
-
-    public static readonly IndustrySector Entertainment = new IndustrySector("entertainment");
-
-    public static readonly IndustrySector FinancialServices = new IndustrySector("financial-services");
-
-    public static readonly IndustrySector Government = new IndustrySector("government");
-
-    public static readonly IndustrySector EmergenceServices = new IndustrySector("emergency-services");
-
-    public static readonly IndustrySector GovernmentLocal = new IndustrySector("government-local");
-
-    public static readonly IndustrySector GovernmentNational = new IndustrySector("government-national");
-
-    public static readonly IndustrySector GovernmentPublicServices = new IndustrySector("government-public-services");
-
-    public static readonly IndustrySector GovernmentRegional = new IndustrySector("government-regional");
-
-    public static readonly IndustrySector Healthcare = new IndustrySector("healthcare");
-
-    public static readonly IndustrySector HospitalityLeisure = new IndustrySector("hospitality-leisure");
-
-    public static readonly IndustrySector Infrastructure = new IndustrySector("infrastructure");
-
-    public static readonly IndustrySector Dams = new IndustrySector("dams");
-
-    public static readonly IndustrySector Nuclear = new IndustrySector("nuclear");
-
-    public static readonly IndustrySector Water = new IndustrySector("water");
-
-    public static readonly IndustrySector Insurance = new IndustrySector("insurance");
-
-    public static readonly IndustrySector Manufacturing = new IndustrySector("manufacturing");
-
-    public static readonly IndustrySector Mining = new IndustrySector("mining");
-
-    public static readonly IndustrySector NonProfit = new IndustrySector("non-profit");
-
-    public static readonly IndustrySector Pharmaceuticals = new IndustrySector("pharmaceuticals");
-
-    public static readonly IndustrySector Retail = new IndustrySector("retail");
-
-    public static readonly IndustrySector Technology = new IndustrySector("technology");
-
-    public static readonly IndustrySector Telecommunications = new IndustrySector("telecommunications");
-
-    public static readonly IndustrySector Transportation = new IndustrySector("transportation");
-
-    public static readonly IndustrySector Utilities = new IndustrySector("utilities");
-
     private const string TYPE = "industry-sector-ov";
+    public static readonly IndustrySector Agriculture = FromString("agriculture");
+
+    public static readonly IndustrySector Aerospace = FromString("aerospace");
+
+    public static readonly IndustrySector Automotive = FromString("automotive");
+
+    public static readonly IndustrySector Chemical = FromString("chemical");
+
+    public static readonly IndustrySector Commercial = FromString("commercial");
+
+    public static readonly IndustrySector Communications = FromString("communications");
+
+    public static readonly IndustrySector Construction = FromString("construction");
+
+    public static readonly IndustrySector Defence = FromString("defense");
+
+    public static readonly IndustrySector Education = FromString("education");
+
+    public static readonly IndustrySector Energy = FromString("energy");
+
+    public static readonly IndustrySector Entertainment = FromString("entertainment");
+
+    public static readonly IndustrySector FinancialServices = FromString("financial-services");
+
+    public static readonly IndustrySector Government = FromString("government");
+
+    public static readonly IndustrySector EmergenceServices = FromString("emergency-services");
+
+    public static readonly IndustrySector GovernmentLocal = FromString("government-local");
+
+    public static readonly IndustrySector GovernmentNational = FromString("government-national");
+
+    public static readonly IndustrySector GovernmentPublicServices = FromString("government-public-services");
+
+    public static readonly IndustrySector GovernmentRegional = FromString("government-regional");
+
+    public static readonly IndustrySector Healthcare = FromString("healthcare");
+
+    public static readonly IndustrySector HospitalityLeisure = FromString("hospitality-leisure");
+
+    public static readonly IndustrySector Infrastructure = FromString("infrastructure");
+
+    public static readonly IndustrySector Dams = FromString("dams");
+
+    public static readonly IndustrySector Nuclear = FromString("nuclear");
+
+    public static readonly IndustrySector Water = FromString("water");
+
+    public static readonly IndustrySector Insurance = FromString("insurance");
+
+    public static readonly IndustrySector Manufacturing = FromString("manufacturing");
+
+    public static readonly IndustrySector Mining = FromString("mining");
+
+    public static readonly IndustrySector NonProfit = FromString("non-profit");
+
+    public static readonly IndustrySector Pharmaceuticals = FromString("pharmaceuticals");
+
+    public static readonly IndustrySector Retail = FromString("retail");
+
+    public static readonly IndustrySector Technology = FromString("technology");
+
+    public static readonly IndustrySector Telecommunications = FromString("telecommunications");
+
+    public static readonly IndustrySector Transportation = FromString("transportation");
+
+    public static readonly IndustrySector Utilities = FromString("utilities");
+
+    private IndustrySector(string Value) : base(Value)
+    {
+    }
 
     public override string Type => TYPE;
+
+    public static IndustrySector FromString(string value)
+    {
+        if (OpenVocabManager<IndustrySector>.TryGetValue(value, out IndustrySector? vocab))
+            return vocab!;
+
+        vocab = new IndustrySector(value);
+        OpenVocabManager<IndustrySector>.TryAdd(vocab);
+        return vocab;
+    }
 
     public override string ToString() => base.ToString();
 }

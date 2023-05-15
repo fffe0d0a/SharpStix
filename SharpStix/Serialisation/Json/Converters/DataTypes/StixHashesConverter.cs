@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using SharpStix.Common;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
@@ -16,7 +14,7 @@ public class StixHashesConverter : JsonConverter<StixHashes>
         JsonDocument document = JsonDocument.ParseValue(ref reader);
         foreach (JsonProperty jsonProperty in document.RootElement.EnumerateObject())
         {
-            HashingAlgorithm algorithm = StixOpenVocab.FromString<HashingAlgorithm>(jsonProperty.Name);
+            HashingAlgorithm algorithm = HashingAlgorithm.FromString(jsonProperty.Name);
             hashes.Add(algorithm, jsonProperty.Value.ToString());
         }
 
