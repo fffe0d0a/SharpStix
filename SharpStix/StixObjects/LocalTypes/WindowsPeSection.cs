@@ -2,6 +2,7 @@
 using SharpStix.StixObjects.CyberObservable;
 using SharpStix.StixTypes;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SharpStix.StixObjects;
 
@@ -17,5 +18,6 @@ public sealed record WindowsPeSection : CyberObservableObject
 
     public StixHashes? Hashes { get; init; }
 
+    [JsonIgnore]
     public override string Type => TYPE;
 }

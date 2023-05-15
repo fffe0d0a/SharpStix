@@ -1,4 +1,5 @@
-﻿using SharpStix.Services;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixObjects.CyberObservable;
 using SharpStix.StixTypes.Enums;
 
@@ -13,5 +14,6 @@ public sealed record WindowsRegistryValue : CyberObservableObject
     public string? Data { get; init; }
     public WindowsRegistryDatatypeEnum? DataType { get; init; }
 
+    [JsonIgnore]
     public override string Type => TYPE;
 }

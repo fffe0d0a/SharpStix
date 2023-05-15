@@ -44,5 +44,6 @@ public sealed record WindowsPeOptionalHeader : CyberObservableObject //todo move
     public Int54? NumberOfRvaAndSizes { get; init; }
     public StixHashes? Hashes { get; init; }
 
+    [JsonIgnore]
     public override string Type => TYPE;
 }

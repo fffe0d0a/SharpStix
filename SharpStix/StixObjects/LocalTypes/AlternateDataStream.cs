@@ -1,6 +1,7 @@
 ﻿using SharpStix.Services;
 using SharpStix.StixObjects.CyberObservable;
 using SharpStix.StixTypes;
+using System.Text.Json.Serialization;
 
 namespace SharpStix.StixObjects;
 
@@ -13,5 +14,6 @@ public sealed record AlternateDataStream : CyberObservableObject
     public StixHashes? Hashes { get; init; }
     public Int54? Size { get; init; }
 
+    [JsonIgnore]
     public override string Type => TYPE;
 }
