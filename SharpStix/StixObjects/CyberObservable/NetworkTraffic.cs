@@ -8,7 +8,7 @@ public sealed record NetworkTraffic : CyberObservableObject
 {
     private const string TYPE = "network-traffic";
 
-    public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
+    public new Dictionary<string, NetworkTrafficExtension>? Extensions { get; init; }
     public DateTime? Start { get; init; }
     public DateTime? End { get; init; }
     public bool? IsActive { get; init; }

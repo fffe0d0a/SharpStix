@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record HttpRequestExtension : CyberObservableObject
+public sealed record HttpRequestExtension : NetworkTrafficExtension
 {
     private const string TYPE = "http-request-ext";
 
@@ -16,4 +16,5 @@ public sealed record HttpRequestExtension : CyberObservableObject
     public StixIdentifier? MessageBodyDataRef { get; init; }
 
     public override string Type => TYPE;
+    public override string Protocol => "http";
 }

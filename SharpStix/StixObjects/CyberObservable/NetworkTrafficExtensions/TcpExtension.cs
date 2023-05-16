@@ -2,7 +2,7 @@
 
 namespace SharpStix.StixObjects.CyberObservable;
 
-public sealed record TcpExtension : CyberObservableObject
+public sealed record TcpExtension : NetworkTrafficExtension
 {
     private const string TYPE = "tcp-ext";
 
@@ -10,4 +10,5 @@ public sealed record TcpExtension : CyberObservableObject
     public StixHex? DstFlagsHex { get; init; }
 
     public override string Type => TYPE;
+    public override string Protocol => "tcp";
 }
