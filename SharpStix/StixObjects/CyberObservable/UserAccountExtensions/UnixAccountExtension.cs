@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record UnixAccountExtension : CyberObservableObject
+public sealed record UnixAccountExtension : UserAccountExtension
 {
     private const string TYPE = "unix-account-ext";
 

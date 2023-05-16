@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Enums;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record WindowsServiceExtension : CyberObservableObject
+public sealed record WindowsServiceExtension : ProcessExtension
 {
     private const string TYPE = "window-service-ext";
 

@@ -1,5 +1,4 @@
 ﻿using SharpStix.Services;
-using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.CyberObservable;
@@ -9,7 +8,7 @@ public sealed record UserAccount : CyberObservableObject
 {
     private const string TYPE = "user-account";
 
-    public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
+    public new Dictionary<string, UserAccountExtension>? Extensions { get; init; }
     public string? UserId { get; init; }
     public string? Credential { get; init; }
     public string? AccountLogin { get; init; }
