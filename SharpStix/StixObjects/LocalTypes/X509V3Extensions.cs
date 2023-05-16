@@ -1,10 +1,9 @@
 ﻿using SharpStix.Services;
-using SharpStix.StixTypes;
 
-namespace SharpStix.StixObjects.CyberObservable;
+namespace SharpStix.StixObjects;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record X509V3Extensions : CyberObservableObject
+public sealed record X509V3Extensions : IHasTypeName
 {
     private const string TYPE = "x509-v3-extensions-type";
 
@@ -25,5 +24,5 @@ public sealed record X509V3Extensions : CyberObservableObject
     public string? CertificatePolicies { get; init; }
     public string? PolicyMappings { get; init; }
 
-    public override string Type => TYPE;
+    public string Type => TYPE;
 }
