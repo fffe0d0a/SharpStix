@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record NtfsFileExtension : CyberObservableObject
+public sealed record NtfsFileExtension : FileExtension
 {
     private const string TYPE = "ntfs-ext";
 

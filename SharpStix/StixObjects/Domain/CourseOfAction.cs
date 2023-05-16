@@ -21,7 +21,7 @@ public sealed record CourseOfAction : DomainObject
     ///// <summary>
     /////     RESERVED – To capture structured/automated courses of action.
     ///// </summary>
-    //public object? Action { get; init; } //warn, object properties should be forbidden
+    //public byte? Action { get; init; } //note reserved
 
     public override string Type => TYPE;
 }

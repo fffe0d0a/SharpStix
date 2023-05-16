@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-using SharpStix.Services;
+﻿using SharpStix.Services;
 using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record WindowsPebinaryExtension : CyberObservableObject
+public sealed record WindowsPebinaryExtension : FileExtension
 {
     private const string TYPE = "windows-pebinary-ext";
 

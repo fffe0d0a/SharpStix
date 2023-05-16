@@ -5,11 +5,11 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record File : CyberObservableObject
+public sealed record File : CyberObservableObject //todo validate
 {
     private const string TYPE = "file";
 
-    public new Dictionary<string, string>? Extensions { get; init; } //warn not compliant
+    public new Dictionary<string, FileExtension>? Extensions { get; init; } //todo test may need custom converter for proper formatting
     public StixHashes? Hashes { get; init; }
     public Int54? Size { get; init; }
     public string? Name { get; init; }

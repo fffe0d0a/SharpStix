@@ -5,7 +5,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record PdfFileExtension : CyberObservableObject
+public sealed record PdfFileExtension : FileExtension
 {
     private const string TYPE = "pdf-ext";
 
