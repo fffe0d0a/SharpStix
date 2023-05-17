@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using SharpStix.Common;
+using SharpStix.Serialisation;
 using SharpStix.StixObjects;
 using SharpStix.StixTypes;
 
@@ -18,10 +19,12 @@ public class StixContext
 
     public int AddObjects(params IStixType[] stixObjects) => throw new NotImplementedException();
 
-    public int AddObjectsFromJson(string jsonString)
+
+    public int AddFromBundleFile(StixSerialiser serialiser, string filePath)
     {
-        JsonDocument document = JsonDocument.Parse(jsonString);
+        Bundle? thing = serialiser.DeserialiseFromFile<Bundle>(filePath);
 
         throw new NotImplementedException();
     }
+
 }

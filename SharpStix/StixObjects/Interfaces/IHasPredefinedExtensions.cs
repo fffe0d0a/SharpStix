@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using SharpStix.Services;
 using SharpStix.StixObjects.CyberObservable;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;
 
@@ -22,7 +23,6 @@ public interface IHasPredefinedExtensions<T, T2> where T : IHasExtensions, IHasP
             T2 instance = (T2)element.Value.Deserialize(t); //warn missing serialisation options
         }
 
-
         //Type t = predefinedExtensions.RootElement[0]
 
         //key will be
@@ -32,4 +32,6 @@ public interface IHasPredefinedExtensions<T, T2> where T : IHasExtensions, IHasP
 
         //return ((T)this).Extensions?.Where(x => x.)
     } //should I be a property that is populated on first access from the existing extensions?
+
+    public StixList<T2> PredefinedExtensions { get; init; }
 }

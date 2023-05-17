@@ -1,6 +1,7 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SharpStix.Serialisation;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Serialisation.Json.Converters.Structs;
 using SharpStix.Services;
@@ -16,6 +17,13 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
+        StixContext context = new StixContext();
+        context.AddFromBundleFile(StixJsonSerialiser.Instance, "test.json");
+
+
+
+
+
         Type? t = StixTypeDiscriminationService.GetTypeFromDiscriminator("bundle");
 
         string q = File.ReadAllText("test.json");
@@ -61,7 +69,5 @@ public class UnitTest1
 
         return;
 
-        StixContext context = new StixContext();
-        context.AddObjectsFromJson(File.ReadAllText("enterprise-attack.json"));
     }
 }
