@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Text.Json.Serialization;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 
@@ -15,7 +15,7 @@ public sealed record LanguageContent : MetaObject, IVersioned
 
     public required StixIdentifier ObjectRef { get; init; }
     public DateTime? ObjectModified { get; init; }
-    public Dictionary<StixIdentifier, object>? Extensions { get; init; } //warn not compiant
+    [JsonExtensionData] public StixExtensions? Extensions { get; init; }
     //public required Dictionary<Language, Dictionary<string, List<object>>> Contents { get; init; } //warn tf, big warn, object
 
     public override string Type => TYPE;

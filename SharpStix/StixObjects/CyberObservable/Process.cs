@@ -8,7 +8,7 @@ public sealed record Process : CyberObservableObject
 {
     private const string TYPE = "process";
 
-    public new Dictionary<string, ProcessExtension>? Extensions { get; init; }
+    public new StixDictionary<ProcessExtension>? Extensions { get; init; } //warn may conflict
     public bool? IsHidden { get; init; }
     public Int54? Pid { get; init; }
     public DateTime? CreatedTime { get; init; }

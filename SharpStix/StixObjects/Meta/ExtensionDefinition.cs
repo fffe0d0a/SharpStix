@@ -5,7 +5,7 @@ using SharpStix.StixTypes.Enums;
 namespace SharpStix.StixObjects.Meta;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record ExtensionDefinition : MetaObject, IVersioned
+public sealed record ExtensionDefinition : MetaObject, IVersioned //this is a schema of sorts
 {
     private const string TYPE = "extensions-definition";
 

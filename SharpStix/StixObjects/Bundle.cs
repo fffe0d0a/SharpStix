@@ -1,4 +1,6 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 
@@ -10,6 +12,7 @@ public sealed record Bundle : IStixType, IHasTypeName, IHasId //keep in mind tha
     private const string TYPE = "bundle";
     public StixList<StixObject>? Objects { get; init; }
     public required StixIdentifier Id { get; init; }
+    [JsonExtensionData] public StixExtensions? Extensions { get; init; }
 
     public string Type => TYPE;
 }

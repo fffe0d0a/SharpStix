@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using SharpStix.Services;
 using SharpStix.StixObjects;
@@ -25,9 +26,11 @@ public class StixObjectConverter : JsonConverter<StixObject>
         using JsonDocument document = JsonDocument.ParseValue(ref reader);
 
         Type? type = GetTypeFromJsonDocument(document);
-        return type is not null
-            ? (StixObject?)document.Deserialize(type, options)
-            : null;
+        if (type is not null)
+            return (StixObject?)document.Deserialize(type, options);
+
+        Debug.WriteLine($"json document resolved to null value. {document.RootElement.GetRawText()}");
+        return null;
     }
 
     public override void Write(Utf8JsonWriter writer, StixObject value, JsonSerializerOptions options)

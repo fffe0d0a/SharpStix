@@ -20,7 +20,7 @@ public record MarkingDefinition : MetaObject //this type is a mess, don't blame 
     [Obsolete("Deprecated per STIX 2.1.")]
     public ObjectDefinition? Definition { get; init; }
 
-    public Dictionary<StixIdentifier, object>? Extensions { get; init; } //warn object and not stix dict
+    [JsonExtensionData] public StixExtensions? Extensions { get; init; }
 
     public override string Type => TYPE;
 }

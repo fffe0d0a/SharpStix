@@ -16,7 +16,7 @@ public class UnitTest1
     {
         Type? t = StixTypeDiscriminationService.GetTypeFromDiscriminator("bundle");
 
-        string q = File.ReadAllText("test.json");
+        string q = File.ReadAllText("enterprise-attack.json");
 
         JsonSerializerOptions options = new JsonSerializerOptions()
         {
