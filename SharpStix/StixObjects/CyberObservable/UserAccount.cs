@@ -5,11 +5,10 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record UserAccount : CyberObservableObject
+public sealed record UserAccount : CyberObservableObject, IHasPredefinedExtensions<UserAccount, UserAccountExtension>
 {
     private const string TYPE = "user-account";
 
-    public new StixDictionary<UserAccountExtension>? Extensions { get; init; } //warn may conflict
     public string? UserId { get; init; }
     public string? Credential { get; init; }
     public string? AccountLogin { get; init; }

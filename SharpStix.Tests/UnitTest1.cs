@@ -5,6 +5,8 @@ using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Serialisation.Json.Converters.Structs;
 using SharpStix.Services;
 using SharpStix.StixObjects;
+using SharpStix.StixObjects.CyberObservable;
+using File = System.IO.File;
 
 namespace SharpStix.Tests;
 
@@ -16,7 +18,7 @@ public class UnitTest1
     {
         Type? t = StixTypeDiscriminationService.GetTypeFromDiscriminator("bundle");
 
-        string q = File.ReadAllText("enterprise-attack.json");
+        string q = File.ReadAllText("test.json");
 
         JsonSerializerOptions options = new JsonSerializerOptions()
         {
@@ -36,6 +38,22 @@ public class UnitTest1
         };
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
+
+        foreach (StixObject o in quack.Objects.Where(x => x is StixObjects.CyberObservable.File))
+        {
+            StixObjects.CyberObservable.File file = (StixObjects.CyberObservable.File)o;
+            if (file.Extensions != null)
+            {
+                var qq = ((IHasPredefinedExtensions<StixObjects.CyberObservable.File, FileExtension>)file)
+                    .GetPredefinedExtensions();
+            }
+        }
+
+        foreach (StixObject o in quack.Objects.Where(x => x is NetworkTraffic))
+        {
+            NetworkTraffic file = (NetworkTraffic)o;
+
+        }
 
         var doc = JsonSerializer.SerializeToUtf8Bytes(quack, options);
         File.WriteAllBytes("testx.json", doc);

@@ -8,7 +8,7 @@ using SharpStix.StixTypes.Vocabulary;
 namespace SharpStix.StixObjects.Meta;
 
 [StixTypeDiscriminator(TYPE)]
-public record MarkingDefinition : MetaObject //this type is a mess, don't blame me
+public record MarkingDefinition : MetaObject, IHasExtensions //this type is a mess, don't blame me
 {
     private const string TYPE = "marking-definition";
 

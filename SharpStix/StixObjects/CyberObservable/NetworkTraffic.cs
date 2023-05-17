@@ -4,11 +4,10 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record NetworkTraffic : CyberObservableObject
+public sealed record NetworkTraffic : CyberObservableObject, IHasPredefinedExtensions<NetworkTraffic, NetworkTrafficExtension>
 {
     private const string TYPE = "network-traffic";
 
-    public new StixDictionary<NetworkTrafficExtension>? Extensions { get; init; } //warn may conflict
     public DateTime? Start { get; init; }
     public DateTime? End { get; init; }
     public bool? IsActive { get; init; }

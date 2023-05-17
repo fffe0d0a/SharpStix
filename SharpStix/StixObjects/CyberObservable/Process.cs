@@ -4,11 +4,10 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Process : CyberObservableObject
+public sealed record Process : CyberObservableObject, IHasPredefinedExtensions<Process, ProcessExtension>
 {
     private const string TYPE = "process";
 
-    public new StixDictionary<ProcessExtension>? Extensions { get; init; } //warn may conflict
     public bool? IsHidden { get; init; }
     public Int54? Pid { get; init; }
     public DateTime? CreatedTime { get; init; }

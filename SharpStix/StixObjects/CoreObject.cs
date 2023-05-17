@@ -3,7 +3,7 @@ using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;
 
-public abstract record CoreObject : StixObject
+public abstract record CoreObject : StixObject, IHasExtensions
 {
     public StixList<StixIdentifier>? ObjectMarkingRefs { get; init; }
     public StixList<GranularMarking>? GranularMarkings { get; init; }
