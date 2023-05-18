@@ -13,6 +13,7 @@ public sealed record EmailMessage : CyberObservableObject
     public string? ContentType { get; init; }
     public StixIdentifier? FromRef { get; init; }
     public StixIdentifier? SenderRef { get; init; }
+    public StixList<StixIdentifier>? ToRefs { get; init; }
     public StixList<StixIdentifier>? CcRefs { get; init; }
     public StixList<StixIdentifier>? BccRefs { get; init; }
     public string? MessageId { get; init; }
