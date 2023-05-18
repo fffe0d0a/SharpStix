@@ -9,12 +9,6 @@ public sealed record ObservedData() : DomainObject
 {
     private const string TYPE = "observed-data";
 
-    //[Obsolete]
-    //public ObservedData(object objects) : this()
-    //{
-    //    Objects = objects;
-    //}
-
     public ObservedData(params StixIdentifier[] objectRefs) : this()
     {
         ObjectRefs = new StixList<StixIdentifier>(objectRefs);
@@ -36,7 +30,7 @@ public sealed record ObservedData() : DomainObject
     [Range(1, 999999999)]
     public required Int54 NumberObserved { get; init; } //warn validate in class
 
-    //[Obsolete] public object? Objects { get; init; } //todo observable-container
+    [Obsolete("Deprecated as of STIX 2.1.")] public StixObservableContainer? Objects { get; init; }
 
     /// <summary>
     ///     A list of SCOs and SROs representing the observation.
