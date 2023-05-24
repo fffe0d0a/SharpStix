@@ -8,7 +8,6 @@ public sealed record NetworkTraffic : CyberObservableObject
 {
     private const string TYPE = "network-traffic";
 
-    public new StixDictionary<NetworkTrafficExtension>? Extensions { get; init; } //warn may conflict
     public DateTime? Start { get; init; }
     public DateTime? End { get; init; }
     public bool? IsActive { get; init; }

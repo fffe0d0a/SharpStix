@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SharpStix.Common.Extensions;
 using SharpStix.Services;
 using SharpStix.StixObjects;
 
@@ -8,29 +9,24 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class StixObjectConverter : JsonConverter<StixObject>
 {
-    private static Type? GetTypeFromJsonDocument(in JsonDocument document)
-    {
-        string typeName = document.RootElement
-            .EnumerateObject()
-            .FirstOrDefault(x => x.Name == "type").Value
-            .ToString();
-
-        if (string.IsNullOrWhiteSpace(typeName)) //typeName is string.Empty when type property does not exist
-            throw new Exception("missing type discriminator");
-
-        return StixTypeDiscriminationService.GetTypeFromDiscriminator(typeName); //may return null
-    }
-
     public override StixObject? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         using JsonDocument document = JsonDocument.ParseValue(ref reader);
 
-        Type? type = GetTypeFromJsonDocument(document);
-        if (type is not null)
-            return (StixObject?)document.Deserialize(type, options);
+        Type? type = document.RootElement.ResolveTypeFromDiscriminator();
+        if (type is null)
+        {
+            Debug.WriteLine($"json document resolved to null value. {document.RootElement.GetRawText()}");
+            return null;
+        }
 
-        Debug.WriteLine($"json document resolved to null value. {document.RootElement.GetRawText()}");
-        return null;
+        StixObject? instance = (StixObject?)document.Deserialize(type, options);
+        if (instance is IHasExtensions extendableInstance)
+            extendableInstance.Extensions?.FormatExtensions(); //post-serialisation formatting allows us to work with extension properties automatically collected by system.text.json
+
+        if (instance is not null)
+            ObjectLookupService.Register(instance); //register with lookup service
+        return instance;
     }
 
     public override void Write(Utf8JsonWriter writer, StixObject value, JsonSerializerOptions options)

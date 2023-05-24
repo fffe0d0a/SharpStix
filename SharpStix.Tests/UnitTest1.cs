@@ -1,10 +1,13 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SharpStix.Serialisation;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Serialisation.Json.Converters.Structs;
 using SharpStix.Services;
 using SharpStix.StixObjects;
+using SharpStix.StixObjects.CyberObservable;
+using File = System.IO.File;
 
 namespace SharpStix.Tests;
 
@@ -14,9 +17,17 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
+        StixContext context = new StixContext();
+        context.AddFromBundleFile(StixJsonSerialiser.Instance, "test.json");
+
+        context.AddFromBundleFile(StixJsonSerialiser.Instance, "enterprise-attack.json");
+
+
+
+
         Type? t = StixTypeDiscriminationService.GetTypeFromDiscriminator("bundle");
 
-        string q = File.ReadAllText("enterprise-attack.json");
+        string q = File.ReadAllText("test.json");
 
         JsonSerializerOptions options = new JsonSerializerOptions()
         {
@@ -37,13 +48,26 @@ public class UnitTest1
 
         Bundle quack = JsonSerializer.Deserialize<Bundle>(q, options);
 
+        foreach (StixObject o in quack.Objects.Where(x => x is StixObjects.CyberObservable.File))
+        {
+            StixObjects.CyberObservable.File file = (StixObjects.CyberObservable.File)o;
+            if (file.Extensions != null)
+            {
+              
+            }
+        }
+
+        foreach (StixObject o in quack.Objects.Where(x => x is NetworkTraffic))
+        {
+            NetworkTraffic file = (NetworkTraffic)o;
+
+        }
+
         var doc = JsonSerializer.SerializeToUtf8Bytes(quack, options);
         File.WriteAllBytes("testx.json", doc);
 
 
         return;
 
-        StixContext context = new StixContext();
-        context.AddObjectsFromJson(File.ReadAllText("enterprise-attack.json"));
     }
 }

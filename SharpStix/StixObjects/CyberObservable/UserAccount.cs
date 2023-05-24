@@ -9,7 +9,6 @@ public sealed record UserAccount : CyberObservableObject
 {
     private const string TYPE = "user-account";
 
-    public new StixDictionary<UserAccountExtension>? Extensions { get; init; } //warn may conflict
     public string? UserId { get; init; }
     public string? Credential { get; init; }
     public string? AccountLogin { get; init; }

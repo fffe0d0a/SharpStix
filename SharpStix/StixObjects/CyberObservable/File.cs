@@ -9,7 +9,6 @@ public sealed record File : CyberObservableObject //todo validate, //extensions 
 {
     private const string TYPE = "file";
 
-    public new StixDictionary<FileExtension> Extensions { get; init; } //warn, this may conflict with existing Extensions in SCOs
     public StixHashes? Hashes { get; init; }
     public Int54? Size { get; init; }
     public string? Name { get; init; }
