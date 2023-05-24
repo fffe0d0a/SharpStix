@@ -20,6 +20,7 @@ public class UnitTest1
         StixContext context = new StixContext();
         context.AddFromBundleFile(StixJsonSerialiser.Instance, "test.json");
 
+        context.AddFromBundleFile(StixJsonSerialiser.Instance, "enterprise-attack.json");
 
 
 
@@ -52,8 +53,7 @@ public class UnitTest1
             StixObjects.CyberObservable.File file = (StixObjects.CyberObservable.File)o;
             if (file.Extensions != null)
             {
-                var qq = ((IHasPredefinedExtensions<StixObjects.CyberObservable.File, FileExtension>)file)
-                    .GetPredefinedExtensions();
+              
             }
         }
 

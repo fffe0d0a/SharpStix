@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Process : CyberObservableObject, IHasPredefinedExtensions<Process, ProcessExtension>
+public sealed record Process : CyberObservableObject
 {
     private const string TYPE = "process";
 
