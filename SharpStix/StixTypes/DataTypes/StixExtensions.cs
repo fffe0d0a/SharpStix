@@ -76,7 +76,9 @@ public class UnresolvedExtension
     {
         bool NotifyAndReturn()
         {
+#if DEBUG
             Debug.WriteLine($"Could not resolve extension discriminator '{Discriminator}'.");
+#endif
             return false;
         }
 
