@@ -4,7 +4,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record Campaign : DomainObject
+public record Campaign : DomainObject
 {
     private const string TYPE = "campaign";
 

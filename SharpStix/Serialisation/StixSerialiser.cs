@@ -2,7 +2,7 @@
 
 namespace SharpStix.Serialisation;
 
-public abstract class StixSerialiser
+public abstract class StixSerialiser //implementations other than StixJsonSerialiser will not work at present
 {
     public abstract byte[] Serialise(object value, Type type);
     public abstract void SerialiseToFile(object value, Type type, string filePath);

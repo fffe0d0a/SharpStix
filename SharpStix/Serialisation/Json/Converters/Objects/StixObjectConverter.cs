@@ -7,6 +7,9 @@ using SharpStix.StixObjects;
 
 namespace SharpStix.Serialisation.Json.Converters;
 
+/// <summary>
+///     Used as the root converter for deserialising bundles
+/// </summary>
 public class StixObjectConverter : JsonConverter<StixObject>
 {
     public override StixObject? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -26,6 +29,7 @@ public class StixObjectConverter : JsonConverter<StixObject>
 
         if (instance is not null)
             ObjectLookupService.Register(instance); //register with lookup service
+
         return instance;
     }
 

@@ -1,4 +1,5 @@
 ﻿using SharpStix.Common;
+using SharpStix.Extended.Mitre.StixObjects;
 using SharpStix.Serialisation;
 using SharpStix.Services;
 using SharpStix.StixObjects;
