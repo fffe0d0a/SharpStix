@@ -2,7 +2,7 @@
 using SharpStix.StixObjects.Domain;
 using SharpStix.StixTypes;
 
-namespace SharpStix.Extended.Mitre.StixObjects;
+namespace SharpStix.Mitre.Attack.StixObjects;
 
 [StixTypeDiscriminator(TYPE)]
 public sealed record MitreMatrix : DomainObject

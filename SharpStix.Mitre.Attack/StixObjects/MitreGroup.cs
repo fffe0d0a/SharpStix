@@ -1,6 +1,6 @@
 ﻿using SharpStix.StixObjects.Domain;
 
-namespace SharpStix.Extended.Mitre.StixObjects;
+namespace SharpStix.Mitre.Attack.StixObjects;
 
 public sealed record MitreGroup : IntrusionSet; //exactly the same
 

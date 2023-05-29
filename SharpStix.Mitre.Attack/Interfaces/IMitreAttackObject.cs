@@ -1,7 +1,7 @@
-﻿using SharpStix.Extended.Mitre.StixTypes;
+﻿using SharpStix.Mitre.Attack.StixTypes;
 using SharpStix.StixTypes;
 
-namespace SharpStix.Extended.Mitre;
+namespace SharpStix.Mitre.Attack.Interfaces;
 
 public interface IMitreAttackObject
 {
