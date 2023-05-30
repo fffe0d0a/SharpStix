@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json;
 using SharpStix.StixObjects;
@@ -6,9 +7,9 @@ using SharpStix.StixObjects.Meta;
 
 namespace SharpStix.Services;
 
-internal static partial class StixJsonUpgradeService
+internal static class StixJsonUpgradeService
 {
-    private static readonly Dictionary<Type, List<TypeExtension>> Map = new Dictionary<Type, List<TypeExtension>>(); //Parent, Children
+    private static readonly ConcurrentDictionary<Type, List<Type>> Map = new ConcurrentDictionary<Type, List<Type>>(); //Parent, Children
 
     static StixJsonUpgradeService()
     {
@@ -29,38 +30,42 @@ internal static partial class StixJsonUpgradeService
         if (type.BaseType == typeof(MarkingDefinition)) //warn remove
             return;
 
-        if (!Map.ContainsKey(type.BaseType))
-            Map.Add(type.BaseType, new List<TypeExtension>());
+        if (!TypeAmbiguitySanityCheck(type.BaseType, type))
+            throw new Exception($"The json representation of {type.BaseType} and {type} is ambiguous.");
 
-        Map[type.BaseType].Add(TypeExtension.FromTypePair(type.BaseType, type));
+        if (!Map.ContainsKey(type.BaseType))
+            Map.TryAdd(type.BaseType, new List<Type>());
+
+        Map[type.BaseType].Add(type);
     }
 
-    internal static bool TryUpgradeType(Type type, in JsonDocument document, [NotNullWhen(true)] out Type? upgradeType) //document assumed to be a StixObject
+    internal static bool TryUpgrade(Type type, in JsonDocument document, in JsonSerializerOptions options, [NotNullWhen(true)] out StixObject? instance) //bug this will not work when extension properties are in the predefined Extension property
     {
-        upgradeType = null;
-
-        if (!Map.TryGetValue(type, out List<TypeExtension>? upgrades))
+        instance = null;
+        if (!Map.TryGetValue(type, out List<Type>? upgrades))
             return false;
 
-        foreach (TypeExtension upgrade in upgrades)
+        foreach (Type upgrade in upgrades)
         {
-            if (CanFit(document, upgrade))
+            try //this does the work of a custom json deserialiser
             {
-                upgradeType = upgrade.Type;
+                instance = (StixObject)document.Deserialize(upgrade, options)!; //todo pester MS to add TryDeserialize() or pester STIX maintainers to enforce type discriminators on extended types
                 return true;
             }
+            catch (JsonException) { }
         }
 
         return false;
     }
 
-
-    private static bool CanFit(in JsonDocument document, in TypeExtension upgrade)
+    private static bool TypeAmbiguitySanityCheck(Type parent, Type child)
     {
-        
-
-
-        throw new NotImplementedException();
+        return child
+            .GetProperties()
+            .ExceptBy(parent
+                .GetProperties()
+                .Select(x => x.Name), y => y.Name)
+            .Any();
     }
 }
 

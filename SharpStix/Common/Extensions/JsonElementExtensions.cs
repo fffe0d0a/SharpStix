@@ -8,7 +8,7 @@ namespace SharpStix.Common.Extensions;
 
 public static class JsonElementExtensions
 {
-    public static Type? ResolveTypeFromDiscriminator(this JsonElement element)
+    public static Type? ResolveTypeFromDiscriminator(this in JsonElement element)
     {
         if (element.ValueKind != JsonValueKind.Object)
             return null;

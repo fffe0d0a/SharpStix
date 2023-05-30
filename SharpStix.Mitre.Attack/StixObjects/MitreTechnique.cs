@@ -8,7 +8,7 @@ namespace SharpStix.Mitre.Attack.StixObjects;
 public sealed record MitreTechnique : AttackPattern
 {
     [JsonPropertyName("x_mitre_detection")]
-    public required string Detection { get; init; }
+    public string? Detection { get; init; }
 
     [JsonPropertyName("x_mitre_platforms")]
     public required StixList<string> Platforms { get; init; }

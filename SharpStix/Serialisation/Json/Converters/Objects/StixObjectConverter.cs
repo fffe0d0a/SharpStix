@@ -24,10 +24,9 @@ public class StixObjectConverter : JsonConverter<StixObject>
             return null;
         }
 
-        if (StixJsonUpgradeService.TryUpgradeType(type, in document, out Type? upgradeType))
-            type = upgradeType;
+        if (!StixJsonUpgradeService.TryUpgrade(type, document, options, out StixObject? instance))
+            instance = (StixObject?)document.Deserialize(type, options);
 
-        StixObject? instance = (StixObject?)document.Deserialize(type, options);
         if (instance is not null)
             FinaliseInstance(ref instance);
 
