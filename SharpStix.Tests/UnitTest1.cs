@@ -9,7 +9,7 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
-        ExtensionLoader.LoadFromName("SharpStix.Mitre.Attack");
+        ExtensionLoader.LoadFromName("SharpStix.Mitre.Attack"); //load Mitre types
 
         StixContext context = new StixContext();
         context.AddFromBundleFile(StixJsonSerialiser.Instance, "test.json");
