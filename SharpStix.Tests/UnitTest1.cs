@@ -1,3 +1,4 @@
+using SharpStix.Extension;
 using SharpStix.Serialisation;
 
 namespace SharpStix.Tests;
@@ -8,6 +9,8 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
+        ExtensionLoader.LoadFromName("SharpStix.Mitre.Attack");
+
         StixContext context = new StixContext();
         context.AddFromBundleFile(StixJsonSerialiser.Instance, "test.json");
         context.AddFromBundleFile(StixJsonSerialiser.Instance, "enterprise-attack.json");

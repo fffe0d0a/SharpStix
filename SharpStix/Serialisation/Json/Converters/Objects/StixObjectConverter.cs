@@ -24,11 +24,8 @@ public class StixObjectConverter : JsonConverter<StixObject>
         }
 
         StixObject? instance = (StixObject?)document.Deserialize(type, options);
-        if (instance is IHasExtensions extendableInstance)
-            extendableInstance.Extensions?.FormatExtensions(); //post-serialisation formatting allows us to work with extension properties automatically collected by system.text.json
-
         if (instance is not null)
-            ObjectLookupService.Register(instance); //register with lookup service
+            FinaliseInstance(ref instance);
 
         return instance;
     }
@@ -39,5 +36,18 @@ public class StixObjectConverter : JsonConverter<StixObject>
             document = JsonSerializer.SerializeToDocument(value, value.GetType(), options); //get the child type
 
         document.WriteTo(writer);
+    }
+
+    private static void FinaliseInstance(ref StixObject instance)
+    {
+        if (instance is IHasExtensions extendableInstance)
+        {
+            extendableInstance.Extensions?.FormatExtensions(); //post-serialisation formatting allows us to work with extension properties automatically collected by system.text.json
+            if (extendableInstance.Extensions != null)
+                if (StixObjectExtensionService.TryExtendInstance(ref instance))
+                    Debug.WriteLine($"Extended instance of {instance.GetType().BaseType} to {instance.GetType()}.");
+        }
+
+        ObjectLookupService.Register(instance); //register with lookup service
     }
 }

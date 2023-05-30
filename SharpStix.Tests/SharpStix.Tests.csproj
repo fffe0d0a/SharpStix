@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharpStix.Mitre.Attack\SharpStix.Mitre.Attack.csproj" />
     <ProjectReference Include="..\SharpStix\SharpStix.csproj" />
   </ItemGroup>
 

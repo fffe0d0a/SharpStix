@@ -74,7 +74,7 @@ public static class JsonElementExtensions
                 return true;
             case JsonValueKind.Null:
                 instance = null;
-                return false; //warn
+                return false; //bug?
             default:
                 throw new ArgumentOutOfRangeException(nameof(element), "Element ValueKind is of unhandled type.");
         }

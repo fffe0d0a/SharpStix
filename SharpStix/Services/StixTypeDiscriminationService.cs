@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using SharpStix.Common;
 using SharpStix.StixObjects;
 
 namespace SharpStix.Services;
@@ -19,32 +18,23 @@ public class StixTypeDiscriminatorAttribute : Attribute
 
 public static class StixTypeDiscriminationService
 {
-    private readonly static Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
-    private readonly static Dictionary<Type, string> DiscriminatorMap = new Dictionary<Type, string>();
+    private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>();
+    private static readonly Dictionary<Type, string> DiscriminatorMap = new Dictionary<Type, string>();
 
     static StixTypeDiscriminationService()
     {
-        MapTypes(Assembly.GetExecutingAssembly());
+        StixTypeElicitationService.Init();
     }
 
-    private static int MapTypes(Assembly assembly)
+    internal static void OnStixTypeFound(Type type)
     {
-        int i = 0;
+        string? typeDiscriminator = GetTypeDiscriminator(type);
 
-        foreach (Type type in assembly.GetTypes().Where(x =>
-                     x.IsAssignableTo(typeof(IStixType)) && x is { IsInterface: false, IsAbstract: false }))
-        {
-            string? typeDiscriminator = GetTypeDiscriminator(type);
+        if (typeDiscriminator == null) //null if GenericTypeNameHelperAttribute is missing on generic type
+            return;
 
-            if (typeDiscriminator == null) //null if GenericTypeNameHelperAttribute is missing on generic type
-                continue;
-
-            TypeMap.Add(typeDiscriminator, type); //if this throws, someone's making a duplicate type somewhere
-            DiscriminatorMap.Add(type, typeDiscriminator); // ||
-            i++;
-        }
-
-        return i;
+        TypeMap.Add(typeDiscriminator, type); //if this throws, someone's making a duplicate type somewhere
+        DiscriminatorMap.Add(type, typeDiscriminator); // ||
     }
 
     private static string? GetTypeDiscriminator(Type type)
@@ -94,6 +84,4 @@ public static class StixTypeDiscriminationService
         DiscriminatorMap.TryGetValue(instance.GetType(), out string? value);
         return value;
     }
-
-    public static int MapTypesFromAssembly(Assembly assembly) => MapTypes(assembly);
 }

@@ -105,6 +105,45 @@ public class StixExtensions : Dictionary<string, JsonElement> //not a STIX type
             }
         }
     }
+
+    public T GetValue<T>(string propertyName) where T : notnull
+    {
+        lock (Resolved)
+        {
+            ResolvedExtension? resolvedExtension = Resolved.FirstOrDefault(x => x.Name == propertyName);
+            if (resolvedExtension != null)
+                return (T)resolvedExtension.Value;
+            
+            lock (Unresolved)
+            {
+                UnresolvedExtension? unresolvedExtension = Unresolved.First(x => x.Key == propertyName);
+                if (unresolvedExtension == null)
+                    throw new KeyNotFoundException(
+                        $"Property by name of {propertyName} does not exist in {Resolved} or {Unresolved}.");
+
+                if (!unresolvedExtension.TryForceResolve(out T? returnValue))
+                    throw new InvalidCastException($"Property by name of {propertyName} cannot be converted to type {typeof(T)}.");
+
+                Resolved.Add(new ResolvedExtension(propertyName, typeof(T), returnValue));
+                Unresolved.Remove(unresolvedExtension);
+                return returnValue;
+            }
+        }
+    }
+
+    public bool HasExtensions(string name)
+    {
+        if (Unresolved.Any(x => x.Key == name))
+            return true;
+        if (Resolved.Any(x => x.Name == name))
+            return true;
+        return false;
+    }
+
+    public bool HasExtensions(params string[] names)
+    {
+        return names.All(HasExtensions);
+    }
 }
 
 
