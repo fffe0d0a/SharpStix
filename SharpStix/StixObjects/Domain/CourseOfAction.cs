@@ -3,7 +3,7 @@
 namespace SharpStix.StixObjects.Domain;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record CourseOfAction : DomainObject
+public record CourseOfAction : DomainObject
 {
     private const string TYPE = "course-of-action";
 

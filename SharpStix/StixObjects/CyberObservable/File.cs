@@ -5,7 +5,7 @@ using SharpStix.StixTypes;
 namespace SharpStix.StixObjects.CyberObservable;
 
 [StixTypeDiscriminator(TYPE)]
-public sealed record File : CyberObservableObject //todo validate, //extensions in files are commonly used
+public sealed record File : CyberObservableObject //todo validate
 {
     private const string TYPE = "file";
 

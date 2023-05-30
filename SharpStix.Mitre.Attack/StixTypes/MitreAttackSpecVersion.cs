@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using SharpStix.StixTypes;
 
-namespace SharpStix.Extended.Mitre.StixTypes;
+namespace SharpStix.Mitre.Attack.StixTypes;
 
 [JsonConverter(typeof(MitreAttackSpecVersionConverter))]
 public readonly record struct MitreAttackSpecVersion : IStixDataType

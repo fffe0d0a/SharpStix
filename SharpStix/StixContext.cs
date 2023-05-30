@@ -5,6 +5,7 @@ using SharpStix.StixObjects;
 
 namespace SharpStix;
 
+
 public class StixContext
 {
     public StixContext(string? name = null)
@@ -14,6 +15,9 @@ public class StixContext
 
     public string Id { get; } = Guid.NewGuid().ToString();
     public string? Name { get; }
+
+    private List<Bundle> Bundles { get; } = new List<Bundle>();
+    private List<StixObject> Unbundled { get; } = new List<StixObject>();
 
 
     public int AddObjects(params IStixType[] stixObjects) => throw new NotImplementedException();
