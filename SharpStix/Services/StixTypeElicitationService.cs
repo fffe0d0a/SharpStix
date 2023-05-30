@@ -10,7 +10,7 @@ public static class StixTypeElicitationService
     static StixTypeElicitationService()
     {
         StixTypeFound += (_, type) => StixTypeDiscriminationService.OnStixTypeFound(type);
-        StixTypeFound += (_, type) => StixObjectExtensionService.OnStixTypeFound(type);
+        StixTypeFound += (_, type) => StixJsonUpgradeService.OnStixTypeFound(type);
 
         AppDomain.CurrentDomain.AssemblyLoad += (_, args) => OnAssemblyLoad(args.LoadedAssembly);
 
