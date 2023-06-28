@@ -6,10 +6,8 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class EnumerationConverterFactory : JsonConverterFactory
 {
-    public override bool CanConvert(Type typeToConvert)
-    {
-        return typeToConvert.BaseType?.GetGenericTypeDefinition() == typeof(Enumeration<>); //is type of Enumeration<>
-    }
+    public override bool CanConvert(Type typeToConvert) =>
+        typeToConvert.BaseType?.GetGenericTypeDefinition() == typeof(Enumeration<>); //is type of Enumeration<>
 
     public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
@@ -24,8 +22,8 @@ public class EnumerationConverterFactory : JsonConverterFactory
         {
             string? value = reader.GetString();
             return value == null
-                ? null :
-                Enumeration<T>.FromDisplayName(value);
+                ? null
+                : Enumeration<T>.FromDisplayName(value);
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)

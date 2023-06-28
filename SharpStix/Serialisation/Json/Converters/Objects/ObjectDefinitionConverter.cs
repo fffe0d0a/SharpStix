@@ -6,7 +6,9 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class ObjectDefinitionConverter : JsonConverter<ObjectDefinition>
 {
-    public override ObjectDefinition? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) //warn hard-coded property names
+    public override ObjectDefinition?
+        Read(ref Utf8JsonReader reader, Type typeToConvert,
+            JsonSerializerOptions options) //warn hard-coded property names
     {
         using JsonDocument document = JsonDocument.ParseValue(ref reader);
 

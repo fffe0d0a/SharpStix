@@ -17,15 +17,19 @@ public static class StixTypeElicitationService
         EnumerateLoadedAssemblies();
     }
 
-    public static void Init() {}
+    public static void Init()
+    {
+    }
 
     private static void EnumerateLoadedAssemblies()
     {
         foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             if (assembly.FullName is not null)
+            {
                 if (assembly.FullName.StartsWith("System") || assembly.FullName.StartsWith("Microsoft"))
                     continue;
+            }
 
             OnAssemblyLoad(assembly);
         }

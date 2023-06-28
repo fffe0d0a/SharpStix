@@ -20,8 +20,10 @@ public sealed record EncryptionAlgorithmEnum : Enumeration<EncryptionAlgorithmEn
     public static readonly EncryptionAlgorithmEnum MineTypeIndicated =
         new EncryptionAlgorithmEnum(2, "mime-type-indicated");
 
-  
-    private EncryptionAlgorithmEnum(int value, string displayName) : base(value, displayName){}
+
+    private EncryptionAlgorithmEnum(int value, string displayName) : base(value, displayName)
+    {
+    }
 
     public string Type => TYPE;
 

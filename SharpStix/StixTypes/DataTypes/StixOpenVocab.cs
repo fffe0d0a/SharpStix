@@ -9,12 +9,12 @@ namespace SharpStix.StixTypes.Vocabulary;
 [DebuggerDisplay("{Value}")]
 public abstract record StixOpenVocab : IStixDataType, IHasTypeName
 {
+    private const string TYPE = "open-vocab";
+
     protected StixOpenVocab(string value)
     {
         Value = value;
     }
-
-    private const string TYPE = "open-vocab";
 
     protected string Value { get; }
 
@@ -32,6 +32,7 @@ internal class StixOpenVocabValidator : AbstractValidator<StixOpenVocab>
         RuleFor(x => x.ToString())
             .Matches(RegularExpressions.LowercaseHyphenated())
             .WithSeverity(Severity.Warning)
-            .WithMessage("Open Vocabulary should be lowercase, hyphenated text."); //warn Values that are not from the suggested vocabulary SHOULD be all lowercase and SHOULD use hyphens instead of spaces or underscores as word separators.
+            .WithMessage(
+                "Open Vocabulary should be lowercase, hyphenated text."); //warn Values that are not from the suggested vocabulary SHOULD be all lowercase and SHOULD use hyphens instead of spaces or underscores as word separators.
     }
 }

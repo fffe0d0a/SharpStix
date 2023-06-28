@@ -30,7 +30,8 @@ public sealed record ObservedData() : DomainObject
     [Range(1, 999999999)]
     public required Int54 NumberObserved { get; init; } //warn validate in class
 
-    [Obsolete("Deprecated as of STIX 2.1.")] public StixObservableContainer? Objects { get; init; }
+    [Obsolete("Deprecated as of STIX 2.1.")]
+    public StixObservableContainer? Objects { get; init; }
 
     /// <summary>
     ///     A list of SCOs and SROs representing the observation.

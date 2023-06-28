@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using SharpStix.Services;
+﻿using SharpStix.Services;
 using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.CyberObservable;

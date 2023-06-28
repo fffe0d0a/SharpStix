@@ -1,5 +1,5 @@
-﻿using SharpStix.StixTypes;
-using System.Globalization;
+﻿using System.Globalization;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Domain;
 

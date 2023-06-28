@@ -14,17 +14,14 @@ public record MarkingDefinition : MetaObject, IHasExtensions //this type is a me
 
     public string? Name { get; init; }
 
-    [Obsolete("Deprecated per STIX 2.1.")]
-    public DefinitionType? DefinitionType { get; init; }
+    [Obsolete("Deprecated per STIX 2.1.")] public DefinitionType? DefinitionType { get; init; }
 
-    [Obsolete("Deprecated per STIX 2.1.")]
-    public ObjectDefinition? Definition { get; init; }
-
-    [JsonExtensionData] public StixExtensions? Extensions { get; init; }
+    [Obsolete("Deprecated per STIX 2.1.")] public ObjectDefinition? Definition { get; init; }
 
     public override string Type => TYPE;
-}
 
+    [JsonExtensionData] public StixExtensions? Extensions { get; init; }
+}
 
 [JsonConverter(typeof(ObjectDefinitionConverter))]
 public abstract record ObjectDefinition;

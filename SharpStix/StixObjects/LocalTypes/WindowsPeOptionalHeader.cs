@@ -1,7 +1,7 @@
-﻿using SharpStix.Services;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixObjects.CyberObservable;
 using SharpStix.StixTypes;
-using System.Text.Json.Serialization;
 
 namespace SharpStix.StixObjects;
 
@@ -44,6 +44,5 @@ public sealed record WindowsPeOptionalHeader : CyberObservableObject
     public Int54? NumberOfRvaAndSizes { get; init; }
     public StixHashes? Hashes { get; init; }
 
-    [JsonIgnore]
-    public override string Type => TYPE;
+    [JsonIgnore] public override string Type => TYPE;
 }

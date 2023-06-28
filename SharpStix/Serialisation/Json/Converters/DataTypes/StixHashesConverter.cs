@@ -25,9 +25,7 @@ public class StixHashesConverter : JsonConverter<StixHashes>
     {
         Dictionary<string, string> niceJsonDict = new Dictionary<string, string>();
         foreach (KeyValuePair<HashingAlgorithm, string> pair in value)
-        {
             niceJsonDict.Add(pair.Key.ToString(), pair.Value);
-        }
 
         using JsonDocument document = JsonSerializer.SerializeToDocument(niceJsonDict, options);
         document.WriteTo(writer);

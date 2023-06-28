@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
-using SharpStix.Serialisation;
 using SharpStix.Services;
 using SharpStix.StixTypes;
 
@@ -78,7 +77,5 @@ public static class JsonElementExtensions
             default:
                 throw new ArgumentOutOfRangeException(nameof(element), "Element ValueKind is of unhandled type.");
         }
-
-       
     }
 }

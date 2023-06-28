@@ -2,7 +2,6 @@
 using FluentValidation;
 using SharpStix.Common.Helpers;
 using SharpStix.Serialisation.Json.Converters;
-using SharpStix.Serialisation.Json.Converters.DataTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixTypes;

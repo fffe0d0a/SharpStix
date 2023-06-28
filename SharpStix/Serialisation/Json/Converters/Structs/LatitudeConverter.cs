@@ -6,7 +6,9 @@ namespace SharpStix.Serialisation.Json.Converters;
 
 public class LatitudeConverter : JsonConverter<Latitude>
 {
-    public override Latitude Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => new Latitude(reader.GetDouble());
+    public override Latitude Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
+        new Latitude(reader.GetDouble());
 
-    public override void Write(Utf8JsonWriter writer, Latitude value, JsonSerializerOptions options) => writer.WriteNumberValue(value);
+    public override void Write(Utf8JsonWriter writer, Latitude value, JsonSerializerOptions options) =>
+        writer.WriteNumberValue(value);
 }

@@ -9,7 +9,8 @@ namespace SharpStix.Services;
 
 internal static class StixJsonUpgradeService
 {
-    private static readonly ConcurrentDictionary<Type, List<Type>> Map = new ConcurrentDictionary<Type, List<Type>>(); //Parent, Children
+    private static readonly ConcurrentDictionary<Type, List<Type>>
+        Map = new ConcurrentDictionary<Type, List<Type>>(); //Parent, Children
 
     static StixJsonUpgradeService()
     {
@@ -39,7 +40,9 @@ internal static class StixJsonUpgradeService
         Map[type.BaseType].Add(type);
     }
 
-    internal static bool TryUpgrade(Type type, in JsonDocument document, in JsonSerializerOptions options, [NotNullWhen(true)] out StixObject? instance) //bug this will not work when extension properties are in the predefined Extension property
+    internal static bool TryUpgrade(Type type, in JsonDocument document, in JsonSerializerOptions options,
+        [NotNullWhen(true)]
+        out StixObject? instance) //bug this will not work when extension properties are in the predefined Extension property
     {
         instance = null;
         if (!Map.TryGetValue(type, out List<Type>? upgrades))
@@ -49,10 +52,14 @@ internal static class StixJsonUpgradeService
         {
             try //this does the work of a custom json deserialiser
             {
-                instance = (StixObject)document.Deserialize(upgrade, options)!; //todo pester MS to add TryDeserialize() or pester STIX maintainers to enforce type discriminators on extended types
+                instance = (StixObject)document.Deserialize(upgrade,
+                        options)
+                    !; //todo pester MS to add TryDeserialize() or pester STIX maintainers to enforce type discriminators on extended types
                 return true;
             }
-            catch (JsonException) { }
+            catch (JsonException)
+            {
+            }
         }
 
         return false;
@@ -69,8 +76,10 @@ internal static class StixJsonUpgradeService
     }
 }
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public class InterceptUpgradeAttribute<T> : Attribute where T : IStixUpgradeIntercept, new() { }
+[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+public class InterceptUpgradeAttribute<T> : Attribute where T : IStixUpgradeIntercept, new()
+{
+}
 
 public interface IStixUpgradeIntercept
 {
@@ -87,7 +96,7 @@ public interface IStixUpgradeIntercept
         return true;
     }
 
-    internal delegate bool DTryDetermineType(in JsonDocument document, [NotNullWhen(true)] out Type? type);
-
     public abstract static bool TryDetermineType(in JsonDocument document, [NotNullWhen(true)] out Type? type);
+
+    internal delegate bool DTryDetermineType(in JsonDocument document, [NotNullWhen(true)] out Type? type);
 }

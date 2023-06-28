@@ -14,6 +14,5 @@ public sealed record WindowsRegistryValue : CyberObservableObject
     public string? Data { get; init; }
     public WindowsRegistryDatatypeEnum? DataType { get; init; }
 
-    [JsonIgnore]
-    public override string Type => TYPE;
+    [JsonIgnore] public override string Type => TYPE;
 }

@@ -10,7 +10,7 @@ public abstract record Enumeration<T> : IComparable<T> where T : Enumeration<T>
 {
     private static readonly Lazy<FrozenDictionary<int, T>> AllItems;
     private static readonly Lazy<FrozenDictionary<string, T>> AllItemsByName;
-    
+
     static Enumeration()
     {
         AllItems = new Lazy<FrozenDictionary<int, T>>(() =>

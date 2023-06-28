@@ -22,7 +22,7 @@ public sealed record File : CyberObservableObject //todo validate
     [JsonPropertyName("mtime")] public DateTime? ModifiedTime { get; init; }
 
     [JsonPropertyName("atime")] public DateTime? AccessedTime { get; init; }
-    
+
     public StixIdentifier? ParentDirectoryRef { get; init; }
     public StixList<StixIdentifier>? ContainsRefs { get; init; }
     public StixIdentifier? ContentRef { get; init; }

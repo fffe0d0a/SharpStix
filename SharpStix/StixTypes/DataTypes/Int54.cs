@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using FluentValidation;
 using SharpStix.Serialisation.Json.Converters;
 
 namespace SharpStix.StixTypes;
@@ -10,6 +9,8 @@ namespace SharpStix.StixTypes;
 [JsonConverter(typeof(Int54Converter))]
 public readonly record struct Int54 : IStixDataType
 {
+    private const string TYPE = "integer";
+
     public Int54(long value)
     {
         if (value is < -9007199254740991 or > 9007199254740991)
@@ -20,9 +21,8 @@ public readonly record struct Int54 : IStixDataType
 
     public long Value { get; }
 
-    private const string TYPE = "integer";
-
     public static implicit operator long(Int54 value) => value.Value;
+
     public static explicit operator Int54(long value) => new Int54(value);
 }
 

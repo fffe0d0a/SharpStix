@@ -5,7 +5,6 @@ using SharpStix.StixObjects;
 
 namespace SharpStix;
 
-
 public class StixContext
 {
     public StixContext(string? name = null)
@@ -31,5 +30,4 @@ public class StixContext
         return x;
         throw new NotImplementedException();
     }
-
 }

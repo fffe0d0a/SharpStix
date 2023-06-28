@@ -1,7 +1,7 @@
-﻿using SharpStix.Common;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Common;
 using SharpStix.Serialisation.Json.Converters;
 using SharpStix.Services;
-using System.Text.Json.Serialization;
 
 namespace SharpStix.StixTypes.Enums;
 
@@ -14,27 +14,27 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
     /// <summary>
     ///     The creator strongly disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public readonly static OpinionEnum StronglyDisagree = new OpinionEnum(1, "strongly-disagree");
+    public static readonly OpinionEnum StronglyDisagree = new OpinionEnum(1, "strongly-disagree");
 
     /// <summary>
     ///     The creator disagrees with the information and believes it is inaccurate or incorrect.
     /// </summary>
-    public readonly static OpinionEnum Disagree = new OpinionEnum(2, "disagree");
+    public static readonly OpinionEnum Disagree = new OpinionEnum(2, "disagree");
 
     /// <summary>
     ///     The creator is neutral about the accuracy or correctness of the information.
     /// </summary>
-    public readonly static OpinionEnum Neutral = new OpinionEnum(3, "neutral");
+    public static readonly OpinionEnum Neutral = new OpinionEnum(3, "neutral");
 
     /// <summary>
     ///     The creator agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public readonly static OpinionEnum Agree = new OpinionEnum(4, "agree");
+    public static readonly OpinionEnum Agree = new OpinionEnum(4, "agree");
 
     /// <summary>
     ///     The creator strongly agrees with the information and believes that it is accurate and correct.
     /// </summary>
-    public readonly static OpinionEnum StronglyAgree = new OpinionEnum(5, "strongly-agree");
+    public static readonly OpinionEnum StronglyAgree = new OpinionEnum(5, "strongly-agree");
 
     private OpinionEnum(int value, string displayName) : base(value, displayName)
     {
@@ -46,7 +46,7 @@ public sealed record OpinionEnum : Enumeration<OpinionEnum>, IStixEnum
 
 
     /// <summary>
-    ///     Returns an <see cref="OpinionEnum" /> from the equivalent numeric representation, from 1 
+    ///     Returns an <see cref="OpinionEnum" /> from the equivalent numeric representation, from 1
     ///     (<see cref="StronglyDisagree" />) to 5 (<see cref="StronglyAgree" />).
     /// </summary>
     /// <param name="value">The numeric representation of the opinion.</param>

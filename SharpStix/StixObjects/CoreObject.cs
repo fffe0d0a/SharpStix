@@ -10,5 +10,3 @@ public abstract record CoreObject : StixObject, IHasExtensions
 
     [JsonExtensionData] public StixExtensions? Extensions { get; init; }
 }
-
- 

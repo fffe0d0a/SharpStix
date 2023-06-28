@@ -19,7 +19,8 @@ public record struct Confidence
     private int Value { get; }
 
     public static implicit operator Confidence(int value) => new Confidence(value);
-    public static explicit operator int (Confidence value) => value.Value;
+
+    public static explicit operator int(Confidence value) => value.Value;
 
     #region ConfidenceScales
 

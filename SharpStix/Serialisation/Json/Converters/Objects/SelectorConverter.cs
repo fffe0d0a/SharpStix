@@ -10,9 +10,10 @@ public class SelectorConverter : JsonConverter<Selector>
     {
         string? value = reader.GetString();
         return value == null
-            ? null :
-            new Selector(value);
+            ? null
+            : new Selector(value);
     }
 
-    public override void Write(Utf8JsonWriter writer, Selector value, JsonSerializerOptions options) => writer.WriteStringValue(value.ToString());
+    public override void Write(Utf8JsonWriter writer, Selector value, JsonSerializerOptions options) =>
+        writer.WriteStringValue(value.ToString());
 }

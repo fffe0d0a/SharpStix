@@ -1,7 +1,7 @@
-﻿using SharpStix.Services;
+﻿using System.Text.Json.Serialization;
+using SharpStix.Services;
 using SharpStix.StixObjects.CyberObservable;
 using SharpStix.StixTypes;
-using System.Text.Json.Serialization;
 
 namespace SharpStix.StixObjects;
 
@@ -15,6 +15,5 @@ public sealed record EmailMimeComponent : CyberObservableObject
     public string? ContentType { get; init; }
     public string? ContentDisposition { get; init; }
 
-    [JsonIgnore]
-    public override string Type => TYPE;
+    [JsonIgnore] public override string Type => TYPE;
 }

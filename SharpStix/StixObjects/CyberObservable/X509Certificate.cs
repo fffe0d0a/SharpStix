@@ -19,7 +19,14 @@ public sealed record X509Certificate : CyberObservableObject
     public string? Subject { get; init; }
     public string? SubjectPublicKeyAlgorithm { get; init; }
     public string? SubjectPublicKeyModules { get; init; }
-    public Int54? SubjectPublicKeyExponent { get; init; } //bug surely e can be much larger than 2^54. This is a flaw with Stix itself
+
+    public Int54?
+        SubjectPublicKeyExponent
+    {
+        get;
+        init;
+    } //bug surely e can be much larger than 2^54. This is a flaw with Stix itself
+
     public X509V3Extensions? X509V3Extensions { get; init; }
 
     public override string Type => TYPE;

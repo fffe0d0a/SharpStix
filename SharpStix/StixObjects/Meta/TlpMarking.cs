@@ -14,7 +14,7 @@ public sealed record TlpMarking : MarkingDefinition
         Id = new StixIdentifier("marking-definition", "613f2e26-407d-48c7-9eca-b8e91df99dc9"),
         Created = CommonCreationTime,
         Name = "TLP:WHITE",
-        Definition = new TlpDefinition { Tlp = "white"}
+        Definition = new TlpDefinition { Tlp = "white" }
     };
 
     public static readonly TlpMarking Green = new TlpMarking

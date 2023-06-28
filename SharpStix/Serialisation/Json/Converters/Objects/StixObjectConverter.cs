@@ -45,10 +45,11 @@ public class StixObjectConverter : JsonConverter<StixObject>
     {
         if (instance is IHasExtensions extendableInstance)
         {
-            extendableInstance.Extensions?.FormatExtensions(); //post-serialisation formatting allows us to work with extension properties automatically collected by system.text.json
+            extendableInstance.Extensions
+                ?.FormatExtensions(); //post-serialisation formatting allows us to work with extension properties automatically collected by system.text.json
             //if (extendableInstance.Extensions != null)
-                //if (StixObjectExtensionService.TryExtendInstance(ref instance))
-                    //Debug.WriteLine($"Extended instance of {instance.GetType().BaseType} to {instance.GetType()}.");
+            //if (StixObjectExtensionService.TryExtendInstance(ref instance))
+            //Debug.WriteLine($"Extended instance of {instance.GetType().BaseType} to {instance.GetType()}.");
         }
 
         ObjectLookupService.Register(instance); //register with lookup service

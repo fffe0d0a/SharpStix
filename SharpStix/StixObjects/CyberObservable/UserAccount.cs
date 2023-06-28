@@ -1,5 +1,4 @@
 ﻿using SharpStix.Services;
-using SharpStix.StixTypes;
 using SharpStix.StixTypes.Vocabulary;
 
 namespace SharpStix.StixObjects.CyberObservable;

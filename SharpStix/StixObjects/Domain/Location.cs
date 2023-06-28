@@ -14,7 +14,6 @@ public sealed record Location : DomainObject
     [JsonConstructor]
     public Location()
     {
-
     }
 
     public Location(Region region)

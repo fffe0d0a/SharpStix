@@ -15,6 +15,7 @@ public sealed record LanguageContent : MetaObject, IVersioned
 
     public required StixIdentifier ObjectRef { get; init; }
     public DateTime? ObjectModified { get; init; }
+
     [JsonExtensionData] public StixExtensions? Extensions { get; init; }
     //public required Dictionary<Language, Dictionary<string, List<object>>> Contents { get; init; } //warn tf, big warn, object
 

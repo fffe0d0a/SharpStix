@@ -10,7 +10,7 @@ public sealed class StixJsonSerialiser : StixSerialiser
 {
     public static readonly StixJsonSerialiser Instance = new StixJsonSerialiser();
 
-    public static readonly JsonSerializerOptions? Options = new JsonSerializerOptions()
+    public static readonly JsonSerializerOptions? Options = new JsonSerializerOptions
     {
         PropertyNameCaseInsensitive = true,
         PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
@@ -23,7 +23,7 @@ public sealed class StixJsonSerialiser : StixSerialiser
             new DateTimeConverter(),
             new CultureInfoConverter()
         },
-        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
     };
 
     public override void SerialiseToFile(object value, Type type, string filePath)
@@ -56,5 +56,6 @@ public sealed class StixJsonSerialiser : StixSerialiser
         return JsonSerializer.Deserialize(fs, type, Options);
     }
 
-    public override byte[] Serialise(object value, Type type) => JsonSerializer.SerializeToUtf8Bytes(value, type, Options);
+    public override byte[] Serialise(object value, Type type) =>
+        JsonSerializer.SerializeToUtf8Bytes(value, type, Options);
 }

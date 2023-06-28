@@ -7,7 +7,7 @@ namespace SharpStix.StixTypes;
 public readonly record struct SpecVersion
 {
     private const string CURRENT_VERSION_NUMBER = "2.1";
-    public readonly static SpecVersion CurrentVersion = new SpecVersion(CURRENT_VERSION_NUMBER);
+    public static readonly SpecVersion CurrentVersion = new SpecVersion(CURRENT_VERSION_NUMBER);
 
     public SpecVersion(string version)
     {

@@ -13,7 +13,9 @@ public sealed record Opinion : DomainObject
     public string? Explanation { get; init; }
     public StixList<string>? Authors { get; init; }
 
-    [JsonPropertyName("opinion")] public required OpinionEnum OpinionEnum { get; init; } //A type with a property of same name is not great, blame the STIX documentation
+    [JsonPropertyName("opinion")]
+    public required OpinionEnum
+        OpinionEnum { get; init; } //A type with a property of same name is not great, blame the STIX documentation
 
     public required StixList<StixIdentifier> ObjectRefs { get; init; }
 

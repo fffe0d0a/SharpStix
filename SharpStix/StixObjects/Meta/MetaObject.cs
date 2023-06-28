@@ -1,5 +1,4 @@
-﻿using SharpStix.StixObjects;
-using SharpStix.StixTypes;
+﻿using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects.Meta;
 

@@ -9,7 +9,8 @@ public readonly record struct Latitude
     public Latitude(double value)
     {
         if (value is < -90 or > 90)
-            throw new ArgumentOutOfRangeException(nameof(value), "Latitude must be within the range of [-90, 90] inclusive.");
+            throw new ArgumentOutOfRangeException(nameof(value),
+                "Latitude must be within the range of [-90, 90] inclusive.");
 
         Value = value;
     }

@@ -9,7 +9,8 @@ public readonly record struct Longitude
     public Longitude(double value)
     {
         if (value is < -180 or > 180)
-            throw new ArgumentOutOfRangeException(nameof(value), "Longitude must be within the range of [-180, 180] inclusive.");
+            throw new ArgumentOutOfRangeException(nameof(value),
+                "Longitude must be within the range of [-180, 180] inclusive.");
 
         Value = value;
     }

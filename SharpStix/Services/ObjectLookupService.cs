@@ -10,6 +10,8 @@ public static class ObjectLookupService
     private static readonly ConcurrentDictionary<StixIdentifier, StixObject> Map =
         new ConcurrentDictionary<StixIdentifier, StixObject>();
 
+    public static int Count => Map.Count;
+
     internal static bool Register(StixObject stixObject)
     {
         bool success = Map.TryAdd(stixObject.Id, stixObject);
@@ -19,7 +21,6 @@ public static class ObjectLookupService
         return success;
     }
 
-    public static bool Lookup(StixIdentifier identifier, out StixObject? stixObject) => Map.TryGetValue(identifier, out stixObject);
-
-    public static int Count => Map.Count;
+    public static bool Lookup(StixIdentifier identifier, out StixObject? stixObject) =>
+        Map.TryGetValue(identifier, out stixObject);
 }

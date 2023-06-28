@@ -18,5 +18,7 @@ public sealed record NetworkSocketExtension : NetworkTrafficExtension
     public Int54? SocketHandle { get; init; }
 
     public override string Type => TYPE;
-    public override string Protocol => "undefined"; //warn the STIX documentation does not prescribe a protocol value for socket-ext.
+
+    public override string Protocol =>
+        "undefined"; //warn the STIX documentation does not prescribe a protocol value for socket-ext.
 }

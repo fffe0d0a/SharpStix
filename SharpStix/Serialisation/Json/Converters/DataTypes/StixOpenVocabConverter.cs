@@ -10,9 +10,9 @@ internal class StixOpenVocabConverter<T> : JsonConverter<T> where T : StixOpenVo
     public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string? value = reader.GetString();
-        return value == null 
-            ? null :
-            T.FromString(value);
+        return value == null
+            ? null
+            : T.FromString(value);
     }
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)

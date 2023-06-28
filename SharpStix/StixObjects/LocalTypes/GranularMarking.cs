@@ -1,7 +1,7 @@
-﻿using SharpStix.StixTypes;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Json.Serialization;
 using SharpStix.Serialisation.Json.Converters;
+using SharpStix.StixTypes;
 
 namespace SharpStix.StixObjects;
 
