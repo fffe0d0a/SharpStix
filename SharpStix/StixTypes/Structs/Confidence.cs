@@ -93,8 +93,8 @@ public record struct Confidence
             >= 10 and < 20 => "Very Unlikely",
             >= 20 and < 40 => "Unlikely",
             >= 40 and < 60 => "Roughly Even Chance",
-            > 60 and < 80 => "Likely",
-            > 80 and <= 100 => "Almost Certain",
+            >= 60 and < 80 => "Likely",
+            >= 80 and <= 100 => "Almost Certain",
             _ => throw new ArgumentOutOfRangeException()
         };
     }
